@@ -31,10 +31,10 @@ wheels/
 .env
 
 # Database & Data layers
-data/02_staging/*
-!data/02_staging/.gitkeep
-data/03_processed/*
-!data/03_processed/.gitkeep
+data/staging/*
+!data/staging/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
 
 # SQLite / DuckDB local files
 *.duckdb
@@ -51,3 +51,14 @@ data/03_processed/*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local inputs and generated artifacts (use external storage or Git LFS when publishing)
+tmp/
+*.mdf
+*.ldf
+*.bak
+Source/**/bin/
+Source/**/obj/
+*.user
+*.suo
+Submission/

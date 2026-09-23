@@ -1,0 +1,86 @@
+/* Design-time queries. Build the cube contract in docs/03_implementation.md first.
+   Execute each query separately. All status/outcomes are as of the snapshot.
+   Calendar years differ from fiscal years. FY2026 is incomplete. */
+
+-- Q01 Roll-up: portfolio by approval fiscal year.
+SELECT {[Measures].[Loan Count],[Measures].[Gross Approval],[Measures].[Guaranteed Approval]} ON COLUMNS,
+ NON EMPTY [Approval Date].[Fiscal Year].[Fiscal Year].Members ON ROWS FROM [SBA Lending];
+
+-- Q02 Drill-down: calendar 2024 to quarters.
+SELECT {[Measures].[Gross Approval]} ON COLUMNS,
+ DRILLDOWNLEVEL({[Approval Date].[Calendar].[Calendar Year].&[2024]}) ON ROWS FROM [SBA Lending];
+
+-- Q03 Slice: state totals for approval FY2024.
+SELECT {[Measures].[Gross Approval],[Measures].[Loan Count]} ON COLUMNS,
+ NON EMPTY [Project Geography].[State].[State].Members ON ROWS FROM [SBA Lending]
+WHERE ([Approval Date].[Fiscal Year].&[2024]);
+
+-- Q04 Dice: CA/TX, FY2023/FY2024, accommodation/food sector.
+SELECT {[Measures].[Gross Approval],[Measures].[Jobs Supported]} ON COLUMNS,
+ NON EMPTY CROSSJOIN({[Project Geography].[State].&[CA],[Project Geography].[State].&[TX]},
+ {[Approval Date].[Fiscal Year].&[2023],[Approval Date].[Fiscal Year].&[2024]}) ON ROWS
+FROM [SBA Lending] WHERE ([Industry].[Sector].&[72]);
+
+-- Q05 Pivot: fiscal years on columns, sectors on rows.
+SELECT NON EMPTY [Approval Date].[Fiscal Year].[Fiscal Year].Members ON COLUMNS,
+ NON EMPTY [Industry].[Sector].[Sector].Members ON ROWS FROM [SBA Lending]
+WHERE ([Measures].[Gross Approval]);
+
+-- Q06 TopCount: top 10 current lender records by FY2024 approval.
+SELECT {[Measures].[Gross Approval],[Measures].[Loan Count]} ON COLUMNS,
+ TOPCOUNT(NONEMPTY([Lender].[Lender].[Lender].Members,[Measures].[Gross Approval]),10,[Measures].[Gross Approval]) ON ROWS
+FROM [SBA Lending] WHERE ([Approval Date].[Fiscal Year].&[2024]);
+
+-- Q07 Filter: states with at least 100 resolved loans and outcome rate > 10%.
+SELECT {[Measures].[Resolved Count],[Measures].[Resolved Charge Off Rate]} ON COLUMNS,
+ FILTER([Project Geography].[State].[State].Members,
+ [Measures].[Resolved Count]>=100 AND [Measures].[Resolved Charge Off Rate]>0.10) ON ROWS
+FROM [SBA Lending];
+
+-- Q08 Geography drill-down: counties of California.
+SELECT {[Measures].[Gross Approval],[Measures].[Jobs Supported]} ON COLUMNS,
+ NON EMPTY DESCENDANTS([Project Geography].[Geography].[State].&[CA],
+ [Project Geography].[Geography].[County]) ON ROWS FROM [SBA Lending];
+
+-- Q09 Calculated member: YoY for complete fiscal years only.
+WITH MEMBER [Measures].[Approval YoY] AS
+ IIF(([Measures].[Gross Approval],[Approval Date].[Fiscal Year].CurrentMember.PrevMember)=0,NULL,
+ [Measures].[Gross Approval]/([Measures].[Gross Approval],[Approval Date].[Fiscal Year].CurrentMember.PrevMember)-1), FORMAT_STRING='0.00%'
+SELECT {[Measures].[Gross Approval],[Measures].[Approval YoY]} ON COLUMNS,
+ {[Approval Date].[Fiscal Year].&[2021]:[Approval Date].[Fiscal Year].&[2025]} ON ROWS FROM [SBA Lending];
+
+-- Q10 YTD: calendar months of 2025 (fiscal YTD is a different calculation).
+WITH MEMBER [Measures].[Calendar YTD Approval] AS
+ SUM(PERIODSTODATE([Approval Date].[Calendar].[Calendar Year],
+ [Approval Date].[Calendar].CurrentMember),[Measures].[Gross Approval])
+SELECT {[Measures].[Gross Approval],[Measures].[Calendar YTD Approval]} ON COLUMNS,
+ DESCENDANTS([Approval Date].[Calendar].[Calendar Year].&[2025],
+ [Approval Date].[Calendar].[Month]) ON ROWS FROM [SBA Lending];
+
+-- Q11 Share of total approval, within FY2024.
+WITH MEMBER [Measures].[State Share] AS
+ IIF(([Measures].[Gross Approval],[Project Geography].[State].DefaultMember)=0,NULL,
+ [Measures].[Gross Approval]/([Measures].[Gross Approval],[Project Geography].[State].DefaultMember)), FORMAT_STRING='0.00%'
+SELECT {[Measures].[Gross Approval],[Measures].[State Share]} ON COLUMNS,
+ NON EMPTY [Project Geography].[State].[State].Members ON ROWS FROM [SBA Lending]
+WHERE ([Approval Date].[Fiscal Year].&[2024]);
+
+-- Q12 Order + crossjoin: weighted initial rate by method and fixed/variable type.
+SELECT {[Measures].[Weighted Initial Rate],[Measures].[Average Loan]} ON COLUMNS,
+ NON EMPTY ORDER(CROSSJOIN([Loan Profile].[Processing Method].[Processing Method].Members,
+ [Loan Profile].[Rate Type].[Rate Type].Members),[Measures].[Gross Approval],BDESC) ON ROWS FROM [SBA Lending];
+
+-- Q13 NonEmpty: business age x type, job and loan measures.
+SELECT {[Measures].[Jobs Supported],[Measures].[Approval Per Job],[Measures].[Average Term]} ON COLUMNS,
+ NONEMPTY(CROSSJOIN([Business].[Business Age].[Business Age].Members,
+ [Business].[Business Type].[Business Type].Members),[Measures].[Loan Count]) ON ROWS FROM [SBA Lending];
+
+-- Q14 BottomCount: lowest valid average time to first disbursement, >=100 observed.
+SELECT {[Measures].[Average Disbursement Days],[Measures].[Disbursement Observed Count]} ON COLUMNS,
+ BOTTOMCOUNT(FILTER([Lender].[Lender].[Lender].Members,[Measures].[Disbursement Observed Count]>=100),
+ 10,[Measures].[Average Disbursement Days]) ON ROWS FROM [SBA Lending];
+
+-- Q15 Drillthrough: inspect at most 100 source records for CA, FY2024.
+DRILLTHROUGH MAXROWS 100
+SELECT {[Measures].[Gross Approval]} ON COLUMNS FROM [SBA Lending]
+WHERE ([Project Geography].[State].&[CA],[Approval Date].[Fiscal Year].&[2024]);

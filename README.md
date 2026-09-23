@@ -1,76 +1,62 @@
-# 🧠 Global Mental Health DWH & OLAP System
+# SBA 7(a) Loan Portfolio — Data Warehouse & OLAP
 
-Hệ thống Kho dữ liệu (Data Warehouse) và Phân tích trực tuyến (OLAP) phục vụ nghiên cứu **Gánh nặng rối loạn tâm lý toàn cầu và mối liên hệ với các yếu tố kinh tế - xã hội**.
+Đồ án IS217: **Xây dựng hệ thống Kho dữ liệu và OLAP hỗ trợ phân tích danh mục tín dụng, bảo lãnh và kết quả khoản vay SBA 7(a) tại Hoa Kỳ giai đoạn FY2020–FY2026**.
 
-* **Môn học:** IS217 - Kho dữ liệu và OLAP
-* **Trường:** Trường Đại học Công nghệ Thông tin - ĐHQG-HCM (UIT)
-* **Dữ liệu nguồn:** IHME Global Burden of Disease (GBD 2013-2023) & World Bank Socioeconomic Indicators.
+Dữ liệu thực tế: **388.338 dòng × 42 cột**, CSV 181.130.871 byte (~172,74 MiB), snapshot **30/06/2026**. FY2026 chưa đầy đủ. Nguồn gốc: [SBA FOIA](https://web.data.sba.gov/en/dataset/7-a-504-foia); bản phân tích luôn dùng file cục bộ trong `data/raw/foia/`, không tự cập nhật bản online.
 
----
+## Đọc trước
 
-## 🏛️ Kiến trúc Mô hình Dữ liệu (Fact Constellation Schema)
+- [Đánh giá dataset và hướng triển khai](docs/01_feasibility.md)
+- [Mô hình bông tuyết, grain và measures](docs/02_warehouse_design.md)
+- [SSIS, SSAS và quy ước cube](docs/03_implementation.md)
+- [15 manual queries và 5 Excel Pivot](docs/04_analysis_catalog.md)
+- [15 MDX queries](Source/SSAS/15_queries.mdx)
+- [6 báo cáo BI và data mining](docs/05_bi_mining.md)
+- [Tham khảo đồ án mẫu](docs/06_references.md)
+- [Checklist bàn giao](docs/07_delivery.md)
+- [Kết quả profiling toàn bộ nguồn](docs/data_profile.json)
+- [Kiểm chứng đã thực hiện](docs/validation.md)
+- [Từ điển 42 cột từ workbook nguồn](docs/data_dictionary.md)
 
-Hệ thống sử dụng mô hình **Fact Constellation (Galaxy Schema)** với 2 bảng Fact chia sẻ các Conformed Dimensions dạng Star:
+## Chạy nền tảng chuẩn bị dữ liệu
 
-* **Fact 1: `Fact_Mental_Health`** (Grain: Quốc gia, Năm, Rối loạn tâm thần, Giới tính, Độ tuổi) -> Chỉ số: DALYs, Prevalence (Number & Percent).
-* **Fact 2: `Fact_SocioEconomic`** (Grain: Quốc gia, Năm) -> Chỉ số: Dân số, GDP bình quân, Tổng GDP (giải quyết triệt để lỗi Fan-out duplication khi gộp chỉ số kinh tế vào dữ liệu dịch tễ).
-* **Conformed Dimensions:** `Dim_Location`, `Dim_Time`, `Dim_Cause`, `Dim_Demographic`.
+Python 3.10+:
 
----
+```powershell
+python -m pip install -r requirements.txt
+python -m src.main
+python -m unittest discover -s tests -v
+python -m src.mining
+```
 
-## 📂 Cấu trúc Thư mục Dự án
+Pipeline xuất 8 dimension, 1 fact, quality issues, mart BI và dữ liệu mining vào `data/processed/`. Không tự kết nối database. Giữ nguyên mọi dòng nguồn; khóa dòng chỉ có ý nghĩa trong đúng file và SHA-256 của lần chạy. Chạy lại sẽ ghi đè các file đầu ra cùng tên; đây là **full rebuild một snapshot**, không phải incremental ETL.
+
+Tạo database mới bằng `sql/01_warehouse.sql`, nạp CSV theo [hướng dẫn SSIS](docs/03_implementation.md), đối soát bằng `sql/02_validation.sql`. Script DDL không dùng để chạy lại trên database đã có các bảng này.
+
+## Trạng thái repo
+
+Đã có pipeline Python, SQL Server DDL, thiết kế SSIS/SSAS, MDX theo hợp đồng cube, truy vấn manual/Pivot, kế hoạch BI và baseline mining. Đây là nền tảng và lộ trình thực hiện, **chưa phải bộ bài nộp hoàn chỉnh**: chưa có `.dtproj`, `.dtsx`, `.dwproj`, cube đã deploy, Excel Pivot kết nối cube, `.pbix`, link Looker, `.mdf/.ldf`, video hay báo cáo `.docx`. Các truy vấn MDX cần kiểm chứng sau khi dựng cube đúng quy ước.
+
+Stack mục tiêu: SQL Server Database Engine + SSIS + SSAS **Multidimensional** trên Windows; Power BI Desktop, Excel, Looker Studio. Python hỗ trợ kiểm tra/chuẩn bị dữ liệu và mining, không thay thế phần SSIS bắt buộc.
+
+## Cấu trúc
 
 ```text
-mental-health-dwh-olap/
-├── .gitignore                      # Ignore venv, cache, intermediate data
-├── README.md                       # Giới thiệu & Hướng dẫn sử dụng
-├── requirements.txt                # Thư viện Python
-├── docker-compose.yml              # Dịch vụ PostgreSQL 16 + pgAdmin
-├── .env.example                    # Template biến môi trường
-│
-├── data/
-│   ├── 01_raw/                     # Dữ liệu thô (GBD, kinh tế, quốc gia)
-│   ├── 02_staging/                 # Dữ liệu làm sạch sơ bộ
-│   └── 03_processed/               # Dữ liệu chuẩn hóa xuất khẩu (Star Schema)
-│
-├── sql/
-│   ├── 00_init_db.sql              # Khởi tạo schemas (staging, dwh, marts)
-│   ├── 01_staging/                 # DDL bảng staging
-│   ├── 02_dimensions/              # DDL & nạp các bảng Dimension
-│   ├── 03_facts/                   # DDL & nạp các bảng Fact
-│   └── 04_olap_queries/            # Truy vấn OLAP (Rollup, Drilldown, Slice, Dice, Pivot)
-│
-├── src/                            # Pipeline ETL (Python)
-│   ├── config.py                   # Cấu hình đường dẫn và môi trường
-│   ├── etl/                        # Module Extract - Transform - Load
-│   ├── utils/                      # Helper logger & database connection
-│   └── main.py                     # Entrypoint chạy toàn bộ pipeline
-│
-├── notebooks/                      # Phân tích EDA & Khai phá tương quan
-├── dashboards/                     # Báo cáo Power BI & Streamlit app
-└── docs/                           # Từ điển dữ liệu & Sơ đồ kiến trúc
+data/
+├── raw/foia/            Nguồn gốc nguyên vẹn: CSV + dictionary XLSX
+├── staging/             Dữ liệu trung gian do ETL tạo
+└── processed/           Dimension, fact, mart và quality outputs
+references/              5 báo cáo PDF năm trước
+src/                     Pipeline chuẩn bị dữ liệu + baseline mining
+sql/                     DDL và đối soát SQL Server
+Source/SSIS/             Hướng dẫn, nơi lưu project thật sau khi dựng
+Source/SSAS/             MDX + nơi lưu project cube
+Source/Excel/            Hướng dẫn 5 Pivot truy vấn cube
+Source/DataMining/       Hướng dẫn chạy baseline
+dashboards/              Đặc tả Power BI/Looker
+docs/                    Phân tích, thiết kế, kiểm tra, kế hoạch
+Database/ Video/ Document/  Nơi hoàn thiện sản phẩm nộp
+group_info.txt           Mẫu thông tin/phân công, chưa điền thành viên
 ```
 
----
-
-## 🚀 Hướng dẫn Khởi chạy Nhanh
-
-### 1. Chạy Pipeline ETL làm sạch & chuyển đổi dữ liệu
-Chạy script ETL Python để trích xuất dữ liệu từ `data/01_raw/`, làm sạch và xuất các bảng Dimension/Fact vào `data/03_processed/`:
-```bash
-python -m src.main
-```
-
-### 2. Khởi động Cơ sở dữ liệu PostgreSQL (Tùy chọn)
-Nếu bạn có cài đặt Docker:
-```bash
-docker-compose up -d
-```
-* **PostgreSQL:** `localhost:5432` (User: `postgres`, Pass: `postgres`, DB: `mental_health_dwh`)
-* **pgAdmin:** `http://localhost:5050` (Email: `admin@admin.com`, Pass: `admin`)
-
-### 3. Chạy Thử nghiệm Web Dashboard (Streamlit)
-```bash
-pip install -r requirements.txt
-streamlit run dashboards/app/app.py
-```
+Tên thư mục checkout hiện tại giữ nguyên để không phá đường dẫn của công cụ. Khi hoàn tất, nên đổi tên repository GitHub thành `sba-7a-dwh-olap`. `data/raw/foia/` sẽ được copy vào `Data/` của bộ nộp cuối; không nhân đôi CSV lớn trong repo. File CSV vượt 100 MB: quản lý dữ liệu ngoài Git hoặc cấu hình Git LFS trước khi push.

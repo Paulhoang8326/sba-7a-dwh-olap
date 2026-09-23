@@ -1,0 +1,17 @@
+/* Add after the cube's existing CALCULATE statement. */
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Loan] AS
+ IIF([Measures].[Loan Count]=0,NULL,[Measures].[Gross Approval]/[Measures].[Loan Count]);
+CREATE MEMBER CURRENTCUBE.[Measures].[Guarantee Ratio] AS
+ IIF([Measures].[Gross Approval]=0,NULL,[Measures].[Guaranteed Approval]/[Measures].[Gross Approval]), FORMAT_STRING='0.00%';
+CREATE MEMBER CURRENTCUBE.[Measures].[Resolved Charge Off Rate] AS
+ IIF([Measures].[Resolved Count]=0,NULL,[Measures].[Charge Off Count]/[Measures].[Resolved Count]), FORMAT_STRING='0.00%';
+CREATE MEMBER CURRENTCUBE.[Measures].[Charge Off Amount Ratio] AS
+ IIF([Measures].[Gross Approval]=0,NULL,[Measures].[Charge Off Amount]/[Measures].[Gross Approval]), FORMAT_STRING='0.00%';
+CREATE MEMBER CURRENTCUBE.[Measures].[Weighted Initial Rate] AS
+ IIF([Measures].[Interest Known Approval]=0,NULL,[Measures].[Interest Weighted Amount]/[Measures].[Interest Known Approval]), FORMAT_STRING='0.00%';
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Term] AS
+ IIF([Measures].[Loan Count]=0,NULL,[Measures].[Term Total]/[Measures].[Loan Count]);
+CREATE MEMBER CURRENTCUBE.[Measures].[Average Disbursement Days] AS
+ IIF([Measures].[Disbursement Observed Count]=0,NULL,[Measures].[Disbursement Days Total]/[Measures].[Disbursement Observed Count]);
+CREATE MEMBER CURRENTCUBE.[Measures].[Approval Per Job] AS
+ IIF([Measures].[Jobs Supported]=0,NULL,[Measures].[Gross Approval]/[Measures].[Jobs Supported]);

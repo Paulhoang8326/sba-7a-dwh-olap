@@ -1,0 +1,47 @@
+{
+  "interpretation": "Retrospective classification among resolved loans only; snapshot outcome labels may postdate split boundaries. Not a prospective default model.",
+  "splits": {
+    "train": {
+      "rows": 43830,
+      "positive_rate": 0.06246862879306411
+    },
+    "validation": {
+      "rows": 12411,
+      "positive_rate": 0.1349609217629522
+    },
+    "test": {
+      "rows": 9687,
+      "positive_rate": 0.17611231547434705
+    }
+  },
+  "models": {
+    "dummy": {
+      "validation_average_precision": 0.1349609217629522
+    },
+    "logistic": {
+      "validation_average_precision": 0.4899575338719574
+    },
+    "tree": {
+      "validation_average_precision": 0.676267139012661
+    }
+  },
+  "selected_model": "tree",
+  "test": {
+    "threshold": 0.5,
+    "average_precision": 0.6649969392593033,
+    "roc_auc": 0.866926109533589,
+    "precision": 0.4817262830482115,
+    "recall": 0.7262602579132473,
+    "f1": 0.5792426367461431,
+    "confusion_matrix": [
+      [
+        6648,
+        1333
+      ],
+      [
+        467,
+        1239
+      ]
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "source": "FOIA_7a_FY2020_Present_asof_260630.csv",
+  "sha256": "6c1e9132b5141a19f82bdc8ccafb86c9a01662461cad41ddb36a3cf409d8a4fe",
+  "rows": 388338,
+  "columns": 42,
+  "normalized_duplicate_rows": 392,
+  "missing": {
+    "AsOfDate": 0,
+    "Program": 0,
+    "LocationID": 0,
+    "BorrName": 0,
+    "BorrStreet": 0,
+    "BorrCity": 0,
+    "BorrState": 0,
+    "BorrZip": 0,
+    "BankName": 0,
+    "BankFDICNumber": 41322,
+    "BankNCUANumber": 377191,
+    "BankStreet": 0,
+    "BankCity": 0,
+    "BankState": 0,
+    "BankZip": 0,
+    "GrossApproval": 0,
+    "SBAGuaranteedApproval": 0,
+    "ApprovalDate": 0,
+    "ApprovalFY": 0,
+    "FirstDisbursementDate": 71186,
+    "ProcessingMethod": 0,
+    "InitialInterestRate": 8,
+    "FixedorVariableInterestInd": 8,
+    "TermInMonths": 0,
+    "NaicsCode": 0,
+    "NaicsDescription": 0,
+    "FranchiseCode": 341756,
+    "FranchiseName": 341920,
+    "ProjectCounty": 0,
+    "ProjectState": 0,
+    "SBADistrictOffice": 0,
+    "CongressionalDistrict": 24,
+    "BusinessType": 34,
+    "BusinessAge": 186,
+    "LoanStatus": 0,
+    "PaidInFullDate": 320136,
+    "ChargeOffDate": 381450,
+    "GrossChargeOffAmount": 0,
+    "RevolverStatus": 0,
+    "JobsSupported": 0,
+    "CollateralInd": 0,
+    "SoldSecMrktInd": 271574
+  },
+  "location_ids": 2338,
+  "approval_fy": {
+    "2020": 42298,
+    "2021": 51856,
+    "2022": 47678,
+    "2023": 57362,
+    "2024": 70242,
+    "2025": 78078,
+    "2026": 40824
+  },
+  "status": {
+    "EXEMPT": 242061,
+    "PIF": 68201,
+    "CANCLD": 50104,
+    "COMMIT": 21079,
+    "CHGOFF": 6893
+  },
+  "approval_date_range": [
+    "2019-10-01",
+    "2026-06-30"
+  ],
+  "as_of_date": "2026-06-30",
+  "numeric": {
+    "GrossApproval": {
+      "sum": 202550139718.0,
+      "min": 1000.0,
+      "max": 5000000.0,
+      "missing": 0
+    },
+    "SBAGuaranteedApproval": {
+      "sum": 152596337956.289,
+      "min": 500.0,
+      "max": 4500000.0,
+      "missing": 0
+    },
+    "GrossChargeOffAmount": {
+      "sum": 898807495.3199999,
+      "min": 0.0,
+      "max": 4632999.92,
+      "missing": 0
+    },
+    "JobsSupported": {
+      "sum": 4072432.0,
+      "min": 0.0,
+      "max": 550.0,
+      "missing": 0
+    },
+    "InitialInterestRate": {
+      "sum": 3423197.79091,
+      "min": 0.0,
+      "max": 16.5,
+      "missing": 8
+    },
+    "TermInMonths": {
+      "sum": 53683016.0,
+      "min": 0.0,
+      "max": 420.0,
+      "missing": 0
+    }
+  },
+  "quality_issues": {
+    "identical_attributes_not_proven_duplicate_loan": 689,
+    "zero_interest_review": 87,
+    "event_date_out_of_range_ChargeOffDate": 22,
+    "zero_term_review": 11,
+    "chargeoff_missing_date": 5,
+    "event_date_out_of_range_PaidInFullDate": 2
+  },
+  "table_rows": {
+    "DimState": 54,
+    "DimCounty": 3055,
+    "DimSector": 20,
+    "DimIndustry": 1171,
+    "DimLender": 2338,
+    "DimBusiness": 7874,
+    "DimLoanProfile": 357,
+    "DimDate": 2466,
+    "FactLoanSnapshot": 388338
+  },
+  "policy": "Preserve all source rows, including identical attributes; no published loan ID."
+}

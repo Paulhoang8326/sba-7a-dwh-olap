@@ -1,0 +1,11 @@
+MON HOC: IS217 - Kho du lieu va OLAP
+DE TAI: Xay dung he thong Kho du lieu va OLAP ho tro phan tich danh muc tin dung, bao lanh va ket qua khoan vay SBA 7(a) tai Hoa Ky giai doan FY2020-FY2026
+
+Thanh vien 1: [Ho ten] - [MSSV]
+Cong viec de xuat: Profiling, schema, SQL Server, SSIS, doi soat
+
+Thanh vien 2: [Ho ten] - [MSSV]
+Cong viec de xuat: SSAS, MDX, Excel Pivot, BI
+
+Cong viec chung: Data mining, bao cao, video, kiem thu cheo
+Dieu chinh theo so thanh vien thuc te. Chua xac nhan phan cong.
