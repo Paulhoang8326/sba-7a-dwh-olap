@@ -47,7 +47,6 @@ CREATE TABLE dwh.FactLoanSnapshot (
  LenderKey int NOT NULL REFERENCES dwh.DimLender,
  BusinessKey int NOT NULL REFERENCES dwh.DimBusiness,
  LoanProfileKey int NOT NULL REFERENCES dwh.DimLoanProfile,
- AsOfDateKey int NOT NULL REFERENCES dwh.DimDate,
  ApprovalDateKey int NOT NULL REFERENCES dwh.DimDate,
  FirstDisbursementDateKey int NULL REFERENCES dwh.DimDate,
  PaidInFullDateKey int NULL REFERENCES dwh.DimDate,

@@ -4,7 +4,7 @@ Trích định nghĩa từ sheet `7(a) Data Dictionary` của workbook cục b�
 
 | Field | Source definition |
 |---|---|
-| AsOfDate | Date when the data was recorded |
+| AsOfDate | Date when the data was recorded (toàn bộ file nguồn có giá trị duy nhất là ngày snapshot 2026-06-30; lưu ở metadata `profile.json`, không làm khóa dimension `AsOfDateKey` trong bảng fact) |
 | Program | Indicator of whether loan was approved under SBA's 7(a) or 504 loan program |
 | LocationID | SBA's unique lender ID code |
 | BorrName | Borrower name |
