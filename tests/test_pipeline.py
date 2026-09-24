@@ -33,6 +33,7 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(fact.DisbursementObservedCount.sum(),0)
             self.assertEqual(fact.ResolvedCount.sum(),1)
             self.assertTrue(fact.FirstDisbursementDateKey.isna().all())
+            self.assertNotIn('AsOfDateKey', fact.columns)
             self.assertEqual(len(pd.read_csv(output/'mining_resolved.csv')),1)
 
     def test_full_snapshot_integrity(self):
@@ -53,8 +54,9 @@ class PipelineTests(unittest.TestCase):
             values=pd.read_csv(out/f'{dim}.csv')[key]
             self.assertTrue(values.is_unique)
             self.assertTrue(fact[key].isin(values).all())
+        self.assertNotIn('AsOfDateKey', fact.columns)
         dates=pd.read_csv(out/'DimDate.csv').DateKey
-        for key in ['AsOfDateKey','ApprovalDateKey','FirstDisbursementDateKey','PaidInFullDateKey','ChargeOffDateKey']:
+        for key in ['ApprovalDateKey','FirstDisbursementDateKey','PaidInFullDateKey','ChargeOffDateKey']:
             self.assertTrue(fact[key].dropna().isin(dates).all())
         for child,parent,key in [('DimCounty','DimState','StateKey'),('DimIndustry','DimSector','SectorKey')]:
             self.assertTrue(pd.read_csv(out/f'{child}.csv')[key].isin(pd.read_csv(out/f'{parent}.csv')[key]).all())

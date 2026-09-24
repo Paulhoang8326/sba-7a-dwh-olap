@@ -40,7 +40,7 @@ Tên dimension/attribute phải khớp chính xác:
 | Business | Business Type, Business Age | BusinessType; BusinessAge |
 | Loan Profile | Status, Processing Method, Rate Type, Collateral | LoanStatus; ProcessingMethod; FixedorVariableInterestInd; CollateralInd |
 
-Dimension key của Project Geography là CountyKey, Industry là IndustryKey. DimDate key DateKey. Thêm role-playing `First Disbursement Date`, `Paid In Full Date`, `Charge Off Date`, `As Of Date`.
+Dimension key của Project Geography là CountyKey, Industry là IndustryKey. DimDate key DateKey. Thêm role-playing `First Disbursement Date`, `Paid In Full Date`, `Charge Off Date`.
 
 Natural user hierarchies:
 

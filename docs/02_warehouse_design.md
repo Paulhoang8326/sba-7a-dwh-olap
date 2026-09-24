@@ -2,7 +2,7 @@
 
 ## Grain và phạm vi
 
-`FactLoanSnapshot`: một dòng của file công bố SBA 7(a), snapshot 2026-06-30. Một lần build chỉ nhận một AsOfDate. Fact tích hợp ngày sự kiện nhưng không có lịch sử thay đổi status. Không cộng số tiền qua các snapshot; muốn mở rộng cần chiến lược nhận diện loan đáng tin cậy và snapshot measure group riêng.
+`FactLoanSnapshot`: một dòng của file công bố SBA 7(a), snapshot 2026-06-30. Một lần build chỉ nhận một AsOfDate (lưu ở metadata `profile.json` và tài liệu mô tả, không tạo khóa `AsOfDateKey` trong bảng fact vì toàn bộ bản ghi có cùng một ngày snapshot). Fact tích hợp ngày sự kiện nhưng không có lịch sử thay đổi status. Không cộng số tiền qua các snapshot; muốn mở rộng cần chiến lược nhận diện loan đáng tin cậy và snapshot measure group riêng.
 
 ```mermaid
 erDiagram
@@ -13,12 +13,12 @@ erDiagram
     DimLender ||--o{ FactLoanSnapshot : LenderKey
     DimBusiness ||--o{ FactLoanSnapshot : BusinessKey
     DimLoanProfile ||--o{ FactLoanSnapshot : LoanProfileKey
-    DimDate ||--o{ FactLoanSnapshot : five_date_roles
+    DimDate ||--o{ FactLoanSnapshot : four_date_roles
 ```
 
 | Dimension | Dòng sau build | Thuộc tính và chú ý |
 |---|---:|---|
-| DimDate | 2.466 | Calendar/Fiscal year, quarter, month; lịch liên tục, 5 role-playing dates |
+| DimDate | 2.466 | Calendar/Fiscal year, quarter, month; lịch liên tục, 4 role-playing dates |
 | DimState | 54 | ProjectState, bao gồm lãnh thổ; không gọi tất cả là 54 bang |
 | DimCounty | 3.055 | Khóa theo StateKey + ProjectCounty, không chỉ county name |
 | DimSector | 20 | Nhóm NAICS; gộp 31–33, 44–45, 48–49 |
@@ -29,7 +29,7 @@ erDiagram
 
 DimBusiness và DimLoanProfile là dimension nhóm thuộc tính. Không tạo hierarchy BusinessType → BusinessAge vì không có phụ thuộc hàm. Tương tự không đặt county dưới lender. County và Sector là hai nhánh snowflake thực sự. Borrower name/address không cần ở cube; giữ ở raw để kiểm tra.
 
-Date roles: Approval Date (mặc định), First Disbursement Date, Paid In Full Date, Charge Off Date, As Of Date. Ngày thiếu lưu NULL; SSAS bật UnknownMember và xử lý NullProcessing phù hợp. Mọi role dùng cùng DimDate. DDL dùng FK, dữ liệu text thiếu thành `Unknown`; không đổi ngày thiếu thành 1900-01-01.
+Date roles: Approval Date (mặc định), First Disbursement Date, Paid In Full Date, Charge Off Date. Ngày thiếu lưu NULL; SSAS bật UnknownMember và xử lý NullProcessing phù hợp. Mọi role dùng cùng DimDate. DDL dùng FK, dữ liệu text thiếu thành `Unknown`; không đổi ngày thiếu thành 1900-01-01.
 
 ## Measures
 

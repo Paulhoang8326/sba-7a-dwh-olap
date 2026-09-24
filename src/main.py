@@ -99,7 +99,8 @@ def prepare(source, output):
         'YearMonth': calendar.dt.strftime('%Y-%m'),
         'FiscalYear': calendar.dt.year + calendar.dt.month.ge(10).astype(int),
         'FiscalQuarter': ((calendar.dt.month - 10) % 12 // 3 + 1)})
-    for c in DATES:
+    fact_dates = ['ApprovalDate', 'FirstDisbursementDate', 'PaidInFullDate', 'ChargeOffDate']
+    for c in fact_dates:
         fact[c + 'Key'] = d[c].dt.strftime('%Y%m%d').astype('Int64')
     for c in NUMERIC:
         fact[c] = d[c]
