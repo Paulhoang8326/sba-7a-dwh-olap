@@ -2,7 +2,7 @@
 
 Đồ án IS217: **Xây dựng hệ thống Kho dữ liệu và OLAP hỗ trợ phân tích danh mục tín dụng, bảo lãnh và kết quả khoản vay SBA 7(a) tại Hoa Kỳ giai đoạn FY2020–FY2026**.
 
-Dữ liệu thực tế: **388.338 dòng × 42 cột**, CSV 181.130.871 byte (~172,74 MiB), snapshot **30/06/2026**. FY2026 chưa đầy đủ. Nguồn gốc: [SBA FOIA](https://web.data.sba.gov/en/dataset/7-a-504-foia); bản phân tích luôn dùng file cục bộ trong `data/raw/foia/`, không tự cập nhật bản online.
+Dữ liệu thực tế: **388.338 dòng × 42 cột**, CSV 181.130.871 byte (~172,74 MiB), snapshot **30/06/2026**. FY2026 chưa đầy đủ. Nguồn gốc: [SBA FOIA](https://data.sba.gov/dataset/7a-504-foia); bản phân tích luôn dùng file cục bộ trong `data/raw/foia/`, không tự cập nhật bản online.
 
 ## Đọc trước
 
