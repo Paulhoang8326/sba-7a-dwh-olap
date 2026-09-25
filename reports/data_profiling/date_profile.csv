@@ -1,0 +1,6 @@
+﻿Attribute,Min Date,Max Date,Parse Fail,Missing,Formats
+AsOfDate,2026-06-30,2026-06-30,0,0,"{""YYYY-MM-DD"": 388338}"
+ApprovalDate,2019-10-01,2026-06-30,0,0,"{""YYYY-MM-DD"": 388338}"
+FirstDisbursementDate,2019-10-01,2026-06-30,0,71186,"{""YYYY-MM-DD"": 317152}"
+PaidInFullDate,2019-12-31,2026-05-31,0,320136,"{""YYYY-MM-DD"": 68202}"
+ChargeOffDate,2020-07-06,2026-07-01,0,381450,"{""YYYY-MM-DD"": 6888}"

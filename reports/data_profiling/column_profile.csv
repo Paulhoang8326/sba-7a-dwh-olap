@@ -1,0 +1,43 @@
+﻿Attribute,Data Type,Non-null Count,Null Count,Null %,Unique Count,Unique %,Sample Values
+AsOfDate,date (CSV: text),388338,0,0.0,1,0.0003,2026-06-30
+Program,text,388338,0,0.0,1,0.0003, 7A
+LocationID,code (CSV: text),388338,0,0.0,2338,0.6021,0029805 | 0084894 | 0053803
+BorrName,text,388338,0,0.0,323752,83.3686,"AMERIPRO CONSTRUCTION SERVICES, INC. | Meluota Corp | THOMAS W CHASE"
+BorrStreet,text,388338,0,0.0,333651,85.9177,1403 SENTRY LANE | 2702 ASTORIA BLVD | 1700 GIDGET LN
+BorrCity,text,388338,0,0.0,21599,5.5619,Norristown | ASTORIA | COLFAX
+BorrState,text,388338,0,0.0,54,0.0139,PA | NY | CA
+BorrZip,code (CSV: text),388338,0,0.0,21250,5.472,19403 | 11102 | 95713
+BankName,text,388338,0,0.0,2183,0.5621,"TD Bank, National Association | Santander Bank, National Association | U.S. Bank, National Association"
+BankFDICNumber,code (CSV: text),347016,41322,10.6407,1873,0.5397,18409 | 29950 | 06548
+BankNCUANumber,code (CSV: text),11147,377191,97.1296,322,2.8887,67390 | 68228 | 67864
+BankStreet,text,388338,0,0.0,2282,0.5876,"2035 Limestone Rd | 824 N Market St, Ste 100 | 425 Walnut St"
+BankCity,text,388338,0,0.0,1666,0.429,WILMINGTON | Cincinnati | Saint Petersburg
+BankState,text,388338,0,0.0,54,0.0139,DE | OH | FL
+BankZip,code (CSV: text),388338,0,0.0,1998,0.5145,19808 | 19801 | 45202
+GrossApproval,numeric (CSV: text),388338,0,0.0,21175,5.4527,25000.0 | 95800.0 | 40000.0
+SBAGuaranteedApproval,numeric (CSV: text),388338,0,0.0,29363,7.5612,12500.0 | 47900.0 | 20000.0
+ApprovalDate,date (CSV: text),388338,0,0.0,2285,0.5884,2019-10-01 | 2019-10-02 | 2019-10-03
+ApprovalFY,code (CSV: text),388338,0,0.0,7,0.0018,2020 | 2021 | 2022
+FirstDisbursementDate,date (CSV: text),317152,71186,18.3309,2345,0.7394,2019-10-31 | 2020-02-29 | 2019-12-31
+ProcessingMethod,text,388338,0,0.0,19,0.0049,SBA Express Program | Preferred Lenders Program | 7a General
+InitialInterestRate,numeric (CSV: text),388330,8,0.0021,1681,0.4329,11.04 | 9.0 | 6.99
+FixedorVariableInterestInd,text,388330,8,0.0021,2,0.0005,V | F
+TermInMonths,numeric (CSV: text),388338,0,0.0,347,0.0894,120.0 | 60.0 | 90.0
+NaicsCode,code (CSV: text),388338,0,0.0,1157,0.2979,236220 | 722511 | 561730
+NaicsDescription,text,388338,0,0.0,1783,0.4591,Commercial and Institutional Building Construction  | Full-Service Restaurants  | Landscaping Services
+FranchiseCode,code (CSV: text),46582,341756,88.0048,3690,7.9215,S2561 | S1426 | S1570
+FranchiseName,text,46418,341920,88.047,3543,7.6328,Poke Burri | Restoration 1 | Signarama
+ProjectCounty,text,388338,0,0.0,1855,0.4777,MONTGOMERY | QUEENS | PLACER
+ProjectState,text,388338,0,0.0,54,0.0139,PA | NY | CA
+SBADistrictOffice,text,388338,0,0.0,67,0.0173,PHILADELPHIA DISTRICT OFFICE | NEW YORK DISTRICT OFFICE | SACRAMENTO DISTRICT OFFICE
+CongressionalDistrict,code (CSV: text),388314,24,0.0062,54,0.0139,04 | 10 | 01
+BusinessType,text,388304,34,0.0088,3,0.0008,PARTNERSHIP | CORPORATION | INDIVIDUAL
+BusinessAge,text,388152,186,0.0479,5,0.0013,"Unanswered | Existing or more than 2 years old | Startup, Loan Funds will Open Business"
+LoanStatus,text,388338,0,0.0,5,0.0013,P I F | EXEMPT | CANCLD
+PaidInFullDate,date (CSV: text),68202,320136,82.4375,78,0.1144,2024-11-30 | 2023-11-30 | 2024-01-31
+ChargeOffDate,date (CSV: text),6888,381450,98.2263,1002,14.547,2021-06-25 | 2023-02-28 | 2026-02-23
+GrossChargeOffAmount,numeric (CSV: text),388338,0,0.0,6472,1.6666,0.0 | 31624.24 | 116158.32
+RevolverStatus,text,388338,0,0.0,2,0.0005,Y | N
+JobsSupported,numeric (CSV: text),388338,0,0.0,281,0.0724,5.0 | 3.0 | 0.0
+CollateralInd,text,388338,0,0.0,2,0.0005,N | Y
+SoldSecMrktInd,text,116764,271574,69.9324,1,0.0009,Y

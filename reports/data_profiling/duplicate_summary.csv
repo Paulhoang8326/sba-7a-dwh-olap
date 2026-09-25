@@ -1,0 +1,6 @@
+﻿Metric,Count,Percentage
+exact duplicate rows (including first occurrence),687,0.1769
+exact surplus copies,391,0.1007
+exact duplicate groups,296,
+max exact group size,8,
+weak composite matching rows,3316,0.8539

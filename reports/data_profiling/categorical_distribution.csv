@@ -1,0 +1,249 @@
+﻿Attribute,Unique Count,Rank,Value,Count,Percent of Non-null
+Program,1,1, 7A,388338,100.0
+LocationID,2338,1,0057328,42981,11.0679
+LocationID,2338,2,0053803,17872,4.6022
+LocationID,2338,3,0029805,17740,4.5682
+LocationID,2338,4,0049874,13752,3.5412
+LocationID,2338,5,0029599,13557,3.491
+LocationID,2338,6,0046391,12453,3.2067
+LocationID,2338,7,0012096,12010,3.0927
+LocationID,2338,8,0499141,10386,2.6745
+LocationID,2338,9,0455644,10275,2.6459
+LocationID,2338,10,0123499,9541,2.4569
+BorrName,323752,1,Anytime Fitness,32,0.0082
+BorrName,323752,2,Arlmont Fuel Corp.,30,0.0077
+BorrName,323752,3,Comfort Keepers,23,0.0059
+BorrName,323752,4,J & E Inc,21,0.0054
+BorrName,323752,5,The UPS Store,20,0.0052
+BorrName,323752,6,Cold Stone Creamery,17,0.0044
+BorrName,323752,7,Firehouse Subs,17,0.0044
+BorrName,323752,8,The Goddard School,16,0.0041
+BorrName,323752,9,The Learning Experience,15,0.0039
+BorrName,323752,10,Jersey Mike's Subs,14,0.0036
+BorrStreet,333651,1,22 Sunnyside Ave,30,0.0077
+BorrStreet,333651,2,1111 Parana,24,0.0062
+BorrStreet,333651,3,612 SCR 68,18,0.0046
+BorrStreet,333651,4,10655 Birch,15,0.0039
+BorrStreet,333651,5,16003 N SUNCREST DR,14,0.0036
+BorrStreet,333651,6,405 S. 3rd St.,13,0.0033
+BorrStreet,333651,7,3840 PARK AVE SUITE # 104-B,12,0.0031
+BorrStreet,333651,8,TBD,11,0.0028
+BorrStreet,333651,9,"6200 Seagull Lane, N.E., Suite A",11,0.0028
+BorrStreet,333651,10,30 N GOULD ST,11,0.0028
+BorrCity,21599,1,BROOKLYN,2680,0.6901
+BorrCity,21599,2,LOS ANGELES,2415,0.6219
+BorrCity,21599,3,HOUSTON,2346,0.6041
+BorrCity,21599,4,MIAMI,2280,0.5871
+BorrCity,21599,5,CHICAGO,1952,0.5027
+BorrCity,21599,6,NEW YORK,1906,0.4908
+BorrCity,21599,7,LAS VEGAS,1773,0.4566
+BorrCity,21599,8,MINNEAPOLIS,1391,0.3582
+BorrCity,21599,9,SAN DIEGO,1378,0.3548
+BorrCity,21599,10,DALLAS,1355,0.3489
+BorrState,54,1,CA,45200,11.6393
+BorrState,54,2,TX,29666,7.6392
+BorrState,54,3,FL,28965,7.4587
+BorrState,54,4,NY,24157,6.2206
+BorrState,54,5,OH,21694,5.5864
+BorrState,54,6,MI,14796,3.8101
+BorrState,54,7,IL,13416,3.4547
+BorrState,54,8,NJ,13246,3.4109
+BorrState,54,9,PA,13210,3.4017
+BorrState,54,10,GA,11603,2.9879
+BorrZip,21250,1,10950,425,0.1094
+BorrZip,21250,2,10977,421,0.1084
+BorrZip,21250,3,11219,375,0.0966
+BorrZip,21250,4,33166,345,0.0888
+BorrZip,21250,5,10952,338,0.087
+BorrZip,21250,6,08701,314,0.0809
+BorrZip,21250,7,33178,261,0.0672
+BorrZip,21250,8,11205,257,0.0662
+BorrZip,21250,9,44256,256,0.0659
+BorrZip,21250,10,33172,252,0.0649
+BankName,2183,1,The Huntington National Bank,42981,11.0679
+BankName,2183,2,"U.S. Bank, National Association",17872,4.6022
+BankName,2183,3,"TD Bank, National Association",17740,4.5682
+BankName,2183,4,"Newtek Bank, National Association",13752,3.5412
+BankName,2183,5,Northeast Bank,13656,3.5165
+BankName,2183,6,Manufacturers and Traders Trust Company,12453,3.2067
+BankName,2183,7,Wells Fargo Bank National Association,12010,3.0927
+BankName,2183,8,"Readycap Lending, LLC",10386,2.6745
+BankName,2183,9,Live Oak Banking Company,10275,2.6459
+BankName,2183,10,BayFirst National Bank,9541,2.4569
+BankFDICNumber,1873,1,06560,42981,12.3859
+BankFDICNumber,1873,2,06548,17872,5.1502
+BankFDICNumber,1873,3,18409,17740,5.1122
+BankFDICNumber,1873,4,18734,13752,3.9629
+BankFDICNumber,1873,5,19690,13557,3.9067
+BankFDICNumber,1873,6,00588,12453,3.5886
+BankFDICNumber,1873,7,03511,12010,3.4609
+BankFDICNumber,1873,8,58665,10275,2.961
+BankFDICNumber,1873,9,34997,9541,2.7494
+BankFDICNumber,1873,10,00628,8696,2.5059
+BankNCUANumber,322,1,24692,1126,10.1014
+BankNCUANumber,322,2,24694,845,7.5805
+BankNCUANumber,322,3,62848,445,3.9921
+BankNCUANumber,322,4,24563,418,3.7499
+BankNCUANumber,322,5,68604,401,3.5974
+BankNCUANumber,322,6,63194,366,3.2834
+BankNCUANumber,322,7,07840,343,3.0771
+BankNCUANumber,322,8,62514,323,2.8976
+BankNCUANumber,322,9,67190,250,2.2428
+BankNCUANumber,322,10,66331,239,2.1441
+BankStreet,2282,1,17 S High St.,42981,11.0679
+BankStreet,2282,2,425 Walnut St,17872,4.6022
+BankStreet,2282,3,2035 Limestone Rd,17740,4.5682
+BankStreet,2282,4,"1111 Brickell Ave, Ste 135",13752,3.5412
+BankStreet,2282,5,"35 Canal St, Ste 500",13557,3.491
+BankStreet,2282,6,"One M & T Plaza, 15th Fl",12453,3.2067
+BankStreet,2282,7,3201 N 4th Ave,12010,3.0927
+BankStreet,2282,8,200 Connell Drive,10386,2.6745
+BankStreet,2282,9,1741 Tiburon Dr,10275,2.6459
+BankStreet,2282,10,700 Central Avenue,9541,2.4569
+BankCity,1666,1,COLUMBUS,43739,11.2631
+BankCity,1666,2,WILMINGTON,32670,8.4128
+BankCity,1666,3,Cincinnati,18200,4.6866
+BankCity,1666,4,Miami,14099,3.6306
+BankCity,1666,5,Lewiston,13626,3.5088
+BankCity,1666,6,Sioux Falls,13401,3.4509
+BankCity,1666,7,BUFFALO,12476,3.2127
+BankCity,1666,8,BERKELEY HEIGHTS,10386,2.6745
+BankCity,1666,9,SALT LAKE CITY,9612,2.4752
+BankCity,1666,10,Saint Petersburg,9541,2.4569
+BankState,54,1,OH,85664,22.0591
+BankState,54,2,FL,28733,7.399
+BankState,54,3,CA,24018,6.1848
+BankState,54,4,NY,22568,5.8114
+BankState,54,5,DE,22408,5.7702
+BankState,54,6,NC,19225,4.9506
+BankState,54,7,ME,15129,3.8958
+BankState,54,8,SD,14829,3.8186
+BankState,54,9,UT,14450,3.721
+BankState,54,10,NJ,12847,3.3082
+BankZip,1998,1,43215,43427,11.1828
+BankZip,1998,2,45202,18180,4.6815
+BankZip,1998,3,19808,17740,4.5682
+BankZip,1998,4,33131,14070,3.6231
+BankZip,1998,5,04240,13624,3.5083
+BankZip,1998,6,14203,12453,3.2067
+BankZip,1998,7,57104,12027,3.097
+BankZip,1998,8,07922,10386,2.6745
+BankZip,1998,9,28403,10275,2.6459
+BankZip,1998,10,33701,9541,2.4569
+ApprovalFY,7,1,2025,78078,20.1057
+ApprovalFY,7,2,2024,70242,18.0879
+ApprovalFY,7,3,2023,57362,14.7712
+ApprovalFY,7,4,2021,51856,13.3533
+ApprovalFY,7,5,2022,47678,12.2774
+ApprovalFY,7,6,2020,42298,10.8921
+ApprovalFY,7,7,2026,40824,10.5125
+ProcessingMethod,19,1,Preferred Lenders Program,213663,55.0199
+ProcessingMethod,19,2,SBA Express Program,146281,37.6685
+ProcessingMethod,19,3,7a General,22103,5.6917
+ProcessingMethod,19,4,Community Advantage Initiative,2614,0.6731
+ProcessingMethod,19,5,Working Capital CAPLine,1102,0.2838
+ProcessingMethod,19,6,International Trade Loans,1072,0.276
+ProcessingMethod,19,7,Preferred Lenders with EWCP,331,0.0852
+ProcessingMethod,19,8,Contract CAPLine,218,0.0561
+ProcessingMethod,19,9,7a with EWCP,197,0.0507
+ProcessingMethod,19,10,Export Express,192,0.0494
+FixedorVariableInterestInd,2,1,V,328068,84.4818
+FixedorVariableInterestInd,2,2,F,60262,15.5182
+NaicsCode,1157,1,722511,17950,4.6223
+NaicsCode,1157,2,722513,13002,3.3481
+NaicsCode,1157,3,236118,7972,2.0529
+NaicsCode,1157,4,713940,7522,1.937
+NaicsCode,1157,5,484121,6946,1.7886
+NaicsCode,1157,6,238220,6719,1.7302
+NaicsCode,1157,7,561730,6504,1.6748
+NaicsCode,1157,8,238990,6349,1.6349
+NaicsCode,1157,9,811111,5890,1.5167
+NaicsCode,1157,10,484110,5861,1.5093
+NaicsDescription,1783,1,Full-Service Restaurants,13746,3.5397
+NaicsDescription,1783,2,Limited-Service Restaurants,9633,2.4806
+NaicsDescription,1783,3,Landscaping Services,6504,1.6748
+NaicsDescription,1783,4,Residential Remodelers,6367,1.6396
+NaicsDescription,1783,5,All Other Specialty Trade Contractors,6349,1.6349
+NaicsDescription,1783,6,Fitness and Recreational Sports Centers,5724,1.474
+NaicsDescription,1783,7,"Plumbing, Heating, and Air-Conditioning Contractors",5152,1.3267
+NaicsDescription,1783,8,"General Freight Trucking, Long-Distance, Truckload",4752,1.2237
+NaicsDescription,1783,9,Electrical Contractors and Other Wiring Installation Contractors,4536,1.1681
+NaicsDescription,1783,10,Snack and Nonalcoholic Beverage Bars,4478,1.1531
+FranchiseCode,3690,1,S1788,1040,2.2326
+FranchiseCode,3690,2,S2031,488,1.0476
+FranchiseCode,3690,3,S1639,376,0.8072
+FranchiseCode,3690,4,S1373,335,0.7192
+FranchiseCode,3690,5,S0122,322,0.6913
+FranchiseCode,3690,6,S0067,315,0.6762
+FranchiseCode,3690,7,S4360,304,0.6526
+FranchiseCode,3690,8,S1533,290,0.6226
+FranchiseCode,3690,9,S1753,289,0.6204
+FranchiseCode,3690,10,S1645,286,0.614
+FranchiseName,3543,1,The UPS Store,1040,2.2405
+FranchiseName,3543,2,Hotworx,488,1.0513
+FranchiseName,3543,3,Subway,376,0.81
+FranchiseName,3543,4,Quality Inn,335,0.7217
+FranchiseName,3543,5,Anytime Fitness,322,0.6937
+FranchiseName,3543,6,Ace Hardware,315,0.6786
+FranchiseName,3543,7,Crumbl,304,0.6549
+FranchiseName,3543,8,Scooter's Coffee,290,0.6248
+FranchiseName,3543,9,The Goddard School,289,0.6226
+FranchiseName,3543,10,Super 8 by Wyndhan / Super 8,286,0.6161
+ProjectCounty,1855,1,LOS ANGELES,13224,3.4053
+ProjectCounty,1855,2,ORANGE,8098,2.0853
+ProjectCounty,1855,3,COOK,6405,1.6493
+ProjectCounty,1855,4,MARICOPA,5609,1.4444
+ProjectCounty,1855,5,MIAMI-DADE,5477,1.4104
+ProjectCounty,1855,6,HARRIS,5274,1.3581
+ProjectCounty,1855,7,MONTGOMERY,4502,1.1593
+ProjectCounty,1855,8,SAN DIEGO,4475,1.1523
+ProjectCounty,1855,9,CLARK,4031,1.038
+ProjectCounty,1855,10,JEFFERSON,3784,0.9744
+ProjectState,54,1,CA,45216,11.6435
+ProjectState,54,2,TX,29641,7.6328
+ProjectState,54,3,FL,28956,7.4564
+ProjectState,54,4,NY,24149,6.2186
+ProjectState,54,5,OH,21699,5.5877
+ProjectState,54,6,MI,14802,3.8116
+ProjectState,54,7,IL,13420,3.4558
+ProjectState,54,8,NJ,13249,3.4117
+ProjectState,54,9,PA,13205,3.4004
+ProjectState,54,10,GA,11597,2.9863
+SBADistrictOffice,67,1,COLUMBUS DISTRICT OFFICE,21696,5.5869
+SBADistrictOffice,67,2,SOUTH FLORIDA DISTRICT OFFICE,21242,5.47
+SBADistrictOffice,67,3,NEW YORK DISTRICT OFFICE,17665,4.5489
+SBADistrictOffice,67,4,MICHIGAN DISTRICT OFFICE,14798,3.8106
+SBADistrictOffice,67,5,LOS ANGELES DISTRICT OFFICE,14683,3.781
+SBADistrictOffice,67,6,ILLINOIS DISTRICT OFFICE,13419,3.4555
+SBADistrictOffice,67,7,NEW JERSEY DISTRICT OFFICE,13235,3.4081
+SBADistrictOffice,67,8,DALLAS / FT WORTH DISTRICT OFFICE,12202,3.1421
+SBADistrictOffice,67,9,GEORGIA DISTRICT OFFICE,11595,2.9858
+SBADistrictOffice,67,10,SEATTLE DISTRICT OFFICE,10721,2.7607
+CongressionalDistrict,54,1,01,47570,12.2504
+CongressionalDistrict,54,2,02,38619,9.9453
+CongressionalDistrict,54,3,03,37418,9.636
+CongressionalDistrict,54,4,04,31489,8.1092
+CongressionalDistrict,54,5,06,24492,6.3073
+CongressionalDistrict,54,6,07,24388,6.2805
+CongressionalDistrict,54,7,05,23693,6.1015
+CongressionalDistrict,54,8,08,17138,4.4134
+CongressionalDistrict,54,9,09,13416,3.4549
+CongressionalDistrict,54,10,00,11063,2.849
+BusinessType,3,1,CORPORATION,365209,94.0523
+BusinessType,3,2,INDIVIDUAL,18884,4.8632
+BusinessType,3,3,PARTNERSHIP,4211,1.0845
+BusinessAge,5,1,Existing or more than 2 years old,216548,55.7895
+BusinessAge,5,2,New Business or 2 years or less,63882,16.458
+BusinessAge,5,3,"Startup, Loan Funds will Open Business",62889,16.2022
+BusinessAge,5,4,Change of Ownership,40555,10.4482
+BusinessAge,5,5,Unanswered,4278,1.1021
+LoanStatus,5,1,EXEMPT,242061,62.3326
+LoanStatus,5,2,P I F,68201,17.5623
+LoanStatus,5,3,CANCLD,50104,12.9022
+LoanStatus,5,4,COMMIT,21079,5.428
+LoanStatus,5,5,CHGOFF,6893,1.775
+RevolverStatus,2,1,N,284931,73.3719
+RevolverStatus,2,2,Y,103407,26.6281
+CollateralInd,2,1,Y,317684,81.8061
+CollateralInd,2,2,N,70654,18.1939
+SoldSecMrktInd,1,1,Y,116764,100.0
