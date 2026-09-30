@@ -1,5 +1,7 @@
 # Business Objectives – SBA 7(a) FOIA
 
+> **CONTEXT / PREVIOUS REQUIREMENTS BASIS:** Năm nhóm mục tiêu bên dưới là bối cảnh học thuật từ vòng 24 BQ ứng viên, không phải danh sách câu hỏi hiện hành. Bộ chính là [Q1–Q15](business_questions_current.md); trạng thái schema/rule xem [Current Status](../00_current_status.md). Số liệu profiling nguồn vẫn được giữ làm bằng chứng.
+
 ## Bối cảnh và căn cứ
 
 Đây là **đề xuất yêu cầu cho đồ án**, chưa phải yêu cầu được SBA xác nhận. Nguồn phân tích là một CSV 7(a), 388.338 dòng × 42 thuộc tính, `ApprovalFY` FY2020–FY2026, `AsOfDate` 30/06/2026. Định nghĩa thuộc tính dựa vào workbook SBA `data/raw/foia/7a_504_foia_data_dictionary.xlsx`, sheet `7(a) Data Dictionary`, và [Data Dictionary](../data_understanding/data_dictionary.md). Số liệu, missing và dấu hiệu chất lượng dựa trên [Data Overview](../data_understanding/data_overview.md), [Data Profiling](../data_understanding/data_profiling_report.md) và [Data Quality Report](../data_understanding/data_quality_report.md).

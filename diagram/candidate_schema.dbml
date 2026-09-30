@@ -1,0 +1,315 @@
+ Project SBA_7A_DWH_OLAP {
+  database_type: "SQL Server"
+
+  Note: '''
+  Target Schema Proposal
+  Star Schema: 1 Fact + 8 Dimensions
+
+  Grain:
+  1 row in Fact_Loan = 1 published SBA 7(a) source record
+  at the snapshot date.
+
+  Important:
+  - LoanKey is a surrogate key, NOT an SBA LoanID.
+  - Published record count is NOT equivalent to unique loan count.
+  - Some analytical rules such as NAICS reference/version
+    are still pending verification.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: DATE
+//////////////////////////////////////////////////////////////
+
+Table Dim_Date {
+  DateKey int [pk]
+
+  FullDate date [not null]
+
+  CalendarYear smallint
+  CalendarQuarter tinyint
+  CalendarMonth tinyint
+  MonthName varchar(20)
+
+  FiscalYear smallint [not null]
+  FiscalQuarter tinyint [not null]
+  FiscalMonth tinyint
+
+  Note: '''
+  Fiscal year starts on October 1.
+
+  Q1:
+  FiscalYear -> FiscalQuarter
+
+  FY2026 is partial through 30/06/2026.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: PROJECT GEOGRAPHY
+//////////////////////////////////////////////////////////////
+
+Table Dim_ProjectGeography {
+  GeographyKey bigint [pk, increment]
+
+  ProjectState varchar(10)
+  ProjectCounty varchar(150)
+
+  CongressionalDistrict varchar(50)
+  SBADistrictOffice varchar(200)
+
+  GeographyValueStatus varchar(30)
+
+  Note: '''
+  Main analytical hierarchy:
+  ProjectState -> ProjectCounty
+
+  CongressionalDistrict is treated as a separate
+  analytical branch, not as a child of County.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: INDUSTRY
+//////////////////////////////////////////////////////////////
+
+Table Dim_Industry {
+  IndustryKey bigint [pk, increment]
+
+  NaicsCode varchar(20)
+  NaicsDescription varchar(300)
+
+  NaicsSectorCode varchar(20)
+  NaicsSectorName varchar(200)
+
+  NaicsVersion varchar(30)
+  SectorMappingStatus varchar(30)
+
+  Note: '''
+  Raw NaicsCode and NaicsDescription must be preserved.
+
+  Q13 and Q15 use NAICS Sector as the project-approved
+  analytical level.
+
+  NAICS reference/version and verified sector mapping
+  are still pending verification.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: LENDER
+//////////////////////////////////////////////////////////////
+
+Table Dim_Lender {
+  LenderKey bigint [pk, increment]
+
+  LocationID varchar(50) [not null]
+
+  BankName varchar(300)
+  BankFDICNumber varchar(50)
+  BankNCUANumber varchar(50)
+
+  BankStreet varchar(300)
+  BankCity varchar(150)
+  BankState varchar(20)
+  BankZip varchar(20)
+
+  LenderValueStatus varchar(30)
+
+  Note: '''
+  LocationID is used as the candidate business key
+  for lender grouping.
+
+  BankName is mainly a display attribute.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: LOAN PROFILE
+//////////////////////////////////////////////////////////////
+
+Table Dim_LoanProfile {
+  LoanProfileKey bigint [pk, increment]
+
+  ProcessingMethod varchar(150)
+
+  FixedOrVariableInterestInd varchar(50)
+  RevolverStatus varchar(50)
+  CollateralInd varchar(50)
+
+  LoanProfileValueStatus varchar(30)
+
+  Note: '''
+  ProcessingMethod is the main attribute required
+  by the current Core Analytical Scope.
+
+  Other attributes are extension attributes.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: LOAN STATUS
+//////////////////////////////////////////////////////////////
+
+Table Dim_LoanStatus {
+  LoanStatusKey bigint [pk, increment]
+
+  RawStatus varchar(50) [not null]
+  CanonicalStatus varchar(50)
+
+  StatusMappingStatus varchar(30)
+
+  Note: '''
+  RawStatus preserves the exact source value.
+
+  Project-approved canonical example:
+  P I F -> PIF
+
+  RawStatus is never overwritten.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: TERM BAND
+//////////////////////////////////////////////////////////////
+
+Table Dim_TermBand {
+  TermBandKey int [pk, increment]
+
+  TermBandCode varchar(30) [not null]
+  TermBandName varchar(100)
+
+  MinMonths int
+  MaxMonths int
+
+  SortOrder int
+  BandStatus varchar(30)
+
+  Note: '''
+  Project-defined analytical classification:
+
+  ZERO      = 0
+  SHORT     = 1-60
+  MEDIUM    = 61-119
+  TERM_120  = 120
+  LONG      = 121-240
+  VERY_LONG = >240
+
+  MISSING and INVALID are retained for data quality,
+  but excluded from valid analytical-share denominators.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// DIMENSION: BUSINESS
+//////////////////////////////////////////////////////////////
+
+Table Dim_Business {
+  BusinessKey bigint [pk, increment]
+
+  BusinessTypeRaw varchar(150)
+  BusinessAgeRaw varchar(150)
+
+  BusinessTypeValueStatus varchar(30)
+  BusinessAgeValueStatus varchar(30)
+
+  Note: '''
+  This dimension describes business characteristics,
+  NOT a unique business entity.
+
+  BusinessTypeRaw and BusinessAgeRaw preserve source labels.
+
+  Keep separate:
+  - Observed value
+  - Unanswered
+  - Missing
+  - Unknown technical member
+
+  BusinessAgeGroup is not included yet because
+  no grouping rule has been approved.
+
+  BorrowerName, borrower address and franchise fields
+  are excluded from the current core Dim_Business.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// FACT TABLE
+//////////////////////////////////////////////////////////////
+
+Table Fact_Loan {
+  LoanKey bigint [pk, increment, note: 'Surrogate PK; not SBA LoanID']
+
+  // Foreign Keys
+  ApprovalDateKey int [not null]
+  GeographyKey bigint [not null]
+  IndustryKey bigint [not null]
+  LenderKey bigint [not null]
+  LoanProfileKey bigint [not null]
+  LoanStatusKey bigint [not null]
+  TermBandKey int [not null]
+  BusinessKey bigint [not null]
+
+  // Base additive measures
+  GrossApproval decimal(19,2)
+  SBAGuaranteedApproval decimal(19,2)
+  GrossChargeOffAmount decimal(19,2)
+
+  JobsSupported int
+  RecordCount int [not null, default: 1]
+
+  // Supporting analytical attribute
+  TermInMonths int
+
+  // Event dates kept directly in Fact for current scope
+  FirstDisbursementDate date
+  PaidInFullDate date
+  ChargeOffDate date
+
+  // Technical lineage
+  SourceFileID varchar(100) [not null]
+  SourceRecordOrdinal bigint [not null]
+
+  SourceRowNumber bigint
+  ETLBatchID varchar(100)
+
+  indexes {
+    (SourceFileID, SourceRecordOrdinal) [unique]
+  }
+
+  Note: '''
+  Grain:
+  One published source record at the SBA snapshot.
+
+  RecordCount = 1 supports additive record counting.
+
+  Recommended logical uniqueness:
+  (SourceFileID, SourceRecordOrdinal)
+
+  Calculated measures such as:
+  - AverageGrossApproval
+  - WeightedGuaranteeRatio
+  - YoYGrowth
+  - ApprovalShare
+  - StatusShare
+  - StructuralShiftScore
+  - ContributionShare
+  - ObservedCHGOFFShare
+
+  should not be stored as additive fact columns.
+  They belong in SQL / MDX / semantic layer.
+  '''
+}
+
+//////////////////////////////////////////////////////////////
+// RELATIONSHIPS
+//////////////////////////////////////////////////////////////
+
+Ref: Fact_Loan.ApprovalDateKey > Dim_Date.DateKey
+Ref: Fact_Loan.GeographyKey > Dim_ProjectGeography.GeographyKey
+Ref: Fact_Loan.IndustryKey > Dim_Industry.IndustryKey
+Ref: Fact_Loan.LenderKey > Dim_Lender.LenderKey
+Ref: Fact_Loan.LoanProfileKey > Dim_LoanProfile.LoanProfileKey
+Ref: Fact_Loan.LoanStatusKey > Dim_LoanStatus.LoanStatusKey
+Ref: Fact_Loan.TermBandKey > Dim_TermBand.TermBandKey
+Ref: Fact_Loan.BusinessKey > Dim_Business.BusinessKey

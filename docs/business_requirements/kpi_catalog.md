@@ -1,5 +1,7 @@
 # KPI Catalog ứng viên — SBA 7(a)
 
+> **PREVIOUS 19/24-BQ KPI CATALOG — DEPRECATED AS CURRENT SCOPE:** `K01`–`K13` gắn mã BQ cũ được giữ để truy vết, **không tự động là KPI catalog của Q1–Q15**. Base measures và công thức cần cho bộ hiện hành xem [Measure–Dimension Matrix](../dimensional_model/measure_dimension_matrix.md) và [candidate schema](../dimensional_model/candidate_schema.md). Giữ nguyên KPI ID cũ, không remap hoặc gọi đã duyệt.
+
 **Căn cứ:** [Business Rules](business_rules.md), [19 BQ được chọn](business_questions_selection.md), [Business Questions Catalog](business_questions_catalog.md), [Data Dictionary](../data_understanding/data_dictionary.md), [Data Quality Report](../data_understanding/data_quality_report.md) và workbook SBA sheet `7(a) Data Dictionary`. Đây là định nghĩa để rà soát, chưa phải KPI được nhóm phê duyệt. Một KPI dùng lại ở nhiều chiều; tên KPI không gắn state/industry/lender.
 
 ## Quy ước chung

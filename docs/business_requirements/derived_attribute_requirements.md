@@ -1,5 +1,7 @@
 # Derived & Technical Attribute Requirements
 
+> **PREVIOUS BQ01–BQ24 REQUIREMENTS — DEPRECATED AS CURRENT SCOPE:** Matrix 19 BQ và mã KPI bên dưới là lịch sử; giữ nguyên ID để trace. Thuộc tính nào cần cho Q1–Q15 xem [Measure–Dimension Matrix hiện hành](../dimensional_model/measure_dimension_matrix.md), [candidate schema](../dimensional_model/candidate_schema.md) và [rule register](business_rule_register.md). Không coi vị trí lưu đề xuất ở đây là schema đã duyệt.
+
 **Mục đích:** đầu vào cho Attribute Mapping, chưa chốt bảng Fact/Dimension hoặc star schema. BQ và KPI tham chiếu [19 BQ](business_questions_selection.md), [KPI Catalog](kpi_catalog.md), [Business Rules](business_rules.md); trường nguồn theo [Data Dictionary](../data_understanding/data_dictionary.md) và sheet `7(a) Data Dictionary` của workbook SBA. `CORE` nghĩa là phục vụ một BQ chính hoặc lineage/đối soát tối thiểu; `OPTIONAL` là hữu ích nhưng không bắt buộc; `DEFERRED` cần nguồn/quyết định bổ sung. Storage là **loại nơi lưu khả dĩ**, không phải tên bảng đã chốt. `PROPOSED` chỉ là chính sách đồ án, `OPEN` chưa đủ căn cứ.
 
 ## Thuộc tính dẫn xuất và derived measures

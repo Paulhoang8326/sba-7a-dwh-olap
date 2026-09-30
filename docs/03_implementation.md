@@ -1,5 +1,7 @@
 # SSIS và SSAS: hướng dẫn dựng project thật
 
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** Thứ tự nạp, `FactLoanSnapshot`, 8 dimensions, date roles và hợp đồng cube dưới đây phục vụ snowflake prototype cũ. Đây là hướng dẫn/script, không phải bằng chứng SSIS/SSAS đã chạy và chưa là kế hoạch triển khai [candidate schema](dimensional_model/candidate_schema.md). Xem [Current Status](00_current_status.md).
+
 ## Môi trường
 
 SQL Server Developer Database Engine và SSAS **Multidimensional**, SSMS, Visual Studio với Integration Services/Analysis Services Projects tương thích. Các dịch vụ MSSQLSERVER và MSSQLServerOLAPService được phát hiện trên máy khi khảo sát nhưng đang dừng; chưa khởi động, chưa triển khai database/cube.

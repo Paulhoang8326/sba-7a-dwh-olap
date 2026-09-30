@@ -1,5 +1,7 @@
 # Danh mục Business Questions ứng viên
 
+> **ARCHIVED / PREVIOUS CANDIDATE SET — DEPRECATED AS CURRENT:** 24 mã `BQ01`–`BQ24` dưới đây là bộ ứng viên trước đây, giữ nguyên ID để truy vết. Bộ câu hỏi chính hiện hành là [Q1–Q15](business_questions_current.md), đã `DECIDED` ở cấp nội dung. Không remap `BQxx` sang `Qx`; xem [Current Status](../00_current_status.md).
+
 24 câu hỏi thuộc 5 mục tiêu trong [Business Objectives](business_objectives.md). Đây là **ứng viên phân tích**, chưa chốt KPI, grain kho dữ liệu hoặc quy tắc ETL. `Số dòng` luôn là số **bản ghi khoản vay được công bố**, không phải số khoản vay duy nhất. Mọi phép đo theo trạng thái là trạng thái tại `AsOfDate = 2026-06-30`.
 
 **Feasibility:** `DIRECT` = tính từ thuộc tính nguồn; `DERIVED` = cần phép tính/nhóm dẫn xuất; `CONDITIONAL` = còn điều kiện nghiệp vụ, mẫu số hoặc thời gian quan sát phải chốt; `UNSUPPORTED` = thiếu dữ liệu tin cậy. `DQxx` tham chiếu [Data Quality Report](../data_understanding/data_quality_report.md). `FY` trong bảng là `ApprovalFY`; `State` là `ProjectState` trừ khi ghi khác. Những loại biểu đồ chỉ là gợi ý trình bày. CSV có **19 nhãn `ProcessingMethod`**, còn workbook liệt kê **18 cặp tên/mã**; một số nhãn viết khác (ví dụ `Working Capital CAPLine`, `Contract CAPLine`). Phân tích theo nhãn thô khả thi; đối chiếu tất cả nhãn sang mã chính thức cần xác minh riêng.

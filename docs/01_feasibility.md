@@ -1,5 +1,7 @@
 # Đánh giá dataset và đề xuất đề tài
 
+> **HISTORICAL FEASIBILITY / PREVIOUS PROTOTYPE:** Các đánh giá snowflake, 8 dimensions, 15 truy vấn và số trùng 689/392 dưới đây phản ánh lần khảo sát/phương pháp chuẩn hóa trước đây. Scope hiện hành: [Q1–Q15](business_requirements/business_questions_current.md), [candidate schema](dimensional_model/candidate_schema.md). [Profiling trên chuỗi raw](data_understanding/data_profiling_report.md) ghi 687 dòng thuộc nhóm exact duplicate và 391 bản sao dư; không tráo hai phương pháp đếm.
+
 ## Đề tài nên chọn
 
 **Xây dựng hệ thống Kho dữ liệu và OLAP hỗ trợ phân tích danh mục tín dụng, bảo lãnh và kết quả khoản vay SBA 7(a) tại Hoa Kỳ giai đoạn FY2020–FY2026.** Ba trục nghiệp vụ: phân bổ vốn; ngành/địa phương/bên cho vay; kết quả khoản vay và việc làm được hỗ trợ. Đây là phân tích học thuật dữ liệu danh mục, không phải mô hình ra quyết định cấp tín dụng thực tế.

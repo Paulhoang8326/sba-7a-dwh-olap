@@ -1,5 +1,7 @@
 # Checklist bàn giao và trạng thái
 
+> **HISTORICAL PROTOTYPE CHECKLIST:** Dấu `[x]` cho pipeline, DDL, 15 manual/MDX và BI design bên dưới chỉ nói artifact của previous snowflake prototype đã được viết/kiểm chứng theo mức nêu; không phải Q1–Q15 hiện hành/Target Schema Proposal star 1 Fact + 8 Dim đã triển khai. Xem [Current Status](00_current_status.md).
+
 Đợt chuyển repo này hoàn thành phần định hướng và nền tảng. Đánh dấu `[x]` chỉ cho công việc đã thực hiện; không đồng nghĩa đã nộp môn học.
 
 - [x] Profile toàn bộ CSV và đọc từ điển SBA.
