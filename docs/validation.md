@@ -1,5 +1,7 @@
 # Kiểm chứng ngày 2026-09-23
 
+> **PREVIOUS PROTOTYPE EVIDENCE:** Những lần chạy dưới đây xác nhận Python snowflake prototype tại thời điểm ghi, không xác nhận [candidate schema](dimensional_model/candidate_schema.md), preprocessing plan, SSIS/SQL Server hoặc cube mới đã được triển khai. Xem [Current Status](00_current_status.md).
+
 ## Đã chạy
 
 - `python -m src.main`: toàn bộ 388.338 dòng, sinh 9 bảng, quality log, mart và mining input.

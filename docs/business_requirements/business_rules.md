@@ -1,5 +1,7 @@
 # Business Rules & Assumptions — SBA 7(a)
 
+> **PREVIOUS BQ01–BQ24 REQUIREMENTS — DEPRECATED AS CURRENT SCOPE:** BR01–BR15 dưới đây được viết cho bộ ứng viên trước đây và còn hữu ích làm căn cứ nguồn/giới hạn. [Business Rule Register hiện hành](business_rule_register.md) theo Q1–Q15 có bốn rule riêng còn `PROPOSED`; không suy ra `DECIDED` từ các trạng thái `VERIFIED/PROPOSED/OPEN` trong bảng cũ. Xem [Current Status](../00_current_status.md).
+
 **Phạm vi:** một CSV FOIA 7(a), 388.338 dòng, `AsOfDate = 2026-06-30`, `ApprovalFY` FY2020–FY2026. Đây là đặc tả **ứng viên** để lập Attribute Mapping; `PROPOSED` không phải quyết định đã được nhóm chốt. Không thay dữ liệu nguồn hoặc thiết kế mô hình ở bước này. Đối chiếu [Data Overview](../data_understanding/data_overview.md), [Data Dictionary](../data_understanding/data_dictionary.md), [Data Profiling](../data_understanding/data_profiling_report.md), [Data Quality Report](../data_understanding/data_quality_report.md), [19 BQ được chọn](business_questions_selection.md), [OLAP requirements](olap_analysis_requirements.md) và workbook `../../data/raw/foia/7a_504_foia_data_dictionary.xlsx` (sheet `7(a) Data Dictionary`).
 
 **Cấp căn cứ:** “SBA workbook” xác nhận nghĩa trường/mã được ghi trong sheet; “repo/profile” xác nhận dữ liệu/quan sát của snapshot này; “đề xuất” là chính sách phân tích của đồ án. `VERIFIED` chỉ áp dụng cho phần được nguồn xác nhận, không có nghĩa mọi quyết định triển khai đã được duyệt. `OPEN` là điều chưa đủ căn cứ.

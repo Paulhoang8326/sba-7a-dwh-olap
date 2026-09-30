@@ -1,6 +1,6 @@
 # Từ điển dữ liệu nguồn SBA 7(a)
 
-Trích định nghĩa từ sheet `7(a) Data Dictionary` của workbook cục bộ. Không dùng sheet 504 cho CSV này. Định nghĩa nguồn giữ tiếng Anh để đối chiếu chính xác; quy tắc chuẩn hóa và measures xem `02_warehouse_design.md`.
+Trích định nghĩa từ sheet `7(a) Data Dictionary` của workbook cục bộ. Không dùng sheet 504 cho CSV này. Định nghĩa nguồn giữ tiếng Anh để đối chiếu chính xác; quy tắc và measures của phạm vi hiện hành xem [Source of Truth](00_current_status.md). `02_warehouse_design.md` là **previous prototype**.
 
 | Field | Source definition |
 |---|---|

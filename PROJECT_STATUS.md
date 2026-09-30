@@ -1,8 +1,20 @@
 # PROJECT_STATUS — Tiến độ dự án SBA 7(a)
 
+> **Trạng thái hiện hành (2026-09-30):** [docs/00_current_status.md](docs/00_current_status.md) là Source of Truth. [Q1–Q15](docs/business_requirements/business_questions_current.md), gồm Q10 mới, đã duyệt ở cấp business-question scope; [star 1 `FactLoanSnapshot` + 8 dimensions](docs/dimensional_model/candidate_schema.md) là **PROPOSED TARGET SCHEMA**, chưa là Final/physical schema. [Measure Contract](docs/business_requirements/measure_contract_q1_q15.md) đã viết nhưng **NOT IMPLEMENTED**. [Rule register](docs/business_requirements/business_rule_register.md) ghi `PROJECT_APPROVED` cho population, cấp NAICS Sector, TermBand, canonical PIF và Q15 gates; NAICS reference/version/mapping còn `PENDING_VERIFICATION`, business grouping mở rộng còn `OPEN`. [Preprocessing](docs/data_understanding/preprocessing_plan.md) **PLANNED / NOT IMPLEMENTED**; prototype snowflake/MDX cũ giữ cho lịch sử.
+
+## Việc tiếp theo theo trạng thái hiện hành
+
+1. Xác minh NAICS reference/version/crosswalk và unmapped; không tự chuyển mapping/sector name sang `VERIFIED` chỉ vì đã duyệt cấp Sector.
+2. Đặc tả Source-to-Target Mapping gồm keys, lineage, unknown members và rule version theo Target Schema Proposal 1 Fact + 8 Dim và Measure Contract; phần NAICS chờ verification. Chưa gọi Final Schema.
+3. Thực hiện preprocessing theo plan đã duyệt, đối soát raw → standardized; sau đó mới triển khai ETL/database/cube.
+
+## Lưu trữ: status snapshot ngày 2026-09-24
+
+Toàn bộ các mục đánh số bên dưới là **ghi chép lịch sử của previous prototype** tại ngày nêu trên. Các nhãn “Current”, “Pending”, “Recommended” trong snapshot cũ không thay thế trạng thái hiện hành ở đầu file hoặc [Source of Truth](docs/00_current_status.md). Số duplicate 392 ở snapshot cũ dùng phương pháp chuẩn hóa khác; [profiling raw hiện hành](docs/data_understanding/data_profiling_report.md) ghi 687 dòng thuộc nhóm exact duplicate và 391 bản sao dư.
+
 > **Cập nhật:** 2026-09-24. Đọc [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) để biết định nghĩa dữ liệu, grain và kiến trúc. Trạng thái ở đây dựa trên file và chứng cứ hiện có; không tự coi script/đặc tả là hệ thống đã chạy.
 
-## 1. Current Project Status
+## 1. Historical Project Status (2026-09-24)
 
 | Mục | Trạng thái |
 |---|---|
@@ -26,13 +38,13 @@
 | C07 | Chạy baseline mining hồi cứu | Dummy, Logistic Regression, Decision Tree; có validation/test metrics, giới hạn được ghi rõ | [src/mining.py](src/mining.py), [docs/mining_baseline.json](docs/mining_baseline.json), [docs/validation.md](docs/validation.md) | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
 | C08 | Tạo tài liệu đồng bộ bối cảnh/tiến độ | Hai file Markdown tại root, đối chiếu trạng thái repo | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), file này | 2026-09-24 |
 
-## 3. In Progress
+## 3. In Progress — historical snapshot
 
 | ID | Task | Current Progress | Related Files | Next Action |
 |---|---|---|---|---|
 | — | Chưa xác định được tác vụ triển khai đang thực hiện | Repository chỉ cho thấy sản phẩm đã có và kế hoạch, không có bằng chứng một build/deploy hiện đang chạy | [README.md](README.md), [docs/07_delivery.md](docs/07_delivery.md) | Chốt các pending decisions ở §6 trước khi thay đổi mô hình hoặc triển khai stack đích. |
 
-## 4. Planned / Not Started
+## 4. Planned / Not Started — historical snapshot
 
 Priority dưới đây chỉ là **đề xuất thứ tự**, chưa phải kế hoạch đã được người dùng duyệt.
 
@@ -47,7 +59,7 @@ Priority dưới đây chỉ là **đề xuất thứ tự**, chưa phải kế 
 | P07 | Hoàn thiện phần mining và diễn giải | Phân tích lỗi, leakage/censoring, kết luận đúng phạm vi hồi cứu | Baseline đã có; yêu cầu đánh giá môn học | Trung bình |
 | P08 | Viết báo cáo Word, video và đóng gói | Bộ nộp có chứng cứ hệ thống chạy, hướng dẫn tái lập | P02–P07 và thông tin nhóm | Sau cùng |
 
-## 5. Current Issues & Blockers
+## 5. Issues & Blockers — historical snapshot
 
 | ID | Issue đã phát hiện | Impact | Related Files | Suggested Solution | Status |
 |---|---|---|---|---|---|
@@ -59,7 +71,7 @@ Priority dưới đây chỉ là **đề xuất thứ tự**, chưa phải kế 
 | I06 | Thiết kế trong repo là snowflake, trong trao đổi đã có đề xuất star phẳng | Nếu dùng lẫn tên bảng/khóa, SQL/MDX/tài liệu không nhất quán | [sql/01_warehouse.sql](sql/01_warehouse.sql), [docs/02_warehouse_design.md](docs/02_warehouse_design.md) | Chốt một mô hình đích trước khi sửa DDL, ETL và query | Chờ quyết định |
 | I07 | `FirstDisbursementDate` thiếu 71.186 dòng; có một số ngày sự kiện bất thường, zero rate/term | Một số KPI duration và chất lượng đầu vào bị ảnh hưởng | [docs/data_profile.json](docs/data_profile.json), `data/processed/quality_issues.csv` | Giữ quality log, chỉ tính duration trên ngày hợp lệ, hiển thị mẫu số | Có quy tắc prototype; cần đối soát trên stack đích |
 
-## 6. Pending Decisions
+## 6. Pending Decisions — historical snapshot, superseded by current status
 
 Chỉ những lựa chọn **chưa thấy được chốt** trong yêu cầu/repository:
 
@@ -72,7 +84,7 @@ Chỉ những lựa chọn **chưa thấy được chốt** trong yêu cầu/rep
 
 Không đưa các câu hỏi đã có câu trả lời vào danh sách: nguồn chính là SBA 7(a) FOIA, phạm vi hiện tại FY2020–FY2026, grain prototype là dòng CSV trong một snapshot.
 
-## 7. Recommended Next Steps
+## 7. Recommended Next Steps — historical snapshot, superseded by current status
 
 | Order | Task | Objective | Expected Output |
 |---:|---|---|---|

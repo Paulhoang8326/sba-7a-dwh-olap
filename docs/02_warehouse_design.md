@@ -1,5 +1,7 @@
 # Mô hình kho dữ liệu
 
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** This document describes the previous snowflake prototype and is not the current candidate schema. Candidate: [1 `Fact_Loan` + 7 dimensions](dimensional_model/candidate_schema.md). Xem [Current Status](00_current_status.md).
+
 ## Grain và phạm vi
 
 `FactLoanSnapshot`: một dòng của file công bố SBA 7(a), snapshot 2026-06-30. Một lần build chỉ nhận một AsOfDate (lưu ở metadata `profile.json` và tài liệu mô tả, không tạo khóa `AsOfDateKey` trong bảng fact vì toàn bộ bản ghi có cùng một ngày snapshot). Fact tích hợp ngày sự kiện nhưng không có lịch sử thay đổi status. Không cộng số tiền qua các snapshot; muốn mở rộng cần chiến lược nhận diện loan đáng tin cậy và snapshot measure group riêng.

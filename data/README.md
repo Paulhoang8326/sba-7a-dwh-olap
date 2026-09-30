@@ -1,5 +1,7 @@
 # Data layers
 
+> `python -m src.main` và các bảng trong `data/processed/` là **previous snowflake prototype**. [Preprocessing Plan hiện hành](../docs/data_understanding/preprocessing_plan.md) vẫn `PLANNED / NOT IMPLEMENTED`; [candidate schema](../docs/dimensional_model/candidate_schema.md) chưa được nạp. Raw CSV phải giữ nguyên.
+
 ```text
 data/
 ├── raw/foia/    Dữ liệu SBA gốc, không chỉnh sửa

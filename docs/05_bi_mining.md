@@ -1,5 +1,7 @@
 # Power BI, Looker Studio và mining
 
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT cho BI schema/query:** Các báo cáo/DAX bên dưới dựa trên `FactLoanSnapshot` và mart snowflake cũ; chưa đồng bộ với [Q1–Q15](business_requirements/business_questions_current.md) hoặc [candidate schema](dimensional_model/candidate_schema.md). Kết quả mining baseline vẫn là kết quả hồi cứu của prototype. Xem [Current Status](00_current_status.md).
+
 ## Sáu báo cáo
 
 Tạo 3 báo cáo riêng ở mỗi công cụ để đáp ứng cách hiểu chặt của “3 reports”; có thể tái sử dụng mô hình dữ liệu. Cùng tên KPI, đơn vị USD và phạm vi status ở cả hai nền tảng. Mọi trang ghi `Snapshot 2026-06-30` và FY2026 partial.
