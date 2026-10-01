@@ -11,11 +11,11 @@
 | Tên đề tài | **Xây dựng hệ thống Kho dữ liệu và OLAP hỗ trợ phân tích danh mục tín dụng, bảo lãnh và kết quả khoản vay SBA 7(a) tại Hoa Kỳ giai đoạn FY2020–FY2026** — tên được người dùng cung cấp, cũng ghi trong [README.md](README.md). |
 | Môn học | Kho dữ liệu và OLAP — người dùng cung cấp. |
 | Bối cảnh | Đồ án sinh viên dùng dữ liệu công khai SBA FOIA để thực hành khảo sát nguồn, thiết kế kho dữ liệu, ETL, truy vấn đa chiều và báo cáo. Không phải hệ thống vận hành để quyết định cấp tín dụng. |
-| Lý do chọn | Snapshot cục bộ có 388.338 dòng, 42 trường, các chiều FY, địa lý, lender, NAICS và trạng thái; có số tiền phê duyệt, bảo lãnh và charge-off. Đây là cơ sở phù hợp để thực hành OLAP, theo [docs/01_feasibility.md](docs/01_feasibility.md). |
+| Lý do chọn | Snapshot cục bộ có 388.338 dòng, 42 trường, các chiều FY, địa lý, lender, NAICS và trạng thái; có số tiền phê duyệt, bảo lãnh và charge-off. Đây là cơ sở phù hợp để thực hành OLAP, theo [docs/01_feasibility.md](docs/archive/other/01_feasibility.md). |
 | Mục tiêu | Khảo sát dữ liệu; xác định câu hỏi/KPI hợp lệ; xây mô hình kho dữ liệu, quy trình nạp, cube và dashboard. Đây là **mục tiêu**, không phải danh sách chức năng đã hoàn thành. |
 | Phạm vi hiện hành | CSV SBA 7(a) FY2020–FY2026, snapshot 2026-06-30. File FY2010–FY2019 chỉ là **khả năng mở rộng được thảo luận**, chưa có trong repository/chưa chốt nhập vào phạm vi. |
 | Đối tượng phân tích | Dòng hồ sơ vay công bố, vốn phê duyệt và bảo lãnh, địa lý dự án, ngành, lender đang được gán khoản vay, trạng thái tại snapshot và số việc làm được báo cáo. |
-| Kết quả mong đợi | Mô hình có đối soát dữ liệu, truy vấn OLAP, dashboard và báo cáo đồ án; [docs/07_delivery.md](docs/07_delivery.md) nêu bộ bàn giao dự kiến. Chưa coi checklist này là sản phẩm đã hoàn thành. |
+| Kết quả mong đợi | Mô hình có đối soát dữ liệu, truy vấn OLAP, dashboard và báo cáo đồ án; [docs/07_delivery.md](docs/archive/other/07_delivery.md) nêu bộ bàn giao dự kiến. Chưa coi checklist này là sản phẩm đã hoàn thành. |
 
 ## 2. Business Problems
 
@@ -67,7 +67,7 @@ Danh mục **đủ 42 trường** và định nghĩa workbook ở [docs/data_dic
 
 | Mức | Thuộc tính/chỉ tiêu | Quy tắc hoặc trạng thái |
 |---|---|---|
-| **Đã triển khai trong prototype Python** | `SectorCode`, fiscal year/quarter trong `DimDate`, `LoanCount`, `ChargeOffCount`, `ResolvedCount`, `NonCancelledApproval`, `UnguaranteedApproval`, các tử/mẫu số lãi suất và thời gian giải ngân | Quy tắc trong [src/main.py](src/main.py), giải thích tại [docs/02_warehouse_design.md](docs/02_warehouse_design.md). `InterestWeightedAmount` hiện lưu `InitialInterestRate / 100 × GrossApproval`, nên kết quả bình quân là tỷ lệ dạng 0–1. |
+| **Đã triển khai trong prototype Python** | `SectorCode`, fiscal year/quarter trong `DimDate`, `LoanCount`, `ChargeOffCount`, `ResolvedCount`, `NonCancelledApproval`, `UnguaranteedApproval`, các tử/mẫu số lãi suất và thời gian giải ngân | Quy tắc trong [src/main.py](src/main.py), giải thích tại [docs/02_warehouse_design.md](docs/archive/dimensional_model/02_warehouse_design.md). `InterestWeightedAmount` hiện lưu `InitialInterestRate / 100 × GrossApproval`, nên kết quả bình quân là tỷ lệ dạng 0–1. |
 | **Calculated measure tại thời điểm truy vấn** | Guarantee ratio, average loan, resolved charge-off rate, weighted initial rate | Chia **tổng tử số cho tổng mẫu số**, xử lý mẫu số 0; không cộng/trung bình các tỷ lệ theo nhóm. |
 | **Target Schema Proposal hiện hành, chưa có trong code/DDL** | `DimTermBand` có `TERM_120`, `DimLoanStatus`, `DimBusiness` tối thiểu, `NaicsSectorCode/NaicsSectorName` ứng viên trong `DimIndustry`, fiscal attributes của `DimDate`, star `FactLoanSnapshot` + 8 Dim | Xem [schema](docs/dimensional_model/candidate_schema.md), [Measure Contract](docs/business_requirements/measure_contract_q1_q15.md) và [rule register](docs/business_requirements/business_rule_register.md); rule phân tích đã `PROJECT_APPROVED`, NAICS mapping còn `PENDING_VERIFICATION`. `LoanSizeBand`/`GuaranteeBand` là ý tưởng cũ ngoài Q1–Q15 hiện hành. |
 
@@ -89,7 +89,7 @@ Danh mục **đủ 42 trường** và định nghĩa workbook ở [docs/data_dic
 | `DimBusiness` | Dimension profile | Tổ hợp thuộc tính business | PK `BusinessKey` | Type, age, franchise code/name; **không là borrower ID** | CSV prototype đã sinh; DDL có |
 | `DimLoanProfile` | Dimension profile | Tổ hợp các đặc tính/trạng thái | PK `LoanProfileKey` | Program, method, rate type, revolving, collateral, secondary market, status | CSV prototype đã sinh; DDL có |
 
-`GrossApproval`, `SBAGuaranteedApproval`, `UnguaranteedApproval`, `GrossChargeOffAmount`, `JobsSupported`, count flags là additive **trong một snapshot**. Rate, term và tỷ lệ là non-additive; nhiều snapshot sẽ không được cộng số tiền/count xuyên `AsOfDate`. Xem [docs/02_warehouse_design.md](docs/02_warehouse_design.md). Một snapshot không cung cấp lịch sử để mặc định áp dụng SCD Type 2.
+`GrossApproval`, `SBAGuaranteedApproval`, `UnguaranteedApproval`, `GrossChargeOffAmount`, `JobsSupported`, count flags là additive **trong một snapshot**. Rate, term và tỷ lệ là non-additive; nhiều snapshot sẽ không được cộng số tiền/count xuyên `AsOfDate`. Xem [docs/02_warehouse_design.md](docs/archive/dimensional_model/02_warehouse_design.md). Một snapshot không cung cấp lịch sử để mặc định áp dụng SCD Type 2.
 
 ## 5. Data Processing Architecture
 
@@ -100,13 +100,13 @@ Các dòng Python/SQL/SSAS bên dưới ghi **tình trạng previous prototype**
 | Giai đoạn | Mục đích; input → output | Công nghệ / file | Trạng thái thực tế |
 |---|---|---|---|
 | Raw Data | Giữ CSV và XLSX gốc bất biến | [data/raw/foia](data/raw/foia/README.md) | **Có** file cục bộ |
-| Data Profiling | Schema, count, null, status, FY, quality | [docs/data_profile.json](docs/data_profile.json), [src/main.py](src/main.py) | **Đã chạy** theo [docs/validation.md](docs/validation.md); kết quả có thể tái kiểm tra |
+| Data Profiling | Schema, count, null, status, FY, quality | [docs/data_profile.json](docs/data_profile.json), [src/main.py](src/main.py) | **Đã chạy** theo [docs/validation.md](docs/archive/other/validation.md); kết quả có thể tái kiểm tra |
 | Cleaning trong previous prototype | Trim, chuẩn hóa status, parse date/numeric, gắn cờ sai theo logic cũ | [src/main.py](src/main.py); `data/processed/quality_issues.csv` | **Có prototype Python**; không sửa raw; preprocessing hiện hành chưa triển khai |
 | Transformation | Sinh dimensions, fact, mart, mining input | [src/main.py](src/main.py), `data/processed/` | **Đã sinh CSV cục bộ**; thư mục processed bị Git ignore |
-| ETL/ELT chính thức | Nạp raw qua staging, dimension/fact và audit | [docs/03_implementation.md](docs/03_implementation.md), `Source/SSIS/` | **Mới là hướng dẫn**; chưa có `.dtproj`/`.dtsx` |
+| ETL/ELT chính thức | Nạp raw qua staging, dimension/fact và audit | [docs/03_implementation.md](docs/archive/olap/03_implementation.md), `Source/SSIS/` | **Mới là hướng dẫn**; chưa có `.dtproj`/`.dtsx` |
 | Data Warehouse | Lưu bảng có PK/FK, đối soát | [sql/01_warehouse.sql](sql/01_warehouse.sql), [sql/02_validation.sql](sql/02_validation.sql) | **Có script**; chưa có bằng chứng DDL đã chạy/nạp database |
-| OLAP | Cube, measures, hierarchies, MDX | `Source/SSAS/`, [docs/04_analysis_catalog.md](docs/04_analysis_catalog.md) | **Có MDX và thiết kế**; chưa có `.dwproj`, cube đã process hoặc kết quả chạy MDX |
-| BI/Dashboard | Trực quan hóa và Pivot | [docs/05_bi_mining.md](docs/05_bi_mining.md), `dashboards/`, `Source/Excel/` | **Có đặc tả**; chưa có PBIX, link Looker, workbook Pivot thật |
+| OLAP | Cube, measures, hierarchies, MDX | `Source/SSAS/`, [docs/04_analysis_catalog.md](docs/archive/olap/04_analysis_catalog.md) | **Có MDX và thiết kế**; chưa có `.dwproj`, cube đã process hoặc kết quả chạy MDX |
+| BI/Dashboard | Trực quan hóa và Pivot | [docs/05_bi_mining.md](docs/archive/other/05_bi_mining.md), `dashboards/`, `Source/Excel/` | **Có đặc tả**; chưa có PBIX, link Looker, workbook Pivot thật |
 
 ## 6. Technology Stack
 
@@ -116,8 +116,8 @@ Các dòng Python/SQL/SSAS bên dưới ghi **tình trạng previous prototype**
 | scikit-learn | **Confirmed trong baseline** | [src/mining.py](src/mining.py), [docs/mining_baseline.json](docs/mining_baseline.json). |
 | Git | **Confirmed** | Repository có lịch sử commit; dùng theo dõi mã/tài liệu. |
 | SQL Server / T-SQL | **Proposed target, script đã viết** | [sql/01_warehouse.sql](sql/01_warehouse.sql); chưa có bằng chứng database vận hành. |
-| SSIS, SSAS Multidimensional, MDX | **Proposed target / MDX đã viết** | [docs/03_implementation.md](docs/03_implementation.md), `Source/SSAS/`; chưa có project/deploy. |
-| Power BI, Looker Studio, Excel Pivot | **Proposed** | [docs/05_bi_mining.md](docs/05_bi_mining.md), [docs/04_analysis_catalog.md](docs/04_analysis_catalog.md); chưa có artifact chạy thật. |
+| SSIS, SSAS Multidimensional, MDX | **Proposed target / MDX đã viết** | [docs/03_implementation.md](docs/archive/olap/03_implementation.md), `Source/SSAS/`; chưa có project/deploy. |
+| Power BI, Looker Studio, Excel Pivot | **Proposed** | [docs/05_bi_mining.md](docs/archive/other/05_bi_mining.md), [docs/04_analysis_catalog.md](docs/archive/olap/04_analysis_catalog.md); chưa có artifact chạy thật. |
 | Hệ quản trị/công cụ cuối cùng và phiên bản | **Chưa được người dùng xác nhận rõ** | Repo chọn hướng SQL Server + SSIS/SSAS; cần đối chiếu yêu cầu môn học/môi trường trước khi triển khai. |
 
 ## 7. Repository Structure
@@ -152,7 +152,7 @@ Không có notebook `.ipynb` hiện hành trong working tree. `references/` là 
 | Giữ raw nguyên vẹn; không loại dòng giống nhau thiếu bằng chứng | Nguồn không có LoanID; profiling raw exact ghi 687 dòng trong nhóm trùng, 391 bản sao dư. Số 392 của prototype dùng cách chuẩn hóa khác. | [src/main.py](src/main.py), [profiling hiện hành](docs/data_understanding/data_profiling_report.md) | **Quy tắc prototype đã triển khai; số liệu cần phân biệt phương pháp** |
 | Candidate `FactLoanSnapshot` ở grain một published record trong một snapshot | Tránh gán sai LoanID hoặc cộng trùng nhiều snapshot | [candidate schema](docs/dimensional_model/candidate_schema.md), [current Q1–Q15](docs/business_requirements/business_questions_current.md) | **Grain giữ nguyên trong Target Schema Proposal**; prototype cũ cũng ở grain dòng nguồn |
 | Một fact, tám dimension, hai nhánh snowflake | Có phụ thuộc State→County và Sector→Industry | [sql/01_warehouse.sql](sql/01_warehouse.sql) | **Thiết kế repo đã viết, chưa triển khai DB** |
-| Tỷ lệ tính từ tổng tử/mẫu số; status theo snapshot | Tránh sai lệch roll-up và nhầm cohort với lịch sử status | [docs/02_warehouse_design.md](docs/02_warehouse_design.md) | **Quy tắc phân tích trong repo** |
+| Tỷ lệ tính từ tổng tử/mẫu số; status theo snapshot | Tránh sai lệch roll-up và nhầm cohort với lịch sử status | [docs/02_warehouse_design.md](docs/archive/dimensional_model/02_warehouse_design.md) | **Quy tắc phân tích trong repo** |
 | Target Schema Proposal star `FactLoanSnapshot` + 8 Dim, gồm `DimTermBand`, `DimLoanStatus`, `DimBusiness` riêng | Bao phủ Q1–Q15, trong đó Q10 dùng business profile, theo [matrix](docs/dimensional_model/measure_dimension_matrix.md) | [candidate schema](docs/dimensional_model/candidate_schema.md) | **Lựa chọn logic đã duyệt, PROPOSED**, chưa có trong DDL/code |
 | Population, cấp NAICS Sector, TermBand tách 120, canonical PIF, Q15 gates 30/5 | Giữ population nhất quán và filter context Q11–Q15; sector reference vẫn chưa xác minh | [rule register](docs/business_requirements/business_rule_register.md), [Measure Contract](docs/business_requirements/measure_contract_q1_q15.md) | **PROJECT_APPROVED** ở cấp phân tích; **PENDING_VERIFICATION** NAICS reference/version/mapping; chưa triển khai |
 | Bổ sung FY2010–FY2019 | Tăng thời gian quan sát cohort cũ | Được thảo luận; chưa có file trong repo | **Tùy chọn, chưa chốt** |

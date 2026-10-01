@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Đánh giá dataset và đề xuất đề tài
 
-> **HISTORICAL FEASIBILITY / PREVIOUS PROTOTYPE:** Các đánh giá snowflake, 8 dimensions, 15 truy vấn và số trùng 689/392 dưới đây phản ánh lần khảo sát/phương pháp chuẩn hóa trước đây. Scope hiện hành: [Q1–Q15](business_requirements/business_questions_current.md), [candidate schema](dimensional_model/candidate_schema.md). [Profiling trên chuỗi raw](data_understanding/data_profiling_report.md) ghi 687 dòng thuộc nhóm exact duplicate và 391 bản sao dư; không tráo hai phương pháp đếm.
+> **HISTORICAL FEASIBILITY / PREVIOUS PROTOTYPE:** Các đánh giá snowflake, 8 dimensions, 15 truy vấn và số trùng 689/392 dưới đây phản ánh lần khảo sát/phương pháp chuẩn hóa trước đây. Scope hiện hành: [Q1–Q15](../../business_requirements/business_questions_current.md), [candidate schema](../../dimensional_model/candidate_schema.md). [Profiling trên chuỗi raw](../../data_understanding/data_profiling_report.md) ghi 687 dòng thuộc nhóm exact duplicate và 391 bản sao dư; không tráo hai phương pháp đếm.
 
 ## Đề tài nên chọn
 

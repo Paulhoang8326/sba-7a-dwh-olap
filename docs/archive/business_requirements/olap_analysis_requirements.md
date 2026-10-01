@@ -1,8 +1,20 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Yêu cầu phân tích OLAP ứng viên
 
-> **PREVIOUS BQ01–BQ24 ANALYSIS — DEPRECATED AS CURRENT SCOPE:** Các ví dụ/hierarchy dưới đây được lập cho bộ 24 BQ ứng viên; giữ làm lịch sử. Scope hiện hành là [Q1–Q15](business_questions_current.md), [matrix](../dimensional_model/measure_dimension_matrix.md) và [candidate schema](../dimensional_model/candidate_schema.md). Đặc biệt không lấy prefix 2 chữ số làm sector riêng cho 31–33, 44–45, 48–49 khi chưa có rule/reference được duyệt.
+> **PREVIOUS BQ01–BQ24 ANALYSIS — DEPRECATED AS CURRENT SCOPE:** Các ví dụ/hierarchy dưới đây được lập cho bộ 24 BQ ứng viên; giữ làm lịch sử. Scope hiện hành là [Q1–Q15](../../business_requirements/business_questions_current.md), [matrix](../../dimensional_model/measure_dimension_matrix.md) và [candidate schema](../../dimensional_model/candidate_schema.md). Đặc biệt không lấy prefix 2 chữ số làm sector riêng cho 31–33, 44–45, 48–49 khi chưa có rule/reference được duyệt.
 
-Tài liệu này mô tả **khả năng phân tích**, chưa thiết kế fact/dimension hay Star Schema. Căn cứ thuộc tính và chất lượng: [Data Dictionary](../data_understanding/data_dictionary.md), [Data Profiling](../data_understanding/data_profiling_report.md), [Data Quality Report](../data_understanding/data_quality_report.md). 24 Business Questions và feasibility chi tiết nằm trong [catalog](business_questions_catalog.md).
+Tài liệu này mô tả **khả năng phân tích**, chưa thiết kế fact/dimension hay Star Schema. Căn cứ thuộc tính và chất lượng: [Data Dictionary](../../data_understanding/data_dictionary.md), [Data Profiling](../../data_understanding/data_profiling_report.md), [Data Quality Report](../../data_understanding/data_quality_report.md). 24 Business Questions và feasibility chi tiết nằm trong [catalog](business_questions_catalog.md).
 
 ## Trục phân tích và hierarchy
 

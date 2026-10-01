@@ -1,6 +1,6 @@
 # Business Questions hiện hành — Q1–Q15
 
-> **DECIDED ở cấp nội dung câu hỏi.** Đây là phạm vi Business Questions chính của đồ án tại 2026-09-30. Quy tắc phân nhóm, mapping, ngưỡng và candidate schema liên quan chưa tự động thành `DECIDED`. Bộ [24 BQ ứng viên cũ](business_questions_catalog.md) và [selection 19/24](business_questions_selection.md) được giữ để truy vết, không còn là scope chính.
+> **DECIDED ở cấp nội dung câu hỏi.** Đây là phạm vi Business Questions chính của đồ án tại 2026-09-30. Quy tắc phân nhóm, mapping, ngưỡng và candidate schema liên quan chưa tự động thành `DECIDED`. Bộ [24 BQ ứng viên cũ](../archive/business_requirements/business_questions_catalog.md) và [selection 19/24](../archive/business_requirements/business_questions_selection.md) được giữ để truy vết, không còn là scope chính.
 
 `FY` là năm tài chính của `ApprovalDate` (bắt đầu 01/10); `AsOfDate = 2026-06-30`. Mọi count là **published records**, không phải unique loans. Mọi amount/tỷ lệ chỉ tổng hợp trong một snapshot. [BR-POP-01](business_rule_register.md) đã được `PROJECT_APPROVED`: mặc định gồm mọi published record, không loại theo status. Xem [Measure Contract](measure_contract_q1_q15.md), [Measure–Dimension Matrix](../dimensional_model/measure_dimension_matrix.md) và [Business Rule Register](business_rule_register.md).
 

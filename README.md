@@ -6,6 +6,12 @@
 
 Dữ liệu thực tế: **388.338 dòng × 42 cột**, CSV 181.130.871 byte (~172,74 MiB), snapshot **30/06/2026**. FY2026 chưa đầy đủ. Nguồn gốc: [SBA FOIA](https://data.sba.gov/dataset/7a-504-foia); bản phân tích luôn dùng file cục bộ trong `data/raw/foia/`, không tự cập nhật bản online.
 
+## Documentation
+
+Bắt đầu từ [docs/00_current_status.md](docs/00_current_status.md) để xác định trạng thái và tài liệu current/canonical của project.
+
+Tài liệu historical/superseded được giữ trong [docs/archive/](docs/archive/README.md), chỉ để tham khảo lịch sử; không dùng làm source of truth cho Q1–Q15 hoặc target dimensional model hiện hành.
+
 ## Đọc trước: tài liệu hiện hành
 
 - [Trạng thái và Source of Truth](docs/00_current_status.md)
@@ -18,16 +24,16 @@ Dữ liệu thực tế: **388.338 dòng × 42 cột**, CSV 181.130.871 byte (~1
 
 ## Tài liệu và mã previous prototype
 
-- [Đánh giá dataset trước đây](docs/01_feasibility.md)
-- [Thiết kế snowflake previous prototype](docs/02_warehouse_design.md)
-- [Hướng dẫn SSIS/SSAS previous prototype](docs/03_implementation.md)
-- [15 manual và 5 Excel Pivot previous prototype](docs/04_analysis_catalog.md)
+- [Đánh giá dataset trước đây](docs/archive/other/01_feasibility.md)
+- [Thiết kế snowflake previous prototype](docs/archive/dimensional_model/02_warehouse_design.md)
+- [Hướng dẫn SSIS/SSAS previous prototype](docs/archive/olap/03_implementation.md)
+- [15 manual và 5 Excel Pivot previous prototype](docs/archive/olap/04_analysis_catalog.md)
 - [15 MDX previous prototype](Source/SSAS/15_queries.mdx)
-- [Đặc tả BI và mining previous prototype](docs/05_bi_mining.md)
+- [Đặc tả BI và mining previous prototype](docs/archive/other/05_bi_mining.md)
 - [Tham khảo đồ án mẫu](docs/06_references.md)
-- [Checklist bàn giao](docs/07_delivery.md)
+- [Checklist bàn giao](docs/archive/other/07_delivery.md)
 - [Kết quả profiling toàn bộ nguồn](docs/data_profile.json)
-- [Kiểm chứng đã thực hiện](docs/validation.md)
+- [Kiểm chứng đã thực hiện](docs/archive/other/validation.md)
 - [Từ điển 42 cột từ workbook nguồn](docs/data_dictionary.md)
 
 ## Chạy lại previous Python prototype
@@ -43,7 +49,7 @@ python -m src.mining
 
 Pipeline **prototype cũ** xuất 8 dimension, 1 fact, quality issues, mart BI và dữ liệu mining vào `data/processed/`. Nó chưa thực hiện [Preprocessing Plan hiện hành](docs/data_understanding/preprocessing_plan.md) hoặc Target Schema Proposal star 1 Fact + 8 Dim. Hai mô hình đều có 8 dimension nhưng khác cấu trúc và business rules. Không tự kết nối database. Giữ nguyên mọi dòng nguồn; khóa dòng chỉ có ý nghĩa trong đúng file và SHA-256 của lần chạy. Chạy lại sẽ ghi đè các file đầu ra cùng tên; đây là **full rebuild một snapshot**, không phải incremental ETL.
 
-`sql/01_warehouse.sql`, [hướng dẫn SSIS](docs/03_implementation.md) và `sql/02_validation.sql` phục vụ **previous prototype**; không dùng chúng để tạo database của candidate hiện hành trước khi có physical mapping mới. Script DDL không dùng để chạy lại trên database đã có các bảng này.
+`sql/01_warehouse.sql`, [hướng dẫn SSIS](docs/archive/olap/03_implementation.md) và `sql/02_validation.sql` phục vụ **previous prototype**; không dùng chúng để tạo database của candidate hiện hành trước khi có physical mapping mới. Script DDL không dùng để chạy lại trên database đã có các bảng này.
 
 ## Trạng thái repo
 

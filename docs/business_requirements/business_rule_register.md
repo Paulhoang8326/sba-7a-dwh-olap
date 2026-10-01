@@ -1,6 +1,6 @@
 # Business Rule Register — candidate Q1–Q15
 
-> Cập nhật 2026-09-30. `PROJECT_APPROVED` là quyết định phân tích của đồ án do người dùng duyệt trong chat ngày 2026-09-30, **không** có nghĩa SBA công bố quy tắc đó hoặc ETL/cube đã triển khai. Giữ raw values và lineage. [BR01–BR15 lịch sử](business_rules.md) thuộc bộ BQ cũ; các rule trùng chủ đề ở đây là nguồn quyết định hiện hành.
+> Cập nhật 2026-09-30. `PROJECT_APPROVED` là quyết định phân tích của đồ án do người dùng duyệt trong chat ngày 2026-09-30, **không** có nghĩa SBA công bố quy tắc đó hoặc ETL/cube đã triển khai. Giữ raw values và lineage. [BR01–BR15 lịch sử](../archive/business_requirements/business_rules.md) thuộc bộ BQ cũ; các rule trùng chủ đề ở đây là nguồn quyết định hiện hành.
 
 | Rule ID | Rule hiện hành | Evidence và giới hạn | Affected Queries | Affected Schema | Status | Approval |
 |---|---|---|---|---|---|---|

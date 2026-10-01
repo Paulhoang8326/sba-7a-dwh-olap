@@ -2,6 +2,19 @@
 
 > Cập nhật: 2026-09-30. Trang này phân biệt phạm vi câu hỏi, Target Schema Proposal, Measure Contract, business rules, prototype cũ và hệ thống đã triển khai. Người dùng đã duyệt **star 1F+8D, Q10 mới và năm nhóm business rule ở cấp dự án**. Physical/Final Schema chưa chốt; NAICS reference/version/mapping còn `PENDING_VERIFICATION`.
 
+## Documentation source of truth
+
+Dùng tài liệu này làm điểm bắt đầu cho trạng thái hiện hành của project. Các tài liệu current/canonical gồm:
+
+- [Business Questions Q1–Q15](business_requirements/business_questions_current.md)
+- [Measure Contract Q1–Q15](business_requirements/measure_contract_q1_q15.md)
+- [Business Rule Register](business_requirements/business_rule_register.md)
+- [Measure–Dimension Matrix](dimensional_model/measure_dimension_matrix.md)
+- [Target Schema Proposal](dimensional_model/candidate_schema.md)
+- [Data Overview](data_understanding/data_overview.md), [Data Profiling](data_understanding/data_profiling_report.md), [Data Quality](data_understanding/data_quality_report.md), [Data Dictionary](data_understanding/data_dictionary.md) và [Preprocessing Plan](data_understanding/preprocessing_plan.md).
+
+Tài liệu historical/superseded được lưu tại [docs/archive/](archive/README.md). Chúng chỉ phục vụ truy vết lịch sử và không được ghi đè các quyết định hiện hành. Checklist bàn giao và minh chứng chạy trong archive thuộc prototype cũ, không chứng minh target mới đã triển khai.
+
 ## Source of Truth
 
 | Chủ đề | Tài liệu canonical hiện hành | Cách dùng |
@@ -13,7 +26,7 @@
 | Business Rules | [Business Rule Register](business_requirements/business_rule_register.md) | Population, cấp NAICS Sector, TermBand tách `TERM_120`, `P I F→PIF` canonical và Q15 gates 30/5 `PROJECT_APPROVED`; NAICS mapping còn chờ xác minh. |
 | Preprocessing | [Preprocessing Plan](data_understanding/preprocessing_plan.md) | `PLANNED / NOT IMPLEMENTED`; không phải cleaned dataset đã tạo. |
 | Dữ liệu và quality | [Data Overview](data_understanding/data_overview.md), [Profiling](data_understanding/data_profiling_report.md), [Data Quality](data_understanding/data_quality_report.md) | Bằng chứng `VERIFIED` của snapshot nguồn. |
-| Prototype đã có | [Thiết kế snowflake trước đây](02_warehouse_design.md), [kiểm chứng prototype](validation.md) | Giữ để truy vết; `DEPRECATED AS CURRENT`, không dùng làm candidate schema. |
+| Prototype đã có | [Thiết kế snowflake trước đây](archive/dimensional_model/02_warehouse_design.md), [kiểm chứng prototype](archive/other/validation.md) | Giữ để truy vết; `DEPRECATED AS CURRENT`, không dùng làm candidate schema. |
 
 ## Dataset — VERIFIED
 

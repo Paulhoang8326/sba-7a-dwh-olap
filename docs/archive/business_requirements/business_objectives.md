@@ -1,10 +1,22 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Business Objectives – SBA 7(a) FOIA
 
-> **CONTEXT / PREVIOUS REQUIREMENTS BASIS:** Năm nhóm mục tiêu bên dưới là bối cảnh học thuật từ vòng 24 BQ ứng viên, không phải danh sách câu hỏi hiện hành. Bộ chính là [Q1–Q15](business_questions_current.md); trạng thái schema/rule xem [Current Status](../00_current_status.md). Số liệu profiling nguồn vẫn được giữ làm bằng chứng.
+> **CONTEXT / PREVIOUS REQUIREMENTS BASIS:** Năm nhóm mục tiêu bên dưới là bối cảnh học thuật từ vòng 24 BQ ứng viên, không phải danh sách câu hỏi hiện hành. Bộ chính là [Q1–Q15](../../business_requirements/business_questions_current.md); trạng thái schema/rule xem [Current Status](../../00_current_status.md). Số liệu profiling nguồn vẫn được giữ làm bằng chứng.
 
 ## Bối cảnh và căn cứ
 
-Đây là **đề xuất yêu cầu cho đồ án**, chưa phải yêu cầu được SBA xác nhận. Nguồn phân tích là một CSV 7(a), 388.338 dòng × 42 thuộc tính, `ApprovalFY` FY2020–FY2026, `AsOfDate` 30/06/2026. Định nghĩa thuộc tính dựa vào workbook SBA `data/raw/foia/7a_504_foia_data_dictionary.xlsx`, sheet `7(a) Data Dictionary`, và [Data Dictionary](../data_understanding/data_dictionary.md). Số liệu, missing và dấu hiệu chất lượng dựa trên [Data Overview](../data_understanding/data_overview.md), [Data Profiling](../data_understanding/data_profiling_report.md) và [Data Quality Report](../data_understanding/data_quality_report.md).
+Đây là **đề xuất yêu cầu cho đồ án**, chưa phải yêu cầu được SBA xác nhận. Nguồn phân tích là một CSV 7(a), 388.338 dòng × 42 thuộc tính, `ApprovalFY` FY2020–FY2026, `AsOfDate` 30/06/2026. Định nghĩa thuộc tính dựa vào workbook SBA `data/raw/foia/7a_504_foia_data_dictionary.xlsx`, sheet `7(a) Data Dictionary`, và [Data Dictionary](../../data_understanding/data_dictionary.md). Số liệu, missing và dấu hiệu chất lượng dựa trên [Data Overview](../../data_understanding/data_overview.md), [Data Profiling](../../data_understanding/data_profiling_report.md) và [Data Quality Report](../../data_understanding/data_quality_report.md).
 
 Tài liệu `docs/01_feasibility.md` cũ nêu 689 dòng trong nhóm trùng/392 dòng dư sau chuẩn hóa; **profiling hiện tại trên chuỗi gốc** nêu 687 dòng/391 dòng dư. Hai cách đếm không tương đương. Tài liệu này dùng số liệu hiện tại và không suy diễn khoản vay duy nhất từ cả hai con số.
 

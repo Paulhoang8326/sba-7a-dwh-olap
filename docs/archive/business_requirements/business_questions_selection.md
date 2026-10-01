@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Đề xuất phạm vi Business Questions cho đồ án
 
-> **ARCHIVED / PREVIOUS CANDIDATE SET — DEPRECATED AS CURRENT:** Lựa chọn 19/24 `BQxx` dưới đây từng là đề xuất phạm vi chính, nhưng đã được thay bằng [Q1–Q15 hiện hành](business_questions_current.md). Giữ nguyên ID và lập luận lịch sử; không dùng bảng này làm scope chính hay approval cho các business rules. Xem [Current Status](../00_current_status.md).
+> **ARCHIVED / PREVIOUS CANDIDATE SET — DEPRECATED AS CURRENT:** Lựa chọn 19/24 `BQxx` dưới đây từng là đề xuất phạm vi chính, nhưng đã được thay bằng [Q1–Q15 hiện hành](../../business_requirements/business_questions_current.md). Giữ nguyên ID và lập luận lịch sử; không dùng bảng này làm scope chính hay approval cho các business rules. Xem [Current Status](../../00_current_status.md).
 
 Đề xuất **19/24 câu hỏi** trong [catalog](business_questions_catalog.md) vào phạm vi chính. Đây là lựa chọn phạm vi để phát triển đề cương; `CONDITIONAL` nghĩa là phải hoàn tất điều kiện nêu dưới đây trước khi đưa ra số chính thức. Chọn theo mức phù hợp đề tài, khả năng trả lời từ CSV, phân tích đa chiều, giá trị dashboard và tránh lặp câu hỏi. Không có câu nào chứng minh yêu cầu vận hành thực tế của SBA.
 

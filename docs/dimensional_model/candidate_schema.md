@@ -1,6 +1,6 @@
 # Candidate logical star schema — SBA 7(a)
 
-> **PROPOSED TARGET SCHEMA — 1 Fact + 8 Dimensions**, cập nhật 2026-09-30. Người dùng đã duyệt mô hình logic star, Q10/`DimBusiness` và năm nhóm rule phân tích ở cấp dự án. Đây chưa phải `Final Schema` hoặc physical mapping; NAICS reference/version/mapping còn `PENDING_VERIFICATION`. Chưa tạo/nạp database, chưa thay Python/SQL/MDX prototype. [Thiết kế snowflake cũ](../02_warehouse_design.md) được giữ làm `Previous Prototype`.
+> **PROPOSED TARGET SCHEMA — 1 Fact + 8 Dimensions**, cập nhật 2026-09-30. Người dùng đã duyệt mô hình logic star, Q10/`DimBusiness` và năm nhóm rule phân tích ở cấp dự án. Đây chưa phải `Final Schema` hoặc physical mapping; NAICS reference/version/mapping còn `PENDING_VERIFICATION`. Chưa tạo/nạp database, chưa thay Python/SQL/MDX prototype. [Thiết kế snowflake cũ](../archive/dimensional_model/02_warehouse_design.md) được giữ làm `Previous Prototype`.
 
 ## Grain và định danh
 

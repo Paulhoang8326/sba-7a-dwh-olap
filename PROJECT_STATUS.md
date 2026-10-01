@@ -25,24 +25,24 @@ Toàn bộ các mục đánh số bên dưới là **ghi chép lịch sử của
 
 ## 2. Completed Work
 
-`Completed Date = Unknown` nếu bằng chứng chỉ cho biết công việc đã có, không xác định chắc ngày hoàn thành. Ngày trong [docs/validation.md](docs/validation.md) là ngày **kiểm chứng được ghi lại**, không tự đồng nhất với ngày tạo toàn bộ tính năng.
+`Completed Date = Unknown` nếu bằng chứng chỉ cho biết công việc đã có, không xác định chắc ngày hoàn thành. Ngày trong [docs/validation.md](docs/archive/other/validation.md) là ngày **kiểm chứng được ghi lại**, không tự đồng nhất với ngày tạo toàn bộ tính năng.
 
 | ID | Task | Result | Evidence | Completed Date |
 |---|---|---|---|---|
 | C01 | Khảo sát CSV và từ điển | Profile 388.338 dòng, 42 cột; checksum, null, FY/status, quality issues | [docs/data_profile.json](docs/data_profile.json), [docs/data_dictionary.md](docs/data_dictionary.md), `data/raw/foia/` | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
-| C02 | Xây pipeline prototype một snapshot | Sinh 8 dimension, 1 fact, quality log, mart, mining input dưới `data/processed/` | [src/main.py](src/main.py), [docs/validation.md](docs/validation.md), các CSV output cục bộ bị Git ignore | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
-| C03 | Kiểm tra pipeline | Tài liệu ghi 3 tests PASS, đối soát dòng/khóa/FK/tổng tiền; output hiện tồn tại | [tests/test_pipeline.py](tests/test_pipeline.py), [docs/validation.md](docs/validation.md) | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
-| C04 | Viết thiết kế kho dữ liệu và DDL | Thiết kế snowflake 1 fact + 8 dimensions; DDL SQL Server và câu đối soát | [docs/02_warehouse_design.md](docs/02_warehouse_design.md), [sql/01_warehouse.sql](sql/01_warehouse.sql), [sql/02_validation.sql](sql/02_validation.sql) | Unknown |
-| C05 | Viết hướng dẫn SSIS/SSAS và truy vấn mẫu | Có hợp đồng cube, 15 MDX mẫu, 15 câu manual và 5 Pivot theo tài liệu; **chưa chứng minh đã chạy** | [docs/03_implementation.md](docs/03_implementation.md), [docs/04_analysis_catalog.md](docs/04_analysis_catalog.md), `Source/SSAS/` | Unknown |
-| C06 | Viết đặc tả BI | Kế hoạch Power BI và Looker Studio, KPI và bộ lọc | [docs/05_bi_mining.md](docs/05_bi_mining.md), `dashboards/README.md` | Unknown |
-| C07 | Chạy baseline mining hồi cứu | Dummy, Logistic Regression, Decision Tree; có validation/test metrics, giới hạn được ghi rõ | [src/mining.py](src/mining.py), [docs/mining_baseline.json](docs/mining_baseline.json), [docs/validation.md](docs/validation.md) | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
+| C02 | Xây pipeline prototype một snapshot | Sinh 8 dimension, 1 fact, quality log, mart, mining input dưới `data/processed/` | [src/main.py](src/main.py), [docs/validation.md](docs/archive/other/validation.md), các CSV output cục bộ bị Git ignore | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
+| C03 | Kiểm tra pipeline | Tài liệu ghi 3 tests PASS, đối soát dòng/khóa/FK/tổng tiền; output hiện tồn tại | [tests/test_pipeline.py](tests/test_pipeline.py), [docs/validation.md](docs/archive/other/validation.md) | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
+| C04 | Viết thiết kế kho dữ liệu và DDL | Thiết kế snowflake 1 fact + 8 dimensions; DDL SQL Server và câu đối soát | [docs/02_warehouse_design.md](docs/archive/dimensional_model/02_warehouse_design.md), [sql/01_warehouse.sql](sql/01_warehouse.sql), [sql/02_validation.sql](sql/02_validation.sql) | Unknown |
+| C05 | Viết hướng dẫn SSIS/SSAS và truy vấn mẫu | Có hợp đồng cube, 15 MDX mẫu, 15 câu manual và 5 Pivot theo tài liệu; **chưa chứng minh đã chạy** | [docs/03_implementation.md](docs/archive/olap/03_implementation.md), [docs/04_analysis_catalog.md](docs/archive/olap/04_analysis_catalog.md), `Source/SSAS/` | Unknown |
+| C06 | Viết đặc tả BI | Kế hoạch Power BI và Looker Studio, KPI và bộ lọc | [docs/05_bi_mining.md](docs/archive/other/05_bi_mining.md), `dashboards/README.md` | Unknown |
+| C07 | Chạy baseline mining hồi cứu | Dummy, Logistic Regression, Decision Tree; có validation/test metrics, giới hạn được ghi rõ | [src/mining.py](src/mining.py), [docs/mining_baseline.json](docs/mining_baseline.json), [docs/validation.md](docs/archive/other/validation.md) | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
 | C08 | Tạo tài liệu đồng bộ bối cảnh/tiến độ | Hai file Markdown tại root, đối chiếu trạng thái repo | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), file này | 2026-09-24 |
 
 ## 3. In Progress — historical snapshot
 
 | ID | Task | Current Progress | Related Files | Next Action |
 |---|---|---|---|---|
-| — | Chưa xác định được tác vụ triển khai đang thực hiện | Repository chỉ cho thấy sản phẩm đã có và kế hoạch, không có bằng chứng một build/deploy hiện đang chạy | [README.md](README.md), [docs/07_delivery.md](docs/07_delivery.md) | Chốt các pending decisions ở §6 trước khi thay đổi mô hình hoặc triển khai stack đích. |
+| — | Chưa xác định được tác vụ triển khai đang thực hiện | Repository chỉ cho thấy sản phẩm đã có và kế hoạch, không có bằng chứng một build/deploy hiện đang chạy | [README.md](README.md), [docs/07_delivery.md](docs/archive/other/07_delivery.md) | Chốt các pending decisions ở §6 trước khi thay đổi mô hình hoặc triển khai stack đích. |
 
 ## 4. Planned / Not Started — historical snapshot
 
@@ -63,12 +63,12 @@ Priority dưới đây chỉ là **đề xuất thứ tự**, chưa phải kế 
 
 | ID | Issue đã phát hiện | Impact | Related Files | Suggested Solution | Status |
 |---|---|---|---|---|---|
-| I01 | Nguồn không có public LoanID; 392 dòng dư khi `drop_duplicates` thuộc tính chuẩn hóa | Không khẳng định count là số khoản vay duy nhất hoặc ghép chính xác nhiều snapshot | [docs/data_profile.json](docs/data_profile.json), [docs/01_feasibility.md](docs/01_feasibility.md) | Giữ mọi dòng và `SourceRowNumber`; chỉ mở rộng snapshot khi có khóa/quy tắc ghép được xác minh | Đang giới hạn phân tích |
+| I01 | Nguồn không có public LoanID; 392 dòng dư khi `drop_duplicates` thuộc tính chuẩn hóa | Không khẳng định count là số khoản vay duy nhất hoặc ghép chính xác nhiều snapshot | [docs/data_profile.json](docs/data_profile.json), [docs/01_feasibility.md](docs/archive/other/01_feasibility.md) | Giữ mọi dòng và `SourceRowNumber`; chỉ mở rộng snapshot khi có khóa/quy tắc ghép được xác minh | Đang giới hạn phân tích |
 | I02 | FY2026 chỉ đến 2026-06-30 | So tổng năm với FY đầy đủ sẽ sai | [docs/data_profile.json](docs/data_profile.json) | So FYTD cùng kỳ hoặc tách FY2026 | Có quy tắc phân tích, cần áp dụng trong dashboard |
-| I03 | Kết quả theo status chịu thời gian theo dõi khác nhau; `EXEMPT` không phải nhãn good | Dễ diễn giải sai tỷ lệ charge-off/risk | [docs/05_bi_mining.md](docs/05_bi_mining.md), [docs/02_warehouse_design.md](docs/02_warehouse_design.md) | Báo cohort, tử/mẫu số, chỉ gọi resolved rate trên PIF+CHGOFF; không tuyên bố prospective risk | Đang giới hạn phân tích |
+| I03 | Kết quả theo status chịu thời gian theo dõi khác nhau; `EXEMPT` không phải nhãn good | Dễ diễn giải sai tỷ lệ charge-off/risk | [docs/05_bi_mining.md](docs/archive/other/05_bi_mining.md), [docs/02_warehouse_design.md](docs/archive/dimensional_model/02_warehouse_design.md) | Báo cohort, tử/mẫu số, chỉ gọi resolved rate trên PIF+CHGOFF; không tuyên bố prospective risk | Đang giới hạn phân tích |
 | I04 | `SoldSecMrktInd`: 116.764 `Y`, 271.574 blank, không có `N` | Không tính được tỷ lệ đã/không bán thật | CSV nguồn, [docs/data_profile.json](docs/data_profile.json) | Chỉ báo số dòng xác nhận `Y`; blank là unknown | Đang giới hạn phân tích |
-| I05 | Chưa có artifact SQL Server/SSIS/SSAS/BI chạy thật | Không thể coi DDL/MDX/đặc tả là chức năng đã triển khai hoặc nghiệm thu | [docs/validation.md](docs/validation.md), [docs/07_delivery.md](docs/07_delivery.md) | Triển khai tuần tự sau khi chốt thiết kế; lưu kết quả đối soát và ảnh chạy | Chưa thực hiện |
-| I06 | Thiết kế trong repo là snowflake, trong trao đổi đã có đề xuất star phẳng | Nếu dùng lẫn tên bảng/khóa, SQL/MDX/tài liệu không nhất quán | [sql/01_warehouse.sql](sql/01_warehouse.sql), [docs/02_warehouse_design.md](docs/02_warehouse_design.md) | Chốt một mô hình đích trước khi sửa DDL, ETL và query | Chờ quyết định |
+| I05 | Chưa có artifact SQL Server/SSIS/SSAS/BI chạy thật | Không thể coi DDL/MDX/đặc tả là chức năng đã triển khai hoặc nghiệm thu | [docs/validation.md](docs/archive/other/validation.md), [docs/07_delivery.md](docs/archive/other/07_delivery.md) | Triển khai tuần tự sau khi chốt thiết kế; lưu kết quả đối soát và ảnh chạy | Chưa thực hiện |
+| I06 | Thiết kế trong repo là snowflake, trong trao đổi đã có đề xuất star phẳng | Nếu dùng lẫn tên bảng/khóa, SQL/MDX/tài liệu không nhất quán | [sql/01_warehouse.sql](sql/01_warehouse.sql), [docs/02_warehouse_design.md](docs/archive/dimensional_model/02_warehouse_design.md) | Chốt một mô hình đích trước khi sửa DDL, ETL và query | Chờ quyết định |
 | I07 | `FirstDisbursementDate` thiếu 71.186 dòng; có một số ngày sự kiện bất thường, zero rate/term | Một số KPI duration và chất lượng đầu vào bị ảnh hưởng | [docs/data_profile.json](docs/data_profile.json), `data/processed/quality_issues.csv` | Giữ quality log, chỉ tính duration trên ngày hợp lệ, hiển thị mẫu số | Có quy tắc prototype; cần đối soát trên stack đích |
 
 ## 6. Pending Decisions — historical snapshot, superseded by current status
@@ -101,7 +101,7 @@ Không đưa các câu hỏi đã có câu trả lời vào danh sách: nguồn 
 |---|---|---|---|
 | 2026-09-24 | Thêm tài liệu đồng bộ bối cảnh và tiến độ; không thay source code/dataset | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), file này | ChatGPT/Codex có điểm bắt đầu chung để hiểu repo và phân biệt triển khai với đề xuất. |
 | 2026-09-23 | Commit `8da9357` chuyển repository sang đề tài SBA 7(a), bổ sung source/dictionary, Python, DDL, MDX, docs và baseline | [README.md](README.md), `src/`, `sql/`, `docs/`, `Source/` | Tạo nền tảng hiện tại; `git show --stat` là bằng chứng lịch sử. |
-| 2026-09-23 | [docs/validation.md](docs/validation.md) ghi lần chạy pipeline, 3 tests và baseline mining | `data/processed/`, [docs/mining_baseline.json](docs/mining_baseline.json) | Chứng minh prototype Python, **không** chứng minh SQL/SSIS/SSAS/BI đã chạy. |
+| 2026-09-23 | [docs/validation.md](docs/archive/other/validation.md) ghi lần chạy pipeline, 3 tests và baseline mining | `data/processed/`, [docs/mining_baseline.json](docs/mining_baseline.json) | Chứng minh prototype Python, **không** chứng minh SQL/SSIS/SSAS/BI đã chạy. |
 | 2026-09-17 | Git history ghi các commit khởi tạo repository và dữ liệu ban đầu | Git log | Là mốc lịch sử; chi tiết sản phẩm hiện tại nên đối chiếu commit 2026-09-23. |
 
 **Quy tắc cập nhật:** cập nhật file này khi tiến độ/bằng chứng triển khai thay đổi; cập nhật [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) khi phạm vi, KPI hoặc kiến trúc được chốt/đổi. Không âm thầm giải quyết mâu thuẫn giữa hai file và repository.

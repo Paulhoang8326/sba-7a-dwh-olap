@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Power BI, Looker Studio và mining
 
-> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT cho BI schema/query:** Các báo cáo/DAX bên dưới dựa trên `FactLoanSnapshot` và mart snowflake cũ; chưa đồng bộ với [Q1–Q15](business_requirements/business_questions_current.md) hoặc [candidate schema](dimensional_model/candidate_schema.md). Kết quả mining baseline vẫn là kết quả hồi cứu của prototype. Xem [Current Status](00_current_status.md).
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT cho BI schema/query:** Các báo cáo/DAX bên dưới dựa trên `FactLoanSnapshot` và mart snowflake cũ; chưa đồng bộ với [Q1–Q15](../../business_requirements/business_questions_current.md) hoặc [candidate schema](../../dimensional_model/candidate_schema.md). Kết quả mining baseline vẫn là kết quả hồi cứu của prototype. Xem [Current Status](../../00_current_status.md).
 
 ## Sáu báo cáo
 
