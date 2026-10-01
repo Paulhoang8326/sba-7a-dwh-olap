@@ -1,0 +1,35 @@
+Metric,Column,Before,After
+row_count,,388338,388338
+column_count,,42,38
+blank_cells,AsOfDate,0,0
+blank_cells,LocationID,0,0
+blank_cells,BankName,0,0
+blank_cells,GrossApproval,0,0
+blank_cells,SBAGuaranteedApproval,0,0
+blank_cells,ApprovalDate,0,0
+blank_cells,ApprovalFY,0,0
+blank_cells,ProcessingMethod,0,0
+blank_cells,TermInMonths,0,0
+blank_cells,NaicsCode,0,0
+blank_cells,NaicsDescription,0,0
+blank_cells,ProjectCounty,0,0
+blank_cells,ProjectState,0,0
+blank_cells,BusinessType -> BusinessTypeRaw,34,34
+blank_cells,BusinessAge -> BusinessAgeRaw,186,186
+blank_cells,LoanStatus -> RawStatus,0,0
+blank_cells,GrossChargeOffAmount,0,0
+blank_cells,JobsSupported,0,0
+distinct_values,ProjectState,54,54
+distinct_values,ProjectCounty,1855,1855
+distinct_values,NaicsCode,1157,1157
+distinct_values,NaicsDescription,1783,1131
+distinct_values,LocationID,2338,2338
+distinct_values,BankName,2183,2183
+distinct_values,ProcessingMethod,19,19
+distinct_values,LoanStatus -> RawStatus,5,5
+distinct_values,BusinessType -> BusinessTypeRaw,3,3
+distinct_values,BusinessAge -> BusinessAgeRaw,5,5
+sum,GrossApproval,202550139718.0,202550139718.00
+sum,SBAGuaranteedApproval,152596337956.289,152596337956.289
+sum,GrossChargeOffAmount,898807495.32,898807495.32
+sum,JobsSupported,4072432.0,4072432
