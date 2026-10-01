@@ -1,5 +1,7 @@
 # Preprocessing Plan — SBA 7(a)
 
+> **Trạng thái 2026-10-01: IMPLEMENTED — Phase 1.** Kế hoạch dưới đây đã được triển khai bằng `src/etl/preprocess.py` (PRE-01–PRE-10 ứng với P1.1–P1.14 của [ETL Implementation Plan §3](../etl/etl_implementation_plan.md)). Xem [Giải thích Phase 1](../etl/phase1_preprocessing_explained.md) để biết code thật làm gì, số liệu và chỗ khác plan. Nội dung bên dưới giữ nguyên là kế hoạch gốc; NAICS mapping vẫn `PENDING_VERIFICATION`.
+
 > **PLANNED / NOT IMPLEMENTED**, cập nhật 2026-09-30. Đây là kế hoạch logic để triển khai và viết phần tiền xử lý trong Chương 1; chưa chạy cleaning, chưa xuất standardized dataset, chưa thiết kế SSIS package, nạp Fact/Dimension hoặc build Cube. Phạm vi Q1–Q15 và rule: [current questions](../business_requirements/business_questions_current.md), [register](../business_requirements/business_rule_register.md).
 
 ## Input, nguyên tắc và output dự kiến

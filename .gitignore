@@ -64,3 +64,5 @@ Source/**/obj/
 *.user
 *.suo
 Submission/
+
+reports/word
