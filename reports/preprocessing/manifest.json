@@ -1,0 +1,459 @@
+{
+  "rule_version": "P1-2026-10-01",
+  "run": {
+    "started_at_utc": "2026-10-01T06:40:51+00:00",
+    "finished_at_utc": "2026-10-01T06:42:07+00:00",
+    "duration_seconds": 76.6,
+    "python": "3.12.7",
+    "pandas": "2.3.3"
+  },
+  "source": {
+    "file": "FOIA_7a_FY2020_Present_asof_260630.csv",
+    "source_file_id": "FOIA_7a_FY2020_Present_asof_260630",
+    "sha256": "6c1e9132b5141a19f82bdc8ccafb86c9a01662461cad41ddb36a3cf409d8a4fe",
+    "expected_sha256": "6c1e9132b5141a19f82bdc8ccafb86c9a01662461cad41ddb36a3cf409d8a4fe",
+    "bytes": 181130871,
+    "records": 388338,
+    "columns": 42,
+    "header": [
+      "AsOfDate",
+      "Program",
+      "LocationID",
+      "BorrName",
+      "BorrStreet",
+      "BorrCity",
+      "BorrState",
+      "BorrZip",
+      "BankName",
+      "BankFDICNumber",
+      "BankNCUANumber",
+      "BankStreet",
+      "BankCity",
+      "BankState",
+      "BankZip",
+      "GrossApproval",
+      "SBAGuaranteedApproval",
+      "ApprovalDate",
+      "ApprovalFY",
+      "FirstDisbursementDate",
+      "ProcessingMethod",
+      "InitialInterestRate",
+      "FixedorVariableInterestInd",
+      "TermInMonths",
+      "NaicsCode",
+      "NaicsDescription",
+      "FranchiseCode",
+      "FranchiseName",
+      "ProjectCounty",
+      "ProjectState",
+      "SBADistrictOffice",
+      "CongressionalDistrict",
+      "BusinessType",
+      "BusinessAge",
+      "LoanStatus",
+      "PaidInFullDate",
+      "ChargeOffDate",
+      "GrossChargeOffAmount",
+      "RevolverStatus",
+      "JobsSupported",
+      "CollateralInd",
+      "SoldSecMrktInd"
+    ],
+    "multiline_records": 16
+  },
+  "outputs": {
+    "clean_csv": {
+      "path": "data/staging/FOIA_7a_FY2020_Present_asof_260630_clean.csv",
+      "sha256": "508f7b0ee658f9c3d63e92118dc9f54565b826456fe30161691615d824528ce1",
+      "rows": 388338,
+      "columns": [
+        "AsOfDate",
+        "Program",
+        "LocationID",
+        "BorrName",
+        "BorrStreet",
+        "BorrCity",
+        "BorrState",
+        "BorrZip",
+        "BankName",
+        "BankFDICNumber",
+        "BankNCUANumber",
+        "BankStreet",
+        "BankCity",
+        "BankState",
+        "BankZip",
+        "GrossApproval",
+        "SBAGuaranteedApproval",
+        "ApprovalDate",
+        "ApprovalFY",
+        "FirstDisbursementDate",
+        "ProcessingMethod",
+        "InitialInterestRate",
+        "FixedorVariableInterestInd",
+        "TermInMonths",
+        "NaicsCode",
+        "NaicsDescription",
+        "FranchiseCode",
+        "FranchiseName",
+        "ProjectCounty",
+        "ProjectState",
+        "SBADistrictOffice",
+        "CongressionalDistrict",
+        "BusinessType",
+        "BusinessAge",
+        "LoanStatus",
+        "PaidInFullDate",
+        "ChargeOffDate",
+        "GrossChargeOffAmount",
+        "RevolverStatus",
+        "JobsSupported",
+        "CollateralInd",
+        "SoldSecMrktInd"
+      ],
+      "format": "UTF-8, comma-delimited, RFC 4180 quoting, CRLF, header"
+    },
+    "standardized_tsv": {
+      "path": "data/staging/sba7a_standardized.tsv",
+      "sha256": "837723fb7b6b8358ce4aaf4855ea396b197104660babbe6d6d9f6a6be3a78bc5",
+      "rows": 388338,
+      "columns": [
+        "SourceFileID",
+        "SourceRecordOrdinal",
+        "AsOfDate",
+        "ApprovalDate",
+        "ApprovalFY",
+        "FiscalYearDerived",
+        "ProjectState",
+        "ProjectCounty",
+        "NaicsCode",
+        "NaicsDescription",
+        "NaicsSectorCode",
+        "SectorMappingStatus",
+        "LocationID",
+        "BankName",
+        "ProcessingMethod",
+        "RawStatus",
+        "CanonicalStatus",
+        "TermInMonths",
+        "TermBandCode",
+        "BusinessTypeRaw",
+        "BusinessAgeRaw",
+        "BusinessTypeValueStatus",
+        "BusinessAgeValueStatus",
+        "GrossApproval",
+        "SBAGuaranteedApproval",
+        "GrossChargeOffAmount",
+        "JobsSupported",
+        "IsExactDuplicate",
+        "DQFlagCount",
+        "ProjectStateLookup",
+        "ProjectCountyLookup",
+        "NaicsCodeLookup",
+        "NaicsDescriptionLookup",
+        "LocationIDLookup",
+        "ProcessingMethodLookup",
+        "RawStatusLookup",
+        "BusinessTypeLookup",
+        "BusinessAgeLookup"
+      ],
+      "format": "UTF-8, tab-delimited, CRLF, header, NULL = empty"
+    },
+    "dq_issues_rows": 816,
+    "reconciliation_all_match": true,
+    "dropped_source_columns": [
+      "Program",
+      "BorrName",
+      "BorrStreet",
+      "BorrCity",
+      "BorrState",
+      "BorrZip",
+      "BankFDICNumber",
+      "BankNCUANumber",
+      "BankStreet",
+      "BankCity",
+      "BankState",
+      "BankZip",
+      "FirstDisbursementDate",
+      "InitialInterestRate",
+      "FixedorVariableInterestInd",
+      "FranchiseCode",
+      "FranchiseName",
+      "SBADistrictOffice",
+      "CongressionalDistrict",
+      "PaidInFullDate",
+      "ChargeOffDate",
+      "RevolverStatus",
+      "CollateralInd",
+      "SoldSecMrktInd"
+    ]
+  },
+  "counts": {
+    "dq_issue_rows_by_code": {
+      "AMOUNT_SCALE_GT_2": 2,
+      "CHARGEOFF_AFTER_ASOF": 22,
+      "CHGOFF_MISSING_DATE": 5,
+      "EXACT_DUPLICATE": 687,
+      "PIF_BEFORE_APPROVAL": 2,
+      "RATE_ZERO": 87,
+      "TERM_ZERO": 11
+    },
+    "dq_issue_records_by_code": {
+      "AMOUNT_SCALE_GT_2": 2,
+      "CHARGEOFF_AFTER_ASOF": 22,
+      "CHGOFF_MISSING_DATE": 5,
+      "EXACT_DUPLICATE": 687,
+      "PIF_BEFORE_APPROVAL": 2,
+      "RATE_ZERO": 87,
+      "TERM_ZERO": 11
+    },
+    "exact_duplicate_rows": 687,
+    "exact_duplicate_groups": 296,
+    "sector_mapping_status": {
+      "CANDIDATE_UNVERIFIED": 388338
+    },
+    "term_band": {
+      "LONG": 26530,
+      "MEDIUM": 39550,
+      "SHORT": 32801,
+      "TERM_120": 236672,
+      "VERY_LONG": 52774,
+      "ZERO": 11
+    },
+    "canonical_status": {
+      "CANCLD": 50104,
+      "CHGOFF": 6893,
+      "COMMIT": 21079,
+      "EXEMPT": 242061,
+      "PIF": 68201
+    },
+    "business_type_x_age_combinations": 22,
+    "lookup_missing_tokens": {
+      "ProjectStateLookup": 0,
+      "ProjectCountyLookup": 0,
+      "NaicsCodeLookup": 0,
+      "NaicsDescriptionLookup": 0,
+      "LocationIDLookup": 0,
+      "ProcessingMethodLookup": 0,
+      "RawStatusLookup": 0,
+      "BusinessTypeLookup": 34,
+      "BusinessAgeLookup": 186
+    }
+  },
+  "cardinality_before_after_trim": {
+    "AsOfDate": {
+      "raw": 1,
+      "standardized": 1
+    },
+    "Program": {
+      "raw": 1,
+      "standardized": 1
+    },
+    "LocationID": {
+      "raw": 2338,
+      "standardized": 2338
+    },
+    "BorrName": {
+      "raw": 323752,
+      "standardized": 323606
+    },
+    "BorrStreet": {
+      "raw": 333651,
+      "standardized": 333420
+    },
+    "BorrCity": {
+      "raw": 21599,
+      "standardized": 21011
+    },
+    "BorrState": {
+      "raw": 54,
+      "standardized": 54
+    },
+    "BorrZip": {
+      "raw": 21250,
+      "standardized": 21250
+    },
+    "BankName": {
+      "raw": 2183,
+      "standardized": 2183
+    },
+    "BankFDICNumber": {
+      "raw": 1874,
+      "standardized": 1874
+    },
+    "BankNCUANumber": {
+      "raw": 323,
+      "standardized": 323
+    },
+    "BankStreet": {
+      "raw": 2282,
+      "standardized": 2282
+    },
+    "BankCity": {
+      "raw": 1666,
+      "standardized": 1666
+    },
+    "BankState": {
+      "raw": 54,
+      "standardized": 54
+    },
+    "BankZip": {
+      "raw": 1998,
+      "standardized": 1998
+    },
+    "GrossApproval": {
+      "raw": 21175,
+      "standardized": 21175
+    },
+    "SBAGuaranteedApproval": {
+      "raw": 29363,
+      "standardized": 29363
+    },
+    "ApprovalDate": {
+      "raw": 2285,
+      "standardized": 2285
+    },
+    "ApprovalFY": {
+      "raw": 7,
+      "standardized": 7
+    },
+    "FirstDisbursementDate": {
+      "raw": 2346,
+      "standardized": 2346
+    },
+    "ProcessingMethod": {
+      "raw": 19,
+      "standardized": 19
+    },
+    "InitialInterestRate": {
+      "raw": 1682,
+      "standardized": 1682
+    },
+    "FixedorVariableInterestInd": {
+      "raw": 3,
+      "standardized": 3
+    },
+    "TermInMonths": {
+      "raw": 347,
+      "standardized": 347
+    },
+    "NaicsCode": {
+      "raw": 1157,
+      "standardized": 1157
+    },
+    "NaicsDescription": {
+      "raw": 1783,
+      "standardized": 1131
+    },
+    "FranchiseCode": {
+      "raw": 3691,
+      "standardized": 3691
+    },
+    "FranchiseName": {
+      "raw": 3544,
+      "standardized": 3544
+    },
+    "ProjectCounty": {
+      "raw": 1855,
+      "standardized": 1855
+    },
+    "ProjectState": {
+      "raw": 54,
+      "standardized": 54
+    },
+    "SBADistrictOffice": {
+      "raw": 67,
+      "standardized": 67
+    },
+    "CongressionalDistrict": {
+      "raw": 55,
+      "standardized": 55
+    },
+    "BusinessType": {
+      "raw": 4,
+      "standardized": 4
+    },
+    "BusinessAge": {
+      "raw": 6,
+      "standardized": 6
+    },
+    "LoanStatus": {
+      "raw": 5,
+      "standardized": 5
+    },
+    "PaidInFullDate": {
+      "raw": 79,
+      "standardized": 79
+    },
+    "ChargeOffDate": {
+      "raw": 1003,
+      "standardized": 1003
+    },
+    "GrossChargeOffAmount": {
+      "raw": 6472,
+      "standardized": 6472
+    },
+    "RevolverStatus": {
+      "raw": 2,
+      "standardized": 2
+    },
+    "JobsSupported": {
+      "raw": 281,
+      "standardized": 281
+    },
+    "CollateralInd": {
+      "raw": 2,
+      "standardized": 2
+    },
+    "SoldSecMrktInd": {
+      "raw": 2,
+      "standardized": 2
+    }
+  },
+  "case_variant_groups": {
+    "ProjectState": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    },
+    "ProjectCounty": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    },
+    "NaicsCode+NaicsDescription": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    },
+    "LocationID": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    },
+    "BankName": {
+      "groups": 1,
+      "distinct_values_involved": 2,
+      "examples": [
+        [
+          "HomeTown Bank",
+          "Hometown Bank"
+        ]
+      ]
+    },
+    "ProcessingMethod": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    },
+    "BusinessTypeRaw": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    },
+    "BusinessAgeRaw": {
+      "groups": 0,
+      "distinct_values_involved": 0,
+      "examples": []
+    }
+  }
+}

@@ -1,12 +1,13 @@
 # PROJECT_STATUS — Tiến độ dự án SBA 7(a)
 
-> **Trạng thái hiện hành (2026-09-30):** [docs/00_current_status.md](docs/00_current_status.md) là Source of Truth. [Q1–Q15](docs/business_requirements/business_questions_current.md), gồm Q10 mới, đã duyệt ở cấp business-question scope; [star 1 `FactLoanSnapshot` + 8 dimensions](docs/dimensional_model/candidate_schema.md) là **PROPOSED TARGET SCHEMA**, chưa là Final/physical schema. [Measure Contract](docs/business_requirements/measure_contract_q1_q15.md) đã viết nhưng **NOT IMPLEMENTED**. [Rule register](docs/business_requirements/business_rule_register.md) ghi `PROJECT_APPROVED` cho population, cấp NAICS Sector, TermBand, canonical PIF và Q15 gates; NAICS reference/version/mapping còn `PENDING_VERIFICATION`, business grouping mở rộng còn `OPEN`. [Preprocessing](docs/data_understanding/preprocessing_plan.md) **PLANNED / NOT IMPLEMENTED**; prototype snowflake/MDX cũ giữ cho lịch sử.
+> **Trạng thái hiện hành (2026-10-01):** [docs/00_current_status.md](docs/00_current_status.md) là Source of Truth. **Phase 1 tiền xử lý Python: IMPLEMENTED** — P1.1–P1.17 có đủ, 57/57 test pass, 388.338 → 388.338 dòng, đối soát tổng tiền/FY/status khớp; xem [Giải thích Phase 1](docs/etl/phase1_preprocessing_explained.md) và [`reports/preprocessing/`](reports/preprocessing/). Phase 2 (DDL), Phase 3 (SSIS), Phase 4 (đối soát kho), SSAS: chưa bắt đầu. [Q1–Q15](docs/business_requirements/business_questions_current.md), gồm Q10 mới, đã duyệt ở cấp business-question scope; [star 1 `FactLoanSnapshot` + 8 dimensions](docs/dimensional_model/candidate_schema.md) là **PROPOSED TARGET SCHEMA**, chưa là Final/physical schema. [Measure Contract](docs/business_requirements/measure_contract_q1_q15.md) đã viết nhưng **NOT IMPLEMENTED**. [Rule register](docs/business_requirements/business_rule_register.md) ghi `PROJECT_APPROVED` cho population, cấp NAICS Sector, TermBand, canonical PIF và Q15 gates; NAICS reference/version/mapping còn `PENDING_VERIFICATION`, business grouping mở rộng còn `OPEN`. [Preprocessing](docs/data_understanding/preprocessing_plan.md) theo [ETL Implementation Plan §3](docs/etl/etl_implementation_plan.md) **IMPLEMENTED — Phase 1** (2026-10-01); prototype snowflake/MDX cũ giữ cho lịch sử.
 
 ## Việc tiếp theo theo trạng thái hiện hành
 
-1. Xác minh NAICS reference/version/crosswalk và unmapped; không tự chuyển mapping/sector name sang `VERIFIED` chỉ vì đã duyệt cấp Sector.
-2. Đặc tả Source-to-Target Mapping gồm keys, lineage, unknown members và rule version theo Target Schema Proposal 1 Fact + 8 Dim và Measure Contract; phần NAICS chờ verification. Chưa gọi Final Schema.
-3. Thực hiện preprocessing theo plan đã duyệt, đối soát raw → standardized; sau đó mới triển khai ETL/database/cube.
+0. ~~Thực hiện preprocessing theo plan đã duyệt, đối soát raw → standardized~~ — **xong Phase 1 (2026-10-01)**. NAICS Sector trong output vẫn `CANDIDATE_UNVERIFIED` (D1 = A).
+1. Xác minh NAICS reference/version/crosswalk và unmapped (plan §9 bước 5); không tự chuyển mapping/sector name sang `VERIFIED` chỉ vì đã duyệt cấp Sector. **Chưa bắt đầu.**
+2. Phase 2 — DDL SQL Server (`sql/dwh/00_drop_all.sql`, `01_create_all.sql`, `02_seed_static.sql`) theo plan §4: tạo staging theo header TSV thật (38 cột), cột tiền `DECIMAL(18,3)` (D4). **Chưa bắt đầu.**
+3. Sau Phase 2: Phase 3 SSIS và Phase 4 đối soát standardized → warehouse (plan §5–§6), rồi mới tới cube/BI.
 
 ## Lưu trữ: status snapshot ngày 2026-09-24
 
@@ -37,6 +38,7 @@ Toàn bộ các mục đánh số bên dưới là **ghi chép lịch sử của
 | C06 | Viết đặc tả BI | Kế hoạch Power BI và Looker Studio, KPI và bộ lọc | [docs/05_bi_mining.md](docs/05_bi_mining.md), `dashboards/README.md` | Unknown |
 | C07 | Chạy baseline mining hồi cứu | Dummy, Logistic Regression, Decision Tree; có validation/test metrics, giới hạn được ghi rõ | [src/mining.py](src/mining.py), [docs/mining_baseline.json](docs/mining_baseline.json), [docs/validation.md](docs/validation.md) | 2026-09-23 (ngày kiểm chứng ghi trong docs) |
 | C08 | Tạo tài liệu đồng bộ bối cảnh/tiến độ | Hai file Markdown tại root, đối chiếu trạng thái repo | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), file này | 2026-09-24 |
+| C09 | Phase 1 — tiền xử lý Python (P1.1–P1.17) theo candidate 1F+8D | TSV chuẩn hóa 388.338 × 38 (SHA-256 `837723fb…a78bc5`), bản sạch 42 cột, manifest, 816 cờ DQ, đối soát 35/35 khớp, bảng chọn cột (18 KEEP/24 DROP), bảng trước/sau, notebook; 57/57 test pass | [src/etl/preprocess.py](src/etl/preprocess.py), [tests/test_preprocess.py](tests/test_preprocess.py), [notebooks/01_preprocessing.ipynb](notebooks/01_preprocessing.ipynb), [reports/preprocessing/](reports/preprocessing/), [docs/etl/phase1_preprocessing_explained.md](docs/etl/phase1_preprocessing_explained.md) | 2026-10-01 |
 
 ## 3. In Progress — historical snapshot
 

@@ -1,6 +1,6 @@
 # Trạng thái hiện hành — SBA 7(a)
 
-> Cập nhật: 2026-09-30. Trang này phân biệt phạm vi câu hỏi, Target Schema Proposal, Measure Contract, business rules, prototype cũ và hệ thống đã triển khai. Người dùng đã duyệt **star 1F+8D, Q10 mới và năm nhóm business rule ở cấp dự án**. Physical/Final Schema chưa chốt; NAICS reference/version/mapping còn `PENDING_VERIFICATION`.
+> Cập nhật: 2026-10-01 (Phase 1 tiền xử lý Python đã triển khai và kiểm chứng; các mục khác giữ nguyên từ 2026-09-30). Trang này phân biệt phạm vi câu hỏi, Target Schema Proposal, Measure Contract, business rules, prototype cũ và hệ thống đã triển khai. Người dùng đã duyệt **star 1F+8D, Q10 mới và năm nhóm business rule ở cấp dự án**. Physical/Final Schema chưa chốt; NAICS reference/version/mapping còn `PENDING_VERIFICATION`.
 
 ## Source of Truth
 
@@ -11,7 +11,7 @@
 | Measure Contract | [Measure Contract Q1–Q15](business_requirements/measure_contract_q1_q15.md) | Tách Formula Status với Rule/Population Status; **DOCUMENTED / NOT IMPLEMENTED**. |
 | Target Schema Proposal | [Candidate logical schema](dimensional_model/candidate_schema.md) | Đã chọn star 1 `FactLoanSnapshot` + 8 dimensions ở cấp logic; **PROPOSED**, chưa là Final/physical schema hoặc database đã nạp. |
 | Business Rules | [Business Rule Register](business_requirements/business_rule_register.md) | Population, cấp NAICS Sector, TermBand tách `TERM_120`, `P I F→PIF` canonical và Q15 gates 30/5 `PROJECT_APPROVED`; NAICS mapping còn chờ xác minh. |
-| Preprocessing | [Preprocessing Plan](data_understanding/preprocessing_plan.md) | `PLANNED / NOT IMPLEMENTED`; không phải cleaned dataset đã tạo. |
+| Preprocessing | [ETL Implementation Plan §3](etl/etl_implementation_plan.md), [Giải thích Phase 1](etl/phase1_preprocessing_explained.md), [Preprocessing Plan](data_understanding/preprocessing_plan.md), output [`reports/preprocessing/`](../reports/preprocessing/) | **IMPLEMENTED — Phase 1** (2026-10-01): P1.1–P1.17 có đủ, 57/57 test pass, 388.338 → 388.338 dòng, đối soát khớp. NAICS Sector vẫn `CANDIDATE_UNVERIFIED`. |
 | Dữ liệu và quality | [Data Overview](data_understanding/data_overview.md), [Profiling](data_understanding/data_profiling_report.md), [Data Quality](data_understanding/data_quality_report.md) | Bằng chứng `VERIFIED` của snapshot nguồn. |
 | Prototype đã có | [Thiết kế snowflake trước đây](02_warehouse_design.md), [kiểm chứng prototype](validation.md) | Giữ để truy vết; `DEPRECATED AS CURRENT`, không dùng làm candidate schema. |
 
@@ -33,7 +33,7 @@
 | BR-POP-01, BR-TERM-01, BR-STATUS-01, BR-CHGOFF-01 | **PROJECT_APPROVED** | Default population mọi published record; `TERM_120` riêng; raw `P I F` giữ nguyên và canonical `PIF`; Q15 gates 30/5. Chưa nạp vào kho. |
 | BR-NAICS-01 | **PROJECT_APPROVED — analytical level; PENDING_VERIFICATION — reference/mapping** | Q13/Q15 dùng NAICS Sector; không suy ra vintage hoặc gắn sector name chưa xác minh. |
 | BR-BUSINESS-01 / BR-BUSINESS-02 | **DECIDED cho raw Q10/proposal / OPEN cho canonical và grouping** | Giữ `BusinessTypeRaw`, `BusinessAgeRaw`, `Unanswered` và missing; chưa tạo `BusinessAgeGroup` hoặc borrower identity. |
-| Preprocessing | **PLANNED / NOT IMPLEMENTED** | Mới có kế hoạch. Raw CSV không được sửa; chưa xuất standardized dataset theo plan. |
+| Preprocessing | **IMPLEMENTED — Phase 1** (2026-10-01) | `python -m src.etl.preprocess` xuất `data/staging/sba7a_standardized.tsv` (388.338 × 38, SHA-256 `837723fb…a78bc5`) và báo cáo trong [`reports/preprocessing/`](../reports/preprocessing/); raw CSV không bị sửa, không loại dòng nào. Chi tiết, số liệu và hạn chế: [Giải thích Phase 1](etl/phase1_preprocessing_explained.md). |
 | Python snowflake prototype và 15 manual/MDX cũ | **DEPRECATED AS CURRENT; retained for history** | Code, DDL, MDX và kiểm chứng prototype vẫn có giá trị lịch sử; không tương ứng bộ Q1–Q15 hiện hành. |
 | SQL Server, SSIS, SSAS cube, Pivot, BI theo candidate mới | **NOT IMPLEMENTED** | Có script/đặc tả prototype cũ, chưa có bằng chứng triển khai candidate mới. |
 
@@ -45,6 +45,6 @@
 
 1. Xác minh NAICS reference/version/crosswalk, đối soát sector code/name và unmapped trước khi công bố Q13/Q15 theo sector. Các rule khác đã `PROJECT_APPROVED`, nhưng chưa triển khai.
 2. Viết Source-to-Target Mapping theo [star 1F+8D](dimensional_model/candidate_schema.md), [Measure Contract](business_requirements/measure_contract_q1_q15.md), unknown members, khóa/lineage và rule version. Phần NAICS có thể để `PENDING_VERIFICATION`; chưa gọi là Final Schema.
-3. Triển khai [Preprocessing Plan](data_understanding/preprocessing_plan.md) và đối soát raw → standardized → warehouse trước khi thay hoặc chạy Python/DDL/MDX/cube prototype.
+3. ~~Triển khai Preprocessing Plan~~ — đã xong Phase 1 (2026-10-01, đối soát raw → standardized khớp). Còn lại: Phase 2 DDL (`sql/dwh/00–02`), Phase 3 SSIS, Phase 4 đối soát standardized → warehouse theo [ETL Implementation Plan](etl/etl_implementation_plan.md) §4–§6; **chưa bắt đầu**.
 
-Không coi việc đồng bộ tài liệu lần này là đã làm preprocessing, ETL, database hay cube.
+Không coi việc đồng bộ tài liệu lần này là đã làm ETL (SSIS), database hay cube; chỉ Phase 1 tiền xử lý Python đã chạy.
