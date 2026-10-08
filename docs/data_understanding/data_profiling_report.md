@@ -1,5 +1,7 @@
 # Data Profiling – SBA 7(a)
 
+> Đồng bộ 2026-10-02: đây là **baseline dữ liệu nguồn 42 cột**, không standardized output 38 cột. Chương 1 §1.2.2 mô tả preprocessing đã thực hiện nhưng output/code tương ứng chưa có để kiểm trong checkout; xem [Preprocessing](preprocessing_plan.md) và [Current Status](../00_current_status.md).
+
 Chạy toàn bộ 388,338 dòng; dữ liệu gốc không bị sửa. CSV chi tiết trong `reports/data_profiling/`. `Null` là ô rỗng hoặc chỉ khoảng trắng; số khác 0 và ngày được parse để thống kê nhưng không ghi ngược vào nguồn.
 
 ## Hồ sơ cột

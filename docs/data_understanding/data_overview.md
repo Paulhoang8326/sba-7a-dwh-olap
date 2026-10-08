@@ -1,5 +1,7 @@
 # Tổng quan dữ liệu SBA 7(a)
 
+> Đồng bộ 2026-10-02: đây là **baseline dữ liệu nguồn 42 cột**, không standardized output 38 cột. Chương 1 §1.2.2 mô tả preprocessing đã thực hiện nhưng output/code tương ứng chưa có để kiểm trong checkout; xem [Preprocessing](preprocessing_plan.md) và [Current Status](../00_current_status.md).
+
 Nguồn: `data\raw\foia\FOIA_7a_FY2020_Present_asof_260630.csv`; SHA-256 `6c1e9132b5141a19f82bdc8ccafb86c9a01662461cad41ddb36a3cf409d8a4fe`. Workbook: `data\raw\foia\7a_504_foia_data_dictionary.xlsx`, sheet `7(a) Data Dictionary`. Chỉ đọc file gốc, không biến đổi dữ liệu.
 
 - **1 CSV dữ liệu** (181,130,871 byte; 172.74 MiB); 1 workbook mô tả (24,529 byte). Tổng hai file: 181,155,400 byte.

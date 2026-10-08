@@ -1,3 +1,7 @@
+// Documentation sync 2026-10-02: report-aligned logical names, NOT final physical DDL.
+// OPEN: report preprocessing DECIMAL(18,3), diagram DECIMAL(19,2).
+// OPEN: report TermBandKey BIGINT, diagram INT. Structures intentionally retained.
+// Canonical field documentation: docs/dimensional_model/candidate_schema.md
  Project SBA_7A_DWH_OLAP {
   database_type: "SQL Server"
 

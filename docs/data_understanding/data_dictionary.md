@@ -1,5 +1,7 @@
 # Data Dictionary – SBA 7(a)
 
+> Đồng bộ 2026-10-02: đây là **baseline dữ liệu nguồn 42 cột**, không standardized output 38 cột. Chương 1 §1.2.2 mô tả preprocessing đã thực hiện nhưng output/code tương ứng chưa có để kiểm trong checkout; xem [Preprocessing](preprocessing_plan.md) và [Current Status](../00_current_status.md).
+
 Nguồn định nghĩa: workbook SBA `7a_504_foia_data_dictionary.xlsx`, sheet `7(a) Data Dictionary`. Diễn giải tiếng Việt dưới đây dựa trên định nghĩa gốc; các nhãn chưa được workbook giải mã đều ghi cần xác minh. CSV lưu mọi ô dưới dạng text; `Data Type` ghi kiểu hiện tại / kiểu ngữ nghĩa.
 
 | STT | Attribute | Description | Data Type | Example Value | Business Meaning | Notes |
@@ -37,7 +39,7 @@ Nguồn định nghĩa: workbook SBA `7a_504_foia_data_dictionary.xlsx`, sheet `
 | 31 | SBADistrictOffice | Văn phòng khu vực SBA | text / category/text | PHILADELPHIA DISTRICT OFFICE | SBA district office liên quan hồ sơ. | Vai trò chính xác trong quy trình cần xác minh. |
 | 32 | CongressionalDistrict | Địa hạt quốc hội dự án | text / code | 04 | Congressional district nơi dự án diễn ra. | Giữ số 0 đầu; phụ thuộc ProjectState. |
 | 33 | BusinessType | Loại hình người vay | text / category/text | PARTNERSHIP | Individual, Partnership hoặc Corporation theo workbook. | Các nhãn khác trong CSV cần xác minh. |
-| 34 | BusinessAge | Nhóm tuổi đời doanh nghiệp | text / category/text | Unanswered | Phân loại tuổi đời doanh nghiệp. | Workbook không giải thích từng nhãn; cần xác minh. |
+| 34 | BusinessAge | Nhãn giai đoạn/tình trạng doanh nghiệp | text / category/text | Unanswered | Nhãn phân loại doanh nghiệp theo nguồn, không tuổi số. | Workbook không giải thích từng nhãn; cần xác minh. |
 | 35 | LoanStatus | Trạng thái khoản vay tại snapshot | text / category/text | P I F | Trạng thái hiện tại của hồ sơ vay. | CANCLD=Cancelled; CHGOFF=Charged Off; COMMIT=Undisbursed; EXEMPT=đã giải ngân và chưa hủy/PIF/charge-off; workbook ghi PIF=Paid In Full nhưng CSV dùng nhãn P I F. |
 | 36 | PaidInFullDate | Ngày trả hết nợ | text / date | 2024-11-30 | Ngày khoản vay đã được thanh toán đủ nếu áp dụng. | Thiếu hợp lệ khi chưa PIF. |
 | 37 | ChargeOffDate | Ngày SBA charge-off | text / date | 2021-06-25 | Ngày SBA ghi nhận charge-off nếu áp dụng. | Thiếu hợp lệ khi chưa charge-off. |
@@ -75,3 +77,7 @@ Workbook cung cấp các cặp nhãn/mã 7(a) sau. CSV hiện lưu nhãn; bảng
 ## Đối chiếu nguồn
 
 Mọi thuộc tính trên đều có định nghĩa trong sheet 7(a). CSV ghi `P I F` trong khi workbook ghi `PIF`; quy tắc kiểm tra so theo mapping tạm thời, chưa thay dữ liệu. Các mã giá trị khác chưa được workbook giải thích đầy đủ: `BusinessAge`, `FixedorVariableInterestInd`, `CollateralInd`, `RevolverStatus` (workbook ghi 0/1, CSV dùng Y/N), `SoldSecMrktInd` khi blank. Cần xác minh trước khi quy chuẩn ý nghĩa.
+
+## Datatype và tên đích theo report
+
+Nguồn `FixedorVariableInterestInd` → `Dim_LoanProfile.FixedOrVariableInterestInd`; giữ spelling gốc trong source dictionary. Money ở bước preprocessing dùng DECIMAL(18,3), TermInMonths/JobsSupported integer; nguồn CSV vẫn text. Bảng 1.3 report tham chiếu 32 source fields, không đồng nhất với 18 retained fields/38 output columns. Xem [field contract](../dimensional_model/candidate_schema.md); không coi dictionary 42 cột là schema TSV.

@@ -62,3 +62,13 @@ Source/**/obj/
 *.user
 *.suo
 Submission/
+
+# Microsoft Office temporary / lock files
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
+# Intermediate Chapter 1 report outputs
+/project_report/Anti_report/
+/project_report/Codex_report/
+/project_report/Bao_Cao_Chuong_1_SBA_7a.docx

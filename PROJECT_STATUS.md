@@ -1,12 +1,10 @@
-# PROJECT_STATUS — Tiến độ dự án SBA 7(a)
+# PROJECT_STATUS — tiến độ SBA 7(a)
 
-> **Trạng thái hiện hành (2026-09-30):** [docs/00_current_status.md](docs/00_current_status.md) là Source of Truth. [Q1–Q15](docs/business_requirements/business_questions_current.md), gồm Q10 mới, đã duyệt ở cấp business-question scope; [star 1 `FactLoanSnapshot` + 8 dimensions](docs/dimensional_model/candidate_schema.md) là **PROPOSED TARGET SCHEMA**, chưa là Final/physical schema. [Measure Contract](docs/business_requirements/measure_contract_q1_q15.md) đã viết nhưng **NOT IMPLEMENTED**. [Rule register](docs/business_requirements/business_rule_register.md) ghi `PROJECT_APPROVED` cho population, cấp NAICS Sector, TermBand, canonical PIF và Q15 gates; NAICS reference/version/mapping còn `PENDING_VERIFICATION`, business grouping mở rộng còn `OPEN`. [Preprocessing](docs/data_understanding/preprocessing_plan.md) **PLANNED / NOT IMPLEMENTED**; prototype snowflake/MDX cũ giữ cho lịch sử.
+> Cập nhật 2026-10-02: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) là context ngắn; [docs/00_current_status.md](docs/00_current_status.md) chứa canonical files, trạng thái và OI-01–OI-08. Documentation đồng bộ theo report mới với Fact_Loan + 8 Dim_*. Preprocessing **REPORT_DOCUMENTED_COMPLETED / CHECKOUT_UNVERIFIED**; target warehouse/SSIS chưa có bằng chứng thực thi.
 
-## Việc tiếp theo theo trạng thái hiện hành
+## Việc tiếp theo
 
-1. Xác minh NAICS reference/version/crosswalk và unmapped; không tự chuyển mapping/sector name sang `VERIFIED` chỉ vì đã duyệt cấp Sector.
-2. Đặc tả Source-to-Target Mapping gồm keys, lineage, unknown members và rule version theo Target Schema Proposal 1 Fact + 8 Dim và Measure Contract; phần NAICS chờ verification. Chưa gọi Final Schema.
-3. Thực hiện preprocessing theo plan đã duyệt, đối soát raw → standardized; sau đó mới triển khai ETL/database/cube.
+Bổ sung/xác minh notebook/module preprocessing, TSV 38 cột, clean CSV, manifest và lookup artifacts; đối soát count/totals/FY/status. Chốt precision, TermBandKey, lineage, business keys/Unknown/nullability và NAICS reference; review Source-to-Target Mapping trước Chương 2. Chưa thực hiện SSIS trong task đồng bộ.
 
 ## Lưu trữ: status snapshot ngày 2026-09-24
 
