@@ -1,0 +1,36 @@
+Output,Metric,Key,RawValue,OutputValue,Match
+standardized_tsv,row_count,,388338,388338,True
+standardized_tsv,sum_GrossApproval,,202550139718.0,202550139718.00,True
+standardized_tsv,sum_SBAGuaranteedApproval,,152596337956.289,152596337956.289,True
+standardized_tsv,sum_GrossChargeOffAmount,,898807495.32,898807495.32,True
+standardized_tsv,sum_JobsSupported,,4072432.0,4072432,True
+standardized_tsv,count_by_ApprovalFY,2020,42298,42298,True
+standardized_tsv,count_by_ApprovalFY,2021,51856,51856,True
+standardized_tsv,count_by_ApprovalFY,2022,47678,47678,True
+standardized_tsv,count_by_ApprovalFY,2023,57362,57362,True
+standardized_tsv,count_by_ApprovalFY,2024,70242,70242,True
+standardized_tsv,count_by_ApprovalFY,2025,78078,78078,True
+standardized_tsv,count_by_ApprovalFY,2026,40824,40824,True
+standardized_tsv,count_by_LoanStatus,CANCLD,50104,50104,True
+standardized_tsv,count_by_LoanStatus,CHGOFF,6893,6893,True
+standardized_tsv,count_by_LoanStatus,COMMIT,21079,21079,True
+standardized_tsv,count_by_LoanStatus,EXEMPT,242061,242061,True
+standardized_tsv,count_by_LoanStatus,P I F,68201,68201,True
+standardized_tsv,sum_TermBand_counts,,388338,388338,True
+clean_csv,row_count,,388338,388338,True
+clean_csv,sum_GrossApproval,,202550139718.0,202550139718.00,True
+clean_csv,sum_SBAGuaranteedApproval,,152596337956.289,152596337956.289,True
+clean_csv,sum_GrossChargeOffAmount,,898807495.32,898807495.32,True
+clean_csv,sum_JobsSupported,,4072432.0,4072432,True
+clean_csv,count_by_ApprovalFY,2020,42298,42298,True
+clean_csv,count_by_ApprovalFY,2021,51856,51856,True
+clean_csv,count_by_ApprovalFY,2022,47678,47678,True
+clean_csv,count_by_ApprovalFY,2023,57362,57362,True
+clean_csv,count_by_ApprovalFY,2024,70242,70242,True
+clean_csv,count_by_ApprovalFY,2025,78078,78078,True
+clean_csv,count_by_ApprovalFY,2026,40824,40824,True
+clean_csv,count_by_LoanStatus,CANCLD,50104,50104,True
+clean_csv,count_by_LoanStatus,CHGOFF,6893,6893,True
+clean_csv,count_by_LoanStatus,COMMIT,21079,21079,True
+clean_csv,count_by_LoanStatus,EXEMPT,242061,242061,True
+clean_csv,count_by_LoanStatus,P I F,68201,68201,True

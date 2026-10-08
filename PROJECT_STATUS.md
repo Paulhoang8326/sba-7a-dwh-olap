@@ -1,6 +1,6 @@
 # PROJECT_STATUS — tiến độ SBA 7(a)
 
-> Cập nhật 2026-10-02: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) là context ngắn; [docs/00_current_status.md](docs/00_current_status.md) chứa canonical files, trạng thái và OI-01–OI-08. Documentation đồng bộ theo report mới với Fact_Loan + 8 Dim_*. Preprocessing **REPORT_DOCUMENTED_COMPLETED / CHECKOUT_UNVERIFIED**; target warehouse/SSIS chưa có bằng chứng thực thi.
+> Cập nhật 2026-10-08: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) là context ngắn; [docs/00_current_status.md](docs/00_current_status.md) chứa canonical files, trạng thái và Open Issues. Documentation đồng bộ theo report mới với Fact_Loan + 8 Dim_*. Preprocessing **CODE_INTEGRATED / TSV_REPRODUCED**, còn giới hạn full test và clean CSV nhạy cảm; xem [integration audit](docs/etl/preprocessing_integration_audit.md). Target warehouse/SSIS chưa có bằng chứng thực thi.
 
 ## Việc tiếp theo
 

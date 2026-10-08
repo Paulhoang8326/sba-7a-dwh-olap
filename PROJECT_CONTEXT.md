@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT — SBA 7(a) theo Chương 1 hiện hành
 
-Cập nhật **2026-10-02**. Đọc file này trước task tiếp theo. [Chương 1 mới nhất](project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) là nguồn chính cho nội dung nhóm trình bày; [trạng thái và Open Issues](docs/00_current_status.md) phân biệt nội dung báo cáo với implementation. Không dùng tên FactLoanSnapshot/DimDate của prototype làm tên schema hiện hành.
+Cập nhật **2026-10-08**. Đọc file này trước task tiếp theo. [Chương 1 mới nhất](project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) là nguồn chính cho nội dung nhóm trình bày; [trạng thái và Open Issues](docs/00_current_status.md) phân biệt nội dung báo cáo với implementation. Không dùng tên FactLoanSnapshot/DimDate của prototype làm tên schema hiện hành.
 
 ## 1. Project Overview
 
@@ -20,7 +20,7 @@ Không public unique LoanID. LocationID là lender ID. Giữ 687 records thuộc
 
 ## 5. Preprocessing Status
 
-**REPORT_DOCUMENTED_COMPLETED / CHECKOUT_UNVERIFIED**: report §1.2.2 mô tả pandas, đọc text, checksum, lineage, trim/blank→NULL/newline→space, duplicate/DQ flags, ISO dates, integer jobs/term, money DECIMAL(18,3), raw/canonical status, TermBand, NAICS candidate, export/reconcile. Output được report ghi **388.338×38** gồm 18 retained source attributes và standardized/derived/lookup/DQ. Notebook 01_preprocessing.ipynb, module preprocess, TSV/clean CSV và manifest chưa có trong checkout. Không chạy lại src/main.py để thay preprocessing mới; file đó sinh prototype snowflake.
+**CODE_INTEGRATED / TSV_REPRODUCED**: report §1.2.2 mô tả pandas, đọc text, checksum, lineage, trim/blank→NULL/newline→space, duplicate/DQ flags, ISO dates, integer jobs/term, money DECIMAL(18,3), raw/canonical status, TermBand, NAICS candidate, export/reconcile. `src/etl/preprocess.py`, notebook, tests và reports đã tích hợp; 18 nguồn KEEP, **388.338×38** và checksum TSV được kiểm trực tiếp, TSV tái lập đúng SHA-256. Hai output LFS đã kiểm trong Git cache nhưng chưa checkout vào staging; full `run()`/pytest chưa tái kiểm vì clean CSV có `Borr*` và môi trường thiếu pytest. Xem [integration audit](docs/etl/preprocessing_integration_audit.md). `src/main.py` vẫn là prototype snowflake cũ.
 
 ## 6. Dimensional Model
 
@@ -60,14 +60,14 @@ Default mọi published record, giữ CANCLD và duplicates trừ query lọc r�
 | Business rules | [business_rule_register.md](docs/business_requirements/business_rule_register.md) | Rule dự án; NAICS mapping chưa verified |
 | Dataset / profiling / DQ | [overview](docs/data_understanding/data_overview.md), [profiling](docs/data_understanding/data_profiling_report.md), [quality](docs/data_understanding/data_quality_report.md) | Baseline nguồn, không là standardized output |
 | Dictionary | [định nghĩa nguồn](docs/data_dictionary.md), [diễn giải Việt](docs/data_understanding/data_dictionary.md) | Hai vai trò bổ sung, không phải hai schema đích |
-| Preprocessing | [preprocessing_plan.md](docs/data_understanding/preprocessing_plan.md) | Report mô tả hoàn tất; artifact checkout chưa có |
+| Preprocessing | [preprocessing_plan.md](docs/data_understanding/preprocessing_plan.md), [integration audit](docs/etl/preprocessing_integration_audit.md) | Code/notebook/reports có trong branch; TSV tái lập, full test còn giới hạn |
 | Diagram DBML | [candidate_schema.dbml](diagram/candidate_schema.dbml) | Proposal, còn lệch datatype; không là physical authority |
 | SQL schema hiện có | [01_warehouse.sql](sql/01_warehouse.sql), [02_validation.sql](sql/02_validation.sql) | Canonical implementation **prototype cũ**, không schema đích hiện hành |
-| Python hiện có | [src/main.py](src/main.py) | Prototype snowflake; không notebook preprocessing của report |
+| Python hiện có | [preprocess.py](src/etl/preprocess.py), [notebook](notebooks/01_preprocessing.ipynb); [src/main.py](src/main.py) | Hai file đầu là Phase 1 mới; `src/main.py` là prototype cũ |
 
 ## 13. Current Project Status
 
-Documentation đã đồng bộ model/naming, dataset, Q1–Q15, preprocessing report và Open Issues. Raw/code/DDL/DOCX giữ nguyên. Prototype CSV tồn tại trong data/processed; target Fact_Loan chưa triển khai. Chưa tìm thấy .dtproj/.dtsx/.dwproj hoặc bằng chứng deployment database/cube/BI. Báo cáo Chương 1 có trong checkout; các bản report khác là lịch sử/reference.
+Documentation đã đồng bộ model/naming, dataset, Q1–Q15 và Open Issues; Phase 1 code/reports đã tích hợp và TSV tái lập. Raw/DDL/DOCX giữ nguyên. Prototype CSV tồn tại trong data/processed; target Fact_Loan chưa triển khai. Chưa tìm thấy .dtproj/.dtsx/.dwproj hoặc bằng chứng deployment database/cube/BI. Báo cáo Chương 1 có trong checkout; các bản report khác là lịch sử/reference.
 
 ## 14. Next Phase — Chapter 2 / SSIS
 
