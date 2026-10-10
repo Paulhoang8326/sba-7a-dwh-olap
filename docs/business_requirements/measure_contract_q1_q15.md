@@ -1,6 +1,6 @@
 # Measure Contract — Q1–Q15 hiện hành
 
-> Đồng bộ 2026-10-02 theo Chương 1 §1.3.4–1.3.6: tên bảng hiện hành là `Fact_Loan` + 8 `Dim_*`. Công thức chi tiết kế thừa quyết định dự án trước đây khi không mâu thuẫn report; đây chưa là query đã chạy. Preprocessing được report mô tả đã thực hiện, nhưng code/output tương ứng chưa có trong checkout; xem [trạng thái](../00_current_status.md).
+> Nội dung nghiệp vụ đồng bộ theo Chương 1 §1.3.4–1.3.6, không đổi Q1–Q15/rules. Trạng thái cập nhật 2026-10-10: preprocessing 38 cột đã tích hợp/kiểm; input Chương 2 riêng 52 cột đã chạy và đối soát. `Fact_Loan` + 8 `Dim_*` và query warehouse chưa triển khai. Xem [trạng thái](../00_current_status.md) và [kế hoạch SSIS](../etl/chapter2_ssis_plan.md).
 
 > **DOCUMENTED / NOT IMPLEMENTED**, cập nhật 2026-09-30 cho [Q1–Q15](business_questions_current.md) và [Target Schema Proposal 1F+8D](../dimensional_model/candidate_schema.md). Các quyết định trong [Business Rule Register](business_rule_register.md) có status `PROJECT_APPROVED` ở cấp đồ án; tài liệu này chưa chứng minh physical schema, ETL, SQL, MDX hay cube đã chạy. NAICS reference/version/mapping còn `PENDING_VERIFICATION`.
 
@@ -48,7 +48,7 @@
 |---|---|---|
 | `PublishedRecordCount`, `TotalGrossApproval`, `TotalSBAGuaranteedApproval`, `AverageGrossApprovalPerRecord`, `WeightedGuaranteeRatio` | **READY** | **PROJECT_APPROVED** BR-POP-01; same-slice denominator. |
 | `ReportedJobsSupported` | **READY** | **SOURCE-SUPPORTED** về nghĩa lender-reported; không là số việc làm duy nhất/tác động SBA. |
-| `StateApprovalShare`, `StatusRecordShare`, `YoYGrossApprovalGrowth`, `PositiveMethodContributionShare` | **READY** | **PROJECT_APPROVED** population/logic Q; tie/FY physical mapping chưa triển khai warehouse; preprocessing theo report chưa kiểm chứng trong checkout. |
+| `StateApprovalShare`, `StatusRecordShare`, `YoYGrossApprovalGrowth`, `PositiveMethodContributionShare` | **READY** | **PROJECT_APPROVED** population/logic Q; tie/FY physical mapping chưa triển khai warehouse; preprocessing đã kiểm chứng trong checkout. |
 | `TermBandApprovalShare` | **READY** | **PROJECT_APPROVED — project-defined** BR-TERM-01; chưa materialize warehouse dimension. |
 | `StructuralShiftScore`, `ShareChangePP`, Q15 `ObservedCHGOFFShare` và `C_CHGOFF` theo sector | **READY** | **PROJECT_APPROVED** cấp Sector và gate 30/5; **PENDING_VERIFICATION** NAICS reference/version/mapping. |
 

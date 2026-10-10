@@ -1,5 +1,7 @@
 # Audit tích hợp preprocessing trước thiết kế SSIS
 
+> **Snapshot audit 2026-10-08.** Các gap input/datatype bên dưới đã được xử lý ngày 2026-10-10 bằng input Chương 2 riêng 52 cột và DBML (18,3)/BIGINT. Xem [trạng thái hiện hành](../00_current_status.md) và [kế hoạch SSIS](chapter2_ssis_plan.md); giữ nội dung audit cũ để truy vết.
+
 > Kiểm tra 2026-10-08 trên branch `feat/chapter2-preprocessing-integration`. Đây là bằng chứng Phase 1 và phân tích gap, **không** là Source-to-Target Mapping cuối cùng, package SSIS, physical schema hoặc xác minh NAICS. Báo cáo [Chương 1](../../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) là nguồn nội dung; [candidate schema](../dimensional_model/candidate_schema.md) và [business rules](../business_requirements/business_rule_register.md) vẫn giữ trạng thái/ranh giới hiện hành.
 
 ## Nguồn và mức xác minh

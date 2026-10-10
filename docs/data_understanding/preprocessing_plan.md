@@ -1,6 +1,6 @@
 # Preprocessing — kết quả theo report và bằng chứng tích hợp
 
-> Cập nhật 2026-10-08 theo [Chương 1 §1.2.2](../../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) và [integration audit](../etl/preprocessing_integration_audit.md). **CODE_INTEGRATED / TSV_REPRODUCED**: notebook, module, test, manifest/reconciliation đã vào branch; LFS outputs kiểm trong Git cache, chưa checkout vào staging. Full `run()`/pytest chưa tái kiểm; không coi `src/main.py` hoặc CSV snowflake cũ là implementation thay thế.
+> Cập nhật 2026-10-10: Chương 1 **CODE_INTEGRATED / TSV_REPRODUCED**, baseline 38 cột giữ nguyên. [Input Chương 2 riêng](../etl/chapter2_ssis_plan.md) **388.338×52** đã tạo và đối soát; 6 unittest mới pass. Full `run()`/pytest Chương 1 chưa tái chạy; exporter mới không xuất clean CSV. `src/main.py` vẫn là prototype cũ.
 
 ## Input và output
 
@@ -17,7 +17,7 @@ Report §1.2.2.5 nêu giữ trực tiếp **18 thuộc tính nguồn**, bổ sun
 | Missing/text | Trim, blank→NULL; newline trong ô→space; không impute | Code và 31 direct rule assertions có kiểm; header/count/hash TSV tái lập |
 | Duplicate | 687 records thuộc 296 nhóm exact raw duplicate; flag và giữ mọi dòng | Khớp profiling; không drop_duplicates bản ghi nguồn |
 | Date/FY/numeric DQ | Parse YYYY-MM-DD; đối chiếu FY, date order, zero/âm; flag, không xóa/sửa suy diễn | Code và `reports/preprocessing/dq_issues.csv` có trong branch; tái lập 816 issues |
-| Datatype | Money DECIMAL(18,3), JobsSupported/TermInMonths integer; giữ 2 records money 3dp | Precision đã kiểm trên raw; DBML/DDL còn khác |
+| Datatype | Money DECIMAL(18,3), JobsSupported/TermInMonths integer; giữ 2 records money 3dp | DBML đã (18,3); exporter 52 cột kiểm mọi source value chứa chính xác; DDL prototype cũ không là target |
 | Status | Giữ nguồn; P I F→PIF canonical | Report §1.2.2.4; warehouse chưa có Dim_LoanStatus |
 | TermBand | ZERO, SHORT, MEDIUM, TERM_120, LONG, VERY_LONG, MISSING, INVALID | Report mô tả đã tạo nhãn; warehouse dimension chưa có |
 | NAICS | Sector candidate kèm mapping status CANDIDATE_UNVERIFIED | Không nâng thành verified reference/version/crosswalk |
@@ -26,8 +26,8 @@ Report §1.2.2.5 nêu giữ trực tiếp **18 thuộc tính nguồn**, bổ sun
 
 ## Python và SSIS
 
-Python preprocessing đã được tích hợp và kiểm TSV; SSIS có thể dùng contract 38 cột làm **đầu vào thiết kế**, nhưng phải chốt precision, null delimiter, field bổ sung và lookup đủ cho 8 dimensions trước khi dựng package. Chưa tạo package hoặc chạy ETL trong task tích hợp này.
+Python preprocessing Chương 1 giữ nguyên. `python -m src.etl.prepare_ssis_input` tạo `data/staging/chapter2/sba7a_ssis_input.tsv`: 38 cột đầu không đổi, 14 trường bổ sung lấy từ cleaned frame cùng ordinal, không JOIN theo business attributes. File 52 cột cùng manifest chỉ lưu local/ignore, không có Borr*. UTF-8/tab/CRLF, no qualifier, NULL=empty. Script từ chối ghi đè file đã tồn tại và kiểm projection checksum với baseline 38 cột. Xem commands/header/keys ở [kế hoạch SSIS](../etl/chapter2_ssis_plan.md).
 
-ETL còn lại: source manifest và snapshot metadata; staging contract; dimension business keys/Unknown members/surrogate keys; FK lookup; nạp Fact_Loan giữ lineage; ETLBatchID/audit; đối soát raw→standardized→warehouse (count, totals, FY/status, FK/orphans, idempotency). Đây là việc task sau, không coi đã hoàn tất do report có screenshots.
+ETL còn lại: tạo database/tables và SSIS; load tám Dimensions theo full keys, Lookup FK, RecordCount=1/ETLBatchID, giữ source/ordinal; đối soát count/totals/FY/status/FK. Full reload trên database đồ án riêng là đủ một snapshot; chưa cần CDC/SCD hoặc bảng audit phức tạp.
 
-Các gate Q12/Q15 là query population, không là điều kiện xóa records trong preprocessing. NAICS reference/version, physical precision, field/lookup và quyền xử lý clean CSV vẫn là [Open Issues](../00_current_status.md#open-issues-report-va-implementation).
+Các gate Q12/Q15 là query population, không xóa records trong preprocessing. NAICS reference/version vẫn pending; labels/NULL/Unicode/lookup cụ thể ở bước implementation Chương 2. SSIS dùng input 52 cột nên không cần clean CSV chứa Borr*.

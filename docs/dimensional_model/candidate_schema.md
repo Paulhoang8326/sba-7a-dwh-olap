@@ -1,6 +1,6 @@
 # Mô hình logic theo Chương 1 mới nhất
 
-> Đồng bộ 2026-10-02 theo [report Chương 1](../../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) §1.3.3–1.3.5. Star **1 `Fact_Loan` + 8 dimensions** là mô hình được trình bày trong báo cáo; báo cáo vẫn dùng từ “đề xuất”. Không coi đây là physical DDL đã triển khai. [DBML](../../diagram/candidate_schema.dbml) gần khớp mô hình nhưng còn khác datatype; [SQL cũ](../../sql/01_warehouse.sql) là prototype snowflake.
+> Cập nhật kỹ thuật 2026-10-10 theo [report Chương 1](../../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) §1.3.3–1.3.5. Star **1 `Fact_Loan` + 8 dimensions**, đủ 76 columns. [DBML](../../diagram/candidate_schema.dbml) đã thống nhất ba money measures DECIMAL(18,3), TermBandKey BIGINT theo report. Chưa là physical DDL đã triển khai; [SQL cũ](../../sql/01_warehouse.sql) là prototype snowflake.
 
 ## Grain và khóa
 
@@ -170,4 +170,6 @@ erDiagram
 
 ## Open physical issues
 
-DBML/SVG dùng decimal(19,2), khác DECIMAL(18,3) ở preprocessing; report cũng có hình schema cũ mang precision này. Report ghi TermBandKey BIGINT, DBML dùng int. Giữ nguyên cấu trúc DBML/SQL; xử lý trong task mapping/physical schema sau. Xem [audit và Open Issues](../00_current_status.md#open-issues-report-va-implementation).
+DBML đã thống nhất DECIMAL(18,3) và TermBandKey BIGINT ngày 2026-10-10 theo yêu cầu chốt Chương 1. Mọi money value nguồn chứa chính xác trong (18,3), không làm tròn. SVG/hình schema cũ trong report còn annotation decimal(19,2)/INT; dùng bảng mô tả report và DBML đã sửa cho triển khai, ghi rõ datatype ở Chương 2. Đây là ghi chú hình minh họa, không thay đổi model hay Q1–Q15 và không buộc sửa Word trước khi tiếp tục.
+
+Input 52 cột đã bổ sung 14 source attributes. Lengths/Unicode/NULL/seed labels được cụ thể khi viết DDL và SSIS theo [kế hoạch Chương 2](../etl/chapter2_ssis_plan.md); NAICS reference/version vẫn pending. SQL prototype cũ giữ nguyên.

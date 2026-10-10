@@ -1,6 +1,6 @@
 # Trạng thái hiện hành — SBA 7(a)
 
-Cập nhật **2026-10-08**, sau khi tích hợp chọn lọc và kiểm chứng Phase 1 theo [Chương 1 mới nhất](../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx). Report là nguồn chính cho nội dung nhóm trình bày; code/DDL/output là bằng chứng implementation. Khi khác nhau, giữ hai mức xác nhận và Open Issues, không ép code/schema khớp report.
+Cập nhật **2026-10-10**: **CHAPTER 1 READY TO FREEZE** trong phạm vi đồ án IS217. [Report Chương 1](../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) giữ nguyên; DBML đã thống nhất money/TermBandKey. Input SSIS 52 cột đã tạo và kiểm trên đủ 388.338 records. Tiếp theo là [triển khai Chương 2](etl/chapter2_ssis_plan.md); chưa có database/package target chạy thật.
 
 ## Canonical project files
 
@@ -17,7 +17,8 @@ Cập nhật **2026-10-08**, sau khi tích hợp chọn lọc và kiểm chứng
 | Dataset / profiling / DQ | [overview](../docs/data_understanding/data_overview.md), [profiling](../docs/data_understanding/data_profiling_report.md), [quality](../docs/data_understanding/data_quality_report.md) | Baseline nguồn, không là standardized output |
 | Dictionary | [định nghĩa nguồn](../docs/data_dictionary.md), [diễn giải Việt](../docs/data_understanding/data_dictionary.md) | Hai vai trò bổ sung, không phải hai schema đích |
 | Preprocessing | [preprocessing_plan.md](../docs/data_understanding/preprocessing_plan.md), [integration audit](etl/preprocessing_integration_audit.md) | Code/notebook/reports đã tích hợp; LFS output đã kiểm trong Git cache, chưa checkout vào staging |
-| Diagram DBML | [candidate_schema.dbml](../diagram/candidate_schema.dbml) | Proposal, còn lệch datatype; không là physical authority |
+| Input và kế hoạch Chương 2 | [chapter2_ssis_plan.md](etl/chapter2_ssis_plan.md), [prepare_ssis_input.py](../src/etl/prepare_ssis_input.py) | Một TSV local 52 cột; kiểm count, từng record, totals và projection checksum |
+| Diagram DBML | [candidate_schema.dbml](../diagram/candidate_schema.dbml) | Khớp bảng report; money (18,3), TermBandKey BIGINT; chưa là deployed DDL |
 | SQL schema hiện có | [01_warehouse.sql](../sql/01_warehouse.sql), [02_validation.sql](../sql/02_validation.sql) | Canonical implementation **prototype cũ**, không schema đích hiện hành |
 | Python hiện có | [preprocess.py](../src/etl/preprocess.py), [notebook](../notebooks/01_preprocessing.ipynb); [src/main.py](../src/main.py) | Hai file đầu là Phase 1 mới; `src/main.py` là prototype snowflake cũ |
 
@@ -29,11 +30,12 @@ Cập nhật **2026-10-08**, sau khi tích hợp chọn lọc và kiểm chứng
 
 | Nội dung | Trạng thái sau đồng bộ | Giới hạn |
 |---|---|---|
-| Chương 1 | REPORT_PRESENT | Đã đọc toàn bộ text/tables; không sửa DOCX |
+| Chương 1 | CHAPTER 1 READY TO FREEZE | Không có lỗi nghiêm trọng buộc sửa DOCX; hình schema cũ còn type annotations đã được đính chính ở DBML/ghi chú Chương 2 |
 | Logical model | REPORT_ALIGNED — 1 Fact_Loan + 8 Dim_* | Proposal trong report; không physical/deployed |
 | Q1–Q15 / measures | DOCUMENTED / WAREHOUSE_NOT_IMPLEMENTED | Nội dung khớp §1.3.6; chi tiết công thức kế thừa Measure Contract |
 | Preprocessing | CODE_INTEGRATED / TSV_REPRODUCED | Code/notebook/reports có trong branch; raw và hai output LFS kiểm hash/header/shape/totals; TSV tái lập đúng SHA-256. Full `run()`/pytest chưa chạy vì giới hạn dependency và clean CSV chứa `Borr*`. |
 | TermBand / canonical PIF | Code và direct rule assertions khớp report | Warehouse Dim/FK chưa materialize; không suy Phase 1 là SSIS đã chạy |
+| Input Chương 2 | GENERATED / VALIDATED — 388.338 × 52 | 6 unittest pass; full-data exporter pass; 38-column projection cùng checksum baseline; không xuất Borr* hoặc clean CSV mới |
 | NAICS | CANDIDATE_UNVERIFIED / PENDING_VERIFICATION | Cấp sector đã chọn; reference/version/crosswalk chưa verified |
 | Python/SQL/CSV cũ | PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT | Snowflake FactLoanSnapshot, giữ code và artifact lịch sử |
 | SSIS / SQL target / SSAS / BI | Chưa có artifact/bằng chứng triển khai target trong checkout | Task này chưa thực hiện Chương 2 hoặc package |
@@ -44,17 +46,19 @@ Cập nhật **2026-10-08**, sau khi tích hợp chọn lọc và kiểm chứng
 |---|---|---|---|---|
 | OI-01 | Fact_Loan / LoanKey + 8 Dim_* (bảng 1.4–1.12) | Python/DDL FactLoanSnapshot / LoanRowKey, snowflake DimState/County và DimSector/Industry; status nằm LoanProfile, business có franchise, nhiều date roles | Prototype trước khi report đổi model; đặc tả mapping/physical schema mới trong task sau | OPEN |
 | OI-02 | Python preprocessing hoàn tất, 388.338×38, TSV/clean CSV, notebook/script SHA-256 match (§1.2.2) | Code/notebook/reports đã có; LFS objects kiểm trực tiếp; TSV tái lập cùng SHA-256 và 18/18 đối soát pass. Full `run()`/pytest chưa tái kiểm do clean CSV chứa `Borr*` và thiếu pytest. | Xem [integration audit](etl/preprocessing_integration_audit.md); không gọi full test suite pass. | PARTIALLY_VERIFIED |
-| OI-03 | 18 retained source columns + derived/lookup/DQ = 38 output; model tham chiếu 32 nguồn | Header 38 cột và 18 KEEP đã xác minh; nhưng event dates, district/lender/profile attributes vẫn vắng TSV, chỉ có ở raw/clean CSV. | Chốt Source-to-Target Mapping và đường bổ sung nguồn/lookup cho 8 Dim trước SSIS; không tự sửa schema. | OPEN |
-| OI-04 | §1.2.2.4 DECIMAL(18,3), 2 records cần 3dp; bảng Fact ghi DECIMAL | DBML và SVG decimal(19,2); hình schema report cũng mang precision cũ; SQL cũ decimal(24,6) không cùng contract nhưng giữ được 3dp | Diagram chưa cập nhật khi merge preprocessing; chốt contract precision/scale trong task physical mapping. Không sửa DDL/DBML structure ở đây | OPEN |
-| OI-05 | Bảng 1.10 và 1.12 TermBandKey BIGINT | DBML và hình 1.30 int ở dimension và FK | Logical table / diagram không đồng bộ; review type thống nhất trong task schema | OPEN |
-| OI-06 | SourceFileID + SourceRecordOrdinal; SourceRowNumber vật lý riêng | Prototype chỉ index+2 đặt tên SourceRowNumber, không đúng dòng vật lý khi 16 records multiline | Prototype dùng ordinal offset; đặc tả lineage đúng parser, giữ checksum và mapping source record | OPEN |
+| OI-03 | TSV Chương 1 giữ 38 cột; target dùng 32 source attrs | Input riêng Chương 2 nối đúng 14 trường, giữ record order và toàn bộ 38 cột đầu | Dùng file 52 cột cho SSIS; không cần enrichment JOIN | RESOLVED — INPUT |
+| OI-04 | §1.2.2.4 DECIMAL(18,3), hai values 3dp | DBML đã đổi ba money measures thành (18,3); full source fits chính xác | Hình schema cũ trong DOCX/SVG còn annotation (19,2); dùng DBML và chú thích datatype ở Chương 2. Không đổi model/business content | RESOLVED — TECHNICAL; image note retained |
+| OI-05 | Bảng 1.10 và 1.12 TermBandKey BIGINT | DBML PK/FK đã BIGINT | Hình cũ còn INT; triển khai theo bảng report và DBML đã thống nhất | RESOLVED — TECHNICAL; image note retained |
+| OI-06 | SourceFileID + SourceRecordOrdinal; SourceRowNumber vật lý riêng | Input 52 cột giữ source/ordinal, không xuất physical line | Kế hoạch load đầu để SourceRowNumber NULL; không gán ordinal+1. Có thể bổ sung raw parser start-line sau nếu cần | CHAPTER 2 IMPLEMENTATION |
 | OI-07 | Sector candidate CANDIDATE_UNVERIFIED (§1.2.2.4); reference/version còn cần xác minh (§1.3.5) | Preprocessing mới lấy prefix có dải gộp và gắn `CANDIDATE_UNVERIFIED`; chưa có verified reference/crosswalk | Candidate prefix không chứng minh vintage; xác minh trước kết quả chính thức Q13/Q15 | PENDING_VERIFICATION |
-| OI-08 | PK/FK/type logic trong report | Length/nullability/identity/UNIQUE/Unknown/SCD, tie order và full business keys chưa đầy đủ | Report Chương 1 không phải physical spec; giữ OPEN và đặc tả trước DDL/SSIS | OPEN |
-| OI-09 | Notebook che `Borr*` khi hiển thị | Clean CSV LFS trên remote vẫn giữ `Borr*`; branch này không checkout/commit lại file đó | Kiểm phạm vi truy cập/phát hành trước full pipeline/test hoặc tích hợp clean CSV | OPEN |
+| OI-08 | PK/FK/type logic trong report | Full composite keys đã có trong kế hoạch; lengths/NULL/seed cần cụ thể khi viết DDL | Full reload một snapshot và kiểm lookup errors là đủ đồ án; không cần SCD2/CDC/production audit | CHAPTER 2 IMPLEMENTATION |
+| OI-09 | Notebook che `Borr*` khi hiển thị | Clean CSV remote vẫn có Borr*; input 52 cột không có | SSIS dùng TSV allowlist local, không cần clean CSV. Quyền chia sẻ raw/clean tiếp tục tách riêng | NOT BLOCKING SSIS INPUT |
 
 ## Điều kiện tiếp tục Chương 2
 
-Đã có code, header và đối soát TSV đủ làm context cho **thiết kế ETL/SSIS**. Để dựng package/nạp cần giải quyết OI-03 (field/lookup contract), OI-04/05 (datatype), OI-06/08 (lineage/physical keys), OI-09 (clean CSV) và phần test còn lại của OI-02. NAICS candidate giữ nguyên trạng thái đến khi xác minh OI-07. [Audit 38 cột](etl/preprocessing_integration_audit.md) là gap triage, chưa là Source-to-Target Mapping cuối cùng; chưa chạy SQL/SSIS/cube.
+Có thể chuyển sang dựng database và package theo [kế hoạch Chương 2](etl/chapter2_ssis_plan.md). Chốt widths/Unicode, helper NULL và seed labels khi viết DDL/Data Flow, không cần kéo dài audit Chương 1. NAICS vẫn candidate; xác minh reference trước khi công bố kết quả sector chính thức Q13/Q15. Q1–Q15 và business rules không đổi.
+
+Kết quả 2026-10-10: TSV 52 cột **217.379.346 bytes**, SHA-256 `8d082d3ef52cc81d023726b58b93d6408a6f2c17226a168da27d1dcb9d0ca56d`; projection 38 cột SHA-256 `837723fb7b6b8358ce4aaf4855ea396b197104660babbe6d6d9f6a6be3a78bc5`. Tổng measures và từng record khớp, script kiểm DECIMAL(18,3) chứa chính xác mọi money value. Manifest/output lớn chỉ lưu local và ignore.
 
 ## Quy ước bằng chứng
 

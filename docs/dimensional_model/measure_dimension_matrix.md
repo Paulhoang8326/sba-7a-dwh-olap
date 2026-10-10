@@ -1,6 +1,6 @@
 # Measure–Dimension Matrix — Q1–Q15
 
-> Đồng bộ 2026-10-02 theo Chương 1 §1.3.4–1.3.6: tên bảng hiện hành là `Fact_Loan` + 8 `Dim_*`. Công thức chi tiết kế thừa quyết định dự án trước đây khi không mâu thuẫn report; đây chưa là query đã chạy. Preprocessing được report mô tả đã thực hiện, nhưng code/output tương ứng chưa có trong checkout; xem [trạng thái](../00_current_status.md).
+> Nội dung nghiệp vụ đồng bộ theo Chương 1 §1.3.4–1.3.6, không đổi Q1–Q15/rules. Trạng thái cập nhật 2026-10-10: preprocessing 38 cột đã tích hợp/kiểm; input Chương 2 riêng 52 cột đã chạy và đối soát. `Fact_Loan` + 8 `Dim_*` và query warehouse chưa triển khai. Xem [trạng thái](../00_current_status.md) và [kế hoạch SSIS](../etl/chapter2_ssis_plan.md).
 
 > Matrix kiểm tra coverage cho [Business Questions hiện hành](../business_requirements/business_questions_current.md), không phải danh sách bảng SQL đã triển khai. Candidate logic ở [candidate_schema.md](candidate_schema.md); công thức/population ở [Measure Contract](../business_requirements/measure_contract_q1_q15.md), rule ở [register](../business_requirements/business_rule_register.md).
 
@@ -18,7 +18,7 @@ Ký hiệu: `A=SUM(GrossApproval)`, `G=SUM(SBAGuaranteedApproval)`, `N=SUM(Recor
 | Q8 | `GrossApproval` | `A_state/A_all_states_same_FY` | `Dim_ProjectGeography.ProjectState`; `Dim_Date.FiscalYear` | Có; giữ slicer khác ở mẫu số. |
 | Q9 | `GrossApproval` | `A`, rank county trong state | `Dim_ProjectGeography`: State → County | Có; county key gồm state. |
 | Q10 | `RecordCount`, `GrossApproval` | `N`, `A`, `A/N` khi `N>0` | `Dim_Business.BusinessTypeRaw`, `BusinessAgeRaw`; `Dim_Date.FiscalYear` | Raw labels và population `PROJECT_APPROVED`; giữ `Unanswered` khác missing. |
-| Q11 | `RecordCount` | `N_status/N_all_status_same_cohort_method` | `Dim_LoanStatus`; `Dim_Date.FiscalYear`; `Dim_LoanProfile.ProcessingMethod` | Raw `P I F` giữ nguyên, canonical `PIF` `PROJECT_APPROVED`; chưa triển khai warehouse; preprocessing theo report chưa kiểm chứng trong checkout. |
+| Q11 | `RecordCount` | `N_status/N_all_status_same_cohort_method` | `Dim_LoanStatus`; `Dim_Date.FiscalYear`; `Dim_LoanProfile.ProcessingMethod` | Raw `P I F` giữ nguyên, canonical `PIF` `PROJECT_APPROVED`; chưa triển khai warehouse; preprocessing đã kiểm chứng trong checkout. |
 | Q12 | `GrossApproval`, `RecordCount`; `TermInMonths` để đối soát | `A_band/A_six_bands`, `A_band/N_band`, so FY2024/25 | `Dim_TermBand`; `Dim_Date.FiscalYear` | `TERM_120` tách riêng; 6 band kể cả ZERO ở mẫu số, MISSING/INVALID ngoài share. BR-TERM-01 `PROJECT_APPROVED`. |
 | Q13 | `GrossApproval` | `Share_i=A_i/A_state`; `½Σ|Share_i,25−Share_i,24|`; `ShareChangePP=100×ΔShare_i` | `Dim_Industry.NaicsSectorCode`; `Dim_ProjectGeography.ProjectState`; `Dim_Date` | Cấp Sector `PROJECT_APPROVED`, reference/mapping `PENDING_VERIFICATION`; state có `A>0` cả hai FY, union sector, vắng một FY → share 0. |
 | Q14 | `GrossApproval`, `RecordCount` | lender `A`, `A/N`; `ΔA_method>0`; positive contribution share | `Dim_Lender`; `Dim_LoanProfile.ProcessingMethod`; `Dim_Date` | Có; rank tối đa 3 method dương. |

@@ -1,10 +1,10 @@
 # PROJECT_STATUS — tiến độ SBA 7(a)
 
-> Cập nhật 2026-10-08: [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) là context ngắn; [docs/00_current_status.md](docs/00_current_status.md) chứa canonical files, trạng thái và Open Issues. Documentation đồng bộ theo report mới với Fact_Loan + 8 Dim_*. Preprocessing **CODE_INTEGRATED / TSV_REPRODUCED**, còn giới hạn full test và clean CSV nhạy cảm; xem [integration audit](docs/etl/preprocessing_integration_audit.md). Target warehouse/SSIS chưa có bằng chứng thực thi.
+> Cập nhật 2026-10-10: **CHAPTER 1 READY TO FREEZE**. DBML đã thống nhất money `(18,3)` và TermBandKey BIGINT; input Chương 2 **388.338×52** đã chạy/kiểm từng record, totals và checksum projection 38 cột. **6 unittest pass** cho exporter mới; không tuyên bố full pytest Chương 1 đã chạy. Xem [trạng thái](docs/00_current_status.md) và [kế hoạch SSIS](docs/etl/chapter2_ssis_plan.md). DOCX giữ nguyên; target database/package chưa triển khai.
 
 ## Việc tiếp theo
 
-Bổ sung/xác minh notebook/module preprocessing, TSV 38 cột, clean CSV, manifest và lookup artifacts; đối soát count/totals/FY/status. Chốt precision, TermBandKey, lineage, business keys/Unknown/nullability và NAICS reference; review Source-to-Target Mapping trước Chương 2. Chưa thực hiện SSIS trong task đồng bộ.
+Thực hiện tám bước trong kế hoạch Chương 2: công cụ/database, bảng vật lý, connections, Control Flow, tám Dimensions, Fact Lookups, chạy/đối soát và ảnh minh chứng. Chốt seed/NULL/Unicode khi viết DDL và Data Flow; xác minh NAICS trước kết quả sector chính thức. Không cần CDC/SCD phức tạp cho một snapshot của đồ án.
 
 ## Lưu trữ: status snapshot ngày 2026-09-24
 

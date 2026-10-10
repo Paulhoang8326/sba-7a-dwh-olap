@@ -2,7 +2,7 @@
 
 Đồ án IS217: **Xây dựng hệ thống Kho dữ liệu và OLAP hỗ trợ phân tích danh mục tín dụng, bảo lãnh và kết quả khoản vay SBA 7(a) tại Hoa Kỳ giai đoạn FY2020–FY2026**.
 
-> **Context hiện hành (2026-10-02):** [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) và [trạng thái/Open Issues](docs/00_current_status.md) đã đồng bộ theo [Chương 1 mới nhất](project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx). Mô hình report: **Fact_Loan + 8 Dim_***. Preprocessing được report mô tả đã hoàn tất (388.338×38), nhưng notebook/module/output tương ứng chưa có trong checkout; SQL/Python snowflake là prototype cũ. Các khác biệt cần xử lý trước Chương 2 nằm trong [Open Issues](docs/00_current_status.md#open-issues-report-va-implementation).
+> **Context hiện hành (2026-10-10): CHAPTER 1 READY TO FREEZE.** Preprocessing 388.338×38 đã tích hợp/kiểm chứng; input SSIS riêng 388.338×52 đã tạo và đối soát. DBML thống nhất `DECIMAL(18,3)` và `TermBandKey BIGINT` theo report. Bắt đầu từ [trạng thái](docs/00_current_status.md) và [kế hoạch Chương 2](docs/etl/chapter2_ssis_plan.md). SQL/Python snowflake vẫn là prototype cũ; SSIS target chưa triển khai.
 
 Dữ liệu thực tế: **388.338 dòng × 42 cột**, CSV 181.130.871 byte (~172,74 MiB), snapshot **30/06/2026**. FY2026 chưa đầy đủ. Nguồn gốc: [SBA FOIA](https://data.sba.gov/dataset/7a-504-foia); bản phân tích luôn dùng file cục bộ trong `data/raw/foia/`, không tự cập nhật bản online.
 
@@ -21,6 +21,7 @@ Tài liệu historical/superseded được giữ trong [docs/archive/](docs/arch
 - [Target Schema Proposal: star 1 Fact + 8 Dim](docs/dimensional_model/candidate_schema.md)
 - [Business Rule Register](docs/business_requirements/business_rule_register.md)
 - [Preprocessing — trạng thái report và checkout](docs/data_understanding/preprocessing_plan.md)
+- [Input SSIS 52 cột và kế hoạch Chương 2](docs/etl/chapter2_ssis_plan.md)
 
 ## Tài liệu và mã previous prototype
 
