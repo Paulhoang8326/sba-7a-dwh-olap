@@ -1,10 +1,12 @@
+> **HISTORICAL REFERENCE — NOT CURRENT CONTRACT.** Giữ nguyên nội dung đóng góp từ `main` để tham khảo lịch sử. Các tên bảng, số Dimensions và trạng thái implementation bên dưới không thay thế [trạng thái hiện hành](../00_current_status.md), [schema hiện hành](../dimensional_model/candidate_schema.md) hoặc [kế hoạch SSIS Chương 2](../etl/chapter2_ssis_plan.md). Chương 1 hiện là `CHAPTER 1 READY TO FREEZE`; preprocessing đã tích hợp và TSV đã tái lập, warehouse/SSIS chưa triển khai.
+
 # Đề xuất chốt 15 bài toán phân tích, schema và các quyết định trước ETL
 ## Đồ án Kho dữ liệu & OLAP – SBA 7(a)
 
-> **Phạm vi đề xuất:** 15 bài toán phân tích chính  
-> **Schema đề xuất:** 1 Fact + 7 Dimension  
-> **Nguồn:** SBA 7(a) FOIA, FY2020–FY2026  
-> **Snapshot:** 30/06/2026  
+> **Phạm vi đề xuất:** 15 bài toán phân tích chính\
+> **Schema đề xuất:** 1 Fact + 7 Dimension\
+> **Nguồn:** SBA 7(a) FOIA, FY2020–FY2026\
+> **Snapshot:** 30/06/2026\
 > **Grain:** Một dòng trong `FactLoanSnapshot` đại diện cho một bản ghi CSV SBA 7(a) được công bố tại snapshot 30/06/2026.
 
 ---

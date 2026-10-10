@@ -1,8 +1,20 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # KPI Catalog ứng viên — SBA 7(a)
 
-> **PREVIOUS 19/24-BQ KPI CATALOG — DEPRECATED AS CURRENT SCOPE:** `K01`–`K13` gắn mã BQ cũ được giữ để truy vết, **không tự động là KPI catalog của Q1–Q15**. Base measures và công thức cần cho bộ hiện hành xem [Measure–Dimension Matrix](../dimensional_model/measure_dimension_matrix.md) và [candidate schema](../dimensional_model/candidate_schema.md). Giữ nguyên KPI ID cũ, không remap hoặc gọi đã duyệt.
+> **PREVIOUS 19/24-BQ KPI CATALOG — DEPRECATED AS CURRENT SCOPE:** `K01`–`K13` gắn mã BQ cũ được giữ để truy vết, **không tự động là KPI catalog của Q1–Q15**. Base measures và công thức cần cho bộ hiện hành xem [Measure–Dimension Matrix](../../dimensional_model/measure_dimension_matrix.md) và [candidate schema](../../dimensional_model/candidate_schema.md). Giữ nguyên KPI ID cũ, không remap hoặc gọi đã duyệt.
 
-**Căn cứ:** [Business Rules](business_rules.md), [19 BQ được chọn](business_questions_selection.md), [Business Questions Catalog](business_questions_catalog.md), [Data Dictionary](../data_understanding/data_dictionary.md), [Data Quality Report](../data_understanding/data_quality_report.md) và workbook SBA sheet `7(a) Data Dictionary`. Đây là định nghĩa để rà soát, chưa phải KPI được nhóm phê duyệt. Một KPI dùng lại ở nhiều chiều; tên KPI không gắn state/industry/lender.
+**Căn cứ:** [Business Rules](business_rules.md), [19 BQ được chọn](business_questions_selection.md), [Business Questions Catalog](business_questions_catalog.md), [Data Dictionary](../../data_understanding/data_dictionary.md), [Data Quality Report](../../data_understanding/data_quality_report.md) và workbook SBA sheet `7(a) Data Dictionary`. Đây là định nghĩa để rà soát, chưa phải KPI được nhóm phê duyệt. Một KPI dùng lại ở nhiều chiều; tên KPI không gắn state/industry/lender.
 
 ## Quy ước chung
 
@@ -32,7 +44,7 @@
 
 ## Phạm vi, chiều và giới hạn của từng KPI
 
-Trong bảng, “P” luôn là **Default Population** ở trên; cột Filter Conditions ghi phần thêm hoặc điều kiện cửa sổ. `—` nghĩa là không thêm bộ lọc ngoài lát cắt BQ. Nguồn DQ chi tiết tại [Data Quality Report](../data_understanding/data_quality_report.md).
+Trong bảng, “P” luôn là **Default Population** ở trên; cột Filter Conditions ghi phần thêm hoặc điều kiện cửa sổ. `—` nghĩa là không thêm bộ lọc ngoài lát cắt BQ. Nguồn DQ chi tiết tại [Data Quality Report](../../data_understanding/data_quality_report.md).
 
 | KPI | Analysis Dimensions | Default Population; Filter Conditions | Aggregation Rule | Unit | Data Quality Concerns | Interpretation Limitations |
 |---|---|---|---|---|---|---|
@@ -52,4 +64,4 @@ Trong bảng, “P” luôn là **Default Population** ở trên; cột Filter C
 
 **Loại các KPI trùng:** “Total Approval by Lender/State/Industry” = K02 theo dimension; “State/Industry Approval Share” = K05 theo parent; “Status Record Count” = K01 theo `LoanStatus`; “Observed CHGOFF/PIF Share” = K12 với `s` tương ứng. Average term không bắt buộc BQ16; collateral share thuộc BQ19 ngoài 19 câu chọn; resolved-only rate thuộc BQ24 ngoài phạm vi chính. Không thêm KPI 36 tháng vì 19 BQ hiện tại không yêu cầu fixed-window outcome.
 
-**Xung đột với prototype:** [warehouse design](../02_warehouse_design.md) và [src/main.py](../../src/main.py) có `NonCancelledApproval`, `ResolvedCount`/resolved charge-off rate, weighted interest và duration. Chúng là hiện trạng prototype, không tự động vào catalog 19 BQ. K11 ở đây là bình quân không trọng số ứng viên cho BQ18; không dùng nhầm weighted-rate của prototype. Nếu nhóm chọn một định nghĩa khác, phải đổi công thức và rà lại mapping trước triển khai.
+**Xung đột với prototype:** [warehouse design](../dimensional_model/02_warehouse_design.md) và [src/main.py](../../../src/main.py) có `NonCancelledApproval`, `ResolvedCount`/resolved charge-off rate, weighted interest và duration. Chúng là hiện trạng prototype, không tự động vào catalog 19 BQ. K11 ở đây là bình quân không trọng số ứng viên cho BQ18; không dùng nhầm weighted-rate của prototype. Nếu nhóm chọn một định nghĩa khác, phải đổi công thức và rà lại mapping trước triển khai.

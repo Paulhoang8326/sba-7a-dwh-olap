@@ -1,3 +1,5 @@
+> **HISTORICAL REFERENCE — NOT CURRENT CONTRACT.** Giữ nguyên nội dung đóng góp từ `main` để tham khảo lịch sử. Các tên bảng, số Dimensions và trạng thái implementation bên dưới không thay thế [trạng thái hiện hành](../00_current_status.md), [schema hiện hành](../dimensional_model/candidate_schema.md) hoặc [kế hoạch SSIS Chương 2](../etl/chapter2_ssis_plan.md). Chương 1 hiện là `CHAPTER 1 READY TO FREEZE`; preprocessing đã tích hợp và TSV đã tái lập, warehouse/SSIS chưa triển khai.
+
 # Thiết kế các Dimension
 
 PROPOSED, 2026-09-28. Bảy bảng logic, không DDL/ETL. Căn cứ [OLAP requirements](../business_requirements/olap_analysis_requirements.md), [derived requirements](../business_requirements/derived_attribute_requirements.md), [profiling](../data_understanding/data_profiling_report.md), [kiểm tra trực tiếp](dimensional_model_proposal.md#2-kiểm-tra-trực-tiếp-phục-vụ-thiết-kế).

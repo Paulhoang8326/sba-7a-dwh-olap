@@ -1,3 +1,5 @@
+> **HISTORICAL REFERENCE — NOT CURRENT CONTRACT.** Giữ nguyên nội dung đóng góp từ `main` để tham khảo lịch sử. Các tên bảng, số Dimensions và trạng thái implementation bên dưới không thay thế [trạng thái hiện hành](../00_current_status.md), [schema hiện hành](../dimensional_model/candidate_schema.md) hoặc [kế hoạch SSIS Chương 2](../etl/chapter2_ssis_plan.md). Chương 1 hiện là `CHAPTER 1 READY TO FREEZE`; preprocessing đã tích hợp và TSV đã tái lập, warehouse/SSIS chưa triển khai.
+
 # Coverage, derived attributes, DQ và mapping sơ bộ
 
 PROPOSED, 2026-09-28. Căn cứ [19 BQ](../business_requirements/business_questions_selection.md), [KPI catalog](../business_requirements/kpi_catalog.md), [derived requirements](../business_requirements/derived_attribute_requirements.md), [DQ report](../data_understanding/data_quality_report.md). Schema/mapping dưới đây chưa chạy transformation.

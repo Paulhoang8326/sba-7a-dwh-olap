@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # SSIS và SSAS: hướng dẫn dựng project thật
 
-> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** Thứ tự nạp, `FactLoanSnapshot`, 8 dimensions, date roles và hợp đồng cube dưới đây phục vụ snowflake prototype cũ. Đây là hướng dẫn/script, không phải bằng chứng SSIS/SSAS đã chạy và chưa là kế hoạch triển khai [candidate schema](dimensional_model/candidate_schema.md). Xem [Current Status](00_current_status.md).
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** Thứ tự nạp, `FactLoanSnapshot`, 8 dimensions, date roles và hợp đồng cube dưới đây phục vụ snowflake prototype cũ. Đây là hướng dẫn/script, không phải bằng chứng SSIS/SSAS đã chạy và chưa là kế hoạch triển khai [candidate schema](../../dimensional_model/candidate_schema.md). Xem [Current Status](../../00_current_status.md).
 
 ## Môi trường
 

@@ -1,3 +1,7 @@
+// Chapter 1 consistency 2026-10-10: logical model and money/TermBandKey types aligned.
+// Money DECIMAL(18,3) preserves source precision; TermBandKey BIGINT matches the report.
+// SSIS and physical SQL Server tables are the next Chapter 2 implementation step.
+// Canonical field documentation: docs/dimensional_model/candidate_schema.md
  Project SBA_7A_DWH_OLAP {
   database_type: "SQL Server"
 
@@ -174,7 +178,7 @@ Table Dim_LoanStatus {
 //////////////////////////////////////////////////////////////
 
 Table Dim_TermBand {
-  TermBandKey int [pk, increment]
+  TermBandKey bigint [pk, increment]
 
   TermBandCode varchar(30) [not null]
   TermBandName varchar(100)
@@ -247,13 +251,13 @@ Table Fact_Loan {
   LenderKey bigint [not null]
   LoanProfileKey bigint [not null]
   LoanStatusKey bigint [not null]
-  TermBandKey int [not null]
+  TermBandKey bigint [not null]
   BusinessKey bigint [not null]
 
   // Base additive measures
-  GrossApproval decimal(19,2)
-  SBAGuaranteedApproval decimal(19,2)
-  GrossChargeOffAmount decimal(19,2)
+  GrossApproval decimal(18,3)
+  SBAGuaranteedApproval decimal(18,3)
+  GrossChargeOffAmount decimal(18,3)
 
   JobsSupported int
   RecordCount int [not null, default: 1]

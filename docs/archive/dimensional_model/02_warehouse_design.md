@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Mô hình kho dữ liệu
 
-> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** This document describes the previous snowflake prototype and is not the current candidate schema. Candidate: [1 `Fact_Loan` + 7 dimensions](dimensional_model/candidate_schema.md). Xem [Current Status](00_current_status.md).
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** This document describes the previous snowflake prototype and is not the current candidate schema. Candidate: [1 `Fact_Loan` + 7 dimensions](../../dimensional_model/candidate_schema.md). Xem [Current Status](../../00_current_status.md).
 
 ## Grain và phạm vi
 

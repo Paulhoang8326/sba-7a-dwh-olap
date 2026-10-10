@@ -1,6 +1,6 @@
 # Data layers
 
-> `python -m src.main` và các bảng trong `data/processed/` là **previous snowflake prototype**. [Preprocessing Plan hiện hành](../docs/data_understanding/preprocessing_plan.md) vẫn `PLANNED / NOT IMPLEMENTED`; [candidate schema](../docs/dimensional_model/candidate_schema.md) chưa được nạp. Raw CSV phải giữ nguyên.
+> `python -m src.main` và các bảng trong `data/processed/` là **previous snowflake prototype**. [Preprocessing Plan hiện hành](../docs/data_understanding/preprocessing_plan.md) ghi **REPORT_DOCUMENTED_COMPLETED / CHECKOUT_UNVERIFIED** (output 38 cột theo report chưa có trong checkout); [candidate schema](../docs/dimensional_model/candidate_schema.md) chưa được nạp. Raw CSV phải giữ nguyên.
 
 ```text
 data/
@@ -21,7 +21,7 @@ Sau khi clone, nếu file CSV trong `data/raw/foia/` chỉ là con trỏ LFS (~1
 git lfs pull
 ```
 
-Chỉ có dữ liệu trung gian `data/staging/*` và kết quả chuẩn hóa `data/processed/*` là **không được commit** (đã được cấu hình trong `.gitignore`). Sau khi đã có file CSV nguồn, chạy pipeline để sinh toàn bộ warehouse tables:
+Chỉ có dữ liệu trung gian `data/staging/*` và kết quả chuẩn hóa `data/processed/*` là **không được commit** (đã được cấu hình trong `.gitignore`). Sau khi đã có file CSV nguồn, lệnh dưới sinh CSV **prototype snowflake cũ**, không output preprocessing 38 cột hoặc warehouse hiện hành:
 
 ```bash
 python -m src.main

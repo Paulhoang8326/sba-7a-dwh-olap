@@ -1,3 +1,5 @@
+> **HISTORICAL REFERENCE — NOT CURRENT CONTRACT.** Giữ nguyên nội dung đóng góp từ `main` để tham khảo lịch sử. Các tên bảng, số Dimensions và trạng thái implementation bên dưới không thay thế [trạng thái hiện hành](../00_current_status.md), [schema hiện hành](../dimensional_model/candidate_schema.md) hoặc [kế hoạch SSIS Chương 2](../etl/chapter2_ssis_plan.md). Chương 1 hiện là `CHAPTER 1 READY TO FREEZE`; preprocessing đã tích hợp và TSV đã tái lập, warehouse/SSIS chưa triển khai.
+
 # Đề xuất mô hình đa chiều SBA 7(a)
 
 Ngày lập: 2026-09-28. **PROPOSED — thiết kế logic để rà soát**, chưa duyệt các rules còn mở, chưa thay prototype, ETL hoặc database.

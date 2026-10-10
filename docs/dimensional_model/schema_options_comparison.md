@@ -1,3 +1,5 @@
+> **HISTORICAL REFERENCE — NOT CURRENT CONTRACT.** Giữ nguyên nội dung đóng góp từ `main` để tham khảo lịch sử. Các tên bảng, số Dimensions và trạng thái implementation bên dưới không thay thế [trạng thái hiện hành](../00_current_status.md), [schema hiện hành](../dimensional_model/candidate_schema.md) hoặc [kế hoạch SSIS Chương 2](../etl/chapter2_ssis_plan.md). Chương 1 hiện là `CHAPTER 1 READY TO FREEZE`; preprocessing đã tích hợp và TSV đã tái lập, warehouse/SSIS chưa triển khai.
+
 # So sánh hai phương án Star Schema SBA 7(a)
 
 **Ngày:** 29/09/2026. **Trạng thái:** ĐỀ XUẤT ĐỂ DUYỆT; chưa chọn phương án, chưa triển khai database/ETL/SSAS.

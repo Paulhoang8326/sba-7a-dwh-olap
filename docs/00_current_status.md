@@ -1,50 +1,65 @@
 # Trạng thái hiện hành — SBA 7(a)
 
-> Cập nhật: 2026-10-01 (Phase 1 tiền xử lý Python đã triển khai và kiểm chứng; các mục khác giữ nguyên từ 2026-09-30). Trang này phân biệt phạm vi câu hỏi, Target Schema Proposal, Measure Contract, business rules, prototype cũ và hệ thống đã triển khai. Người dùng đã duyệt **star 1F+8D, Q10 mới và năm nhóm business rule ở cấp dự án**. Physical/Final Schema chưa chốt; NAICS reference/version/mapping còn `PENDING_VERIFICATION`.
+Cập nhật **2026-10-10**: **CHAPTER 1 READY TO FREEZE** trong phạm vi đồ án IS217. [Report Chương 1](../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) giữ nguyên; DBML đã thống nhất money/TermBandKey. Input SSIS 52 cột đã tạo và kiểm trên đủ 388.338 records. Tiếp theo là [triển khai Chương 2](etl/chapter2_ssis_plan.md); chưa có database/package target chạy thật.
 
-## Source of Truth
+## Canonical project files
 
-| Chủ đề | Tài liệu canonical hiện hành | Cách dùng |
+| Vai trò | File thực tế | Trạng thái |
 |---|---|---|
-| Business Questions | [Q1–Q15 hiện hành](business_requirements/business_questions_current.md) | Phạm vi câu hỏi `DECIDED` ở cấp nội dung. Bộ BQ01–BQ24 cũ là lịch sử. |
-| Measure–Dimension Matrix | [Matrix Q1–Q15](dimensional_model/measure_dimension_matrix.md) | Kiểm tra coverage từ câu hỏi đến measure, dimension và điều kiện. |
-| Measure Contract | [Measure Contract Q1–Q15](business_requirements/measure_contract_q1_q15.md) | Tách Formula Status với Rule/Population Status; **DOCUMENTED / NOT IMPLEMENTED**. |
-| Target Schema Proposal | [Candidate logical schema](dimensional_model/candidate_schema.md) | Đã chọn star 1 `FactLoanSnapshot` + 8 dimensions ở cấp logic; **PROPOSED**, chưa là Final/physical schema hoặc database đã nạp. |
-| Business Rules | [Business Rule Register](business_requirements/business_rule_register.md) | Population, cấp NAICS Sector, TermBand tách `TERM_120`, `P I F→PIF` canonical và Q15 gates 30/5 `PROJECT_APPROVED`; NAICS mapping còn chờ xác minh. |
-| Preprocessing | [ETL Implementation Plan §3](etl/etl_implementation_plan.md), [Giải thích Phase 1](etl/phase1_preprocessing_explained.md), [Preprocessing Plan](data_understanding/preprocessing_plan.md), output [`reports/preprocessing/`](../reports/preprocessing/) | **IMPLEMENTED — Phase 1** (2026-10-01): P1.1–P1.17 có đủ, 57/57 test pass, 388.338 → 388.338 dòng, đối soát khớp. NAICS Sector vẫn `CANDIDATE_UNVERIFIED`. |
-| Dữ liệu và quality | [Data Overview](data_understanding/data_overview.md), [Profiling](data_understanding/data_profiling_report.md), [Data Quality](data_understanding/data_quality_report.md) | Bằng chứng `VERIFIED` của snapshot nguồn. |
-| Prototype đã có | [Thiết kế snowflake trước đây](02_warehouse_design.md), [kiểm chứng prototype](validation.md) | Giữ để truy vết; `DEPRECATED AS CURRENT`, không dùng làm candidate schema. |
+| Báo cáo nhóm | [Chương 1 mới nhất](../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx) | Nguồn chính cho nội dung báo cáo; không sửa DOCX |
+| Context ngắn | [PROJECT_CONTEXT.md](../PROJECT_CONTEXT.md) | Context đọc trước cho task sau |
+| Trạng thái / Open Issues | [docs/00_current_status.md](../docs/00_current_status.md) | Phân biệt report, checkout và triển khai |
+| Mô hình logic / field contract | [candidate_schema.md](../docs/dimensional_model/candidate_schema.md) | Fact_Loan + 8 Dim_* theo bảng report |
+| Q1–Q15 | [business_questions_current.md](../docs/business_requirements/business_questions_current.md) | Canonical nội dung; bảng 1.14 report là nguồn đối chiếu |
+| Measures / KPI | [measure_contract_q1_q15.md](../docs/business_requirements/measure_contract_q1_q15.md) | Công thức logic, chưa chạy warehouse |
+| Coverage | [measure_dimension_matrix.md](../docs/dimensional_model/measure_dimension_matrix.md) | 8 dimensions bao phủ Q1–Q15 |
+| Business rules | [business_rule_register.md](../docs/business_requirements/business_rule_register.md) | Rule dự án; NAICS mapping chưa verified |
+| Dataset / profiling / DQ | [overview](../docs/data_understanding/data_overview.md), [profiling](../docs/data_understanding/data_profiling_report.md), [quality](../docs/data_understanding/data_quality_report.md) | Baseline nguồn, không là standardized output |
+| Dictionary | [định nghĩa nguồn](../docs/data_dictionary.md), [diễn giải Việt](../docs/data_understanding/data_dictionary.md) | Hai vai trò bổ sung, không phải hai schema đích |
+| Preprocessing | [preprocessing_plan.md](../docs/data_understanding/preprocessing_plan.md), [integration audit](etl/preprocessing_integration_audit.md) | Code/notebook/reports đã tích hợp; LFS output đã kiểm trong Git cache, chưa checkout vào staging |
+| Input và kế hoạch Chương 2 | [chapter2_ssis_plan.md](etl/chapter2_ssis_plan.md), [prepare_ssis_input.py](../src/etl/prepare_ssis_input.py) | Một TSV local 52 cột; kiểm count, từng record, totals và projection checksum |
+| Diagram DBML | [candidate_schema.dbml](../diagram/candidate_schema.dbml) | Khớp bảng report; money (18,3), TermBandKey BIGINT; chưa là deployed DDL |
+| SQL schema hiện có | [01_warehouse.sql](../sql/01_warehouse.sql), [02_validation.sql](../sql/02_validation.sql) | Canonical implementation **prototype cũ**, không schema đích hiện hành |
+| Python hiện có | [preprocess.py](../src/etl/preprocess.py), [notebook](../notebooks/01_preprocessing.ipynb); [src/main.py](../src/main.py) | Hai file đầu là Phase 1 mới; `src/main.py` là prototype snowflake cũ |
 
-## Dataset — VERIFIED
+## Dataset và scope
 
-- Nguồn là một CSV SBA 7(a) FOIA với **388.338 published records**, **42 thuộc tính**, `AsOfDate = 2026-06-30`, `ApprovalFY` FY2020–FY2026. FY2026 mới đến 30/06/2026.
-- `Program` trong file là chương trình **7(a)** (chuỗi nguồn có khoảng trắng); mọi kết luận ở đây chỉ áp dụng cho snapshot 7(a) này.
-- Một dòng nguồn là một **published record trong một snapshot**. Không có public unique `LoanID`; `LocationID` là mã lender. `Published Record Count` không phải unique loan count.
-- Profiling trên chuỗi nguồn xác định **687 dòng thuộc 296 nhóm exact duplicate**, gồm 391 bản sao dư theo phương pháp đó. Giữ mọi dòng; không suy ra chúng là cùng một khoản vay. Con số 689/392 ở tài liệu feasibility cũ là kết quả theo cách chuẩn hóa khác, không phải số exact-raw hiện hành.
-- `LoanStatus` là trạng thái **tại snapshot**, không phải trạng thái lịch sử cuối mỗi FY. `GrossApproval` và `SBAGuaranteedApproval` là giá trị tại phê duyệt; `GrossChargeOffAmount` là gross, không phải net loss; `JobsSupported` do lender báo cáo.
+388.338 published records × 42 source fields; một snapshot 2026-06-30, ApprovalDate 2019-10-01..2026-06-30, FY2020–FY2026. FY2026 partial; Q6 so cùng kỳ Oct–Jun. Không có public unique LoanID; LocationID là lender. Giữ 687 records/296 nhóm exact raw duplicates (391 copies dư); số 689/392 trong lịch sử dùng normalization khác. Raw bất biến, không suy 1 record=1 unique loan.
 
-## Phạm vi và thiết kế
+## Trạng thái theo tầng bằng chứng
 
-| Nội dung | Trạng thái | Diễn giải |
+| Nội dung | Trạng thái sau đồng bộ | Giới hạn |
 |---|---|---|
-| Q1–Q15 | **DECIDED — business-question scope only** | Nội dung câu hỏi chính đã được người dùng xác nhận. Công thức phụ thuộc rule vẫn có thể `CONDITIONAL`. |
-| `FactLoanSnapshot` + 8 dimensions | **PROPOSED TARGET SCHEMA; lựa chọn logic đã duyệt** | Star schema bổ sung `DimBusiness`/`BusinessKey`; grain vẫn là published record trong snapshot. Chưa duyệt Final/physical schema/DDL. |
-| Base measures và Measure Contract | **FORMULA READY / DOCUMENTED; NOT IMPLEMENTED** | `GrossApproval`, `SBAGuaranteedApproval`, `GrossChargeOffAmount`, `JobsSupported`, `RecordCount`. Average, ratio, share, YoY, ranking và shift tính ở lớp truy vấn. |
-| BR-POP-01, BR-TERM-01, BR-STATUS-01, BR-CHGOFF-01 | **PROJECT_APPROVED** | Default population mọi published record; `TERM_120` riêng; raw `P I F` giữ nguyên và canonical `PIF`; Q15 gates 30/5. Chưa nạp vào kho. |
-| BR-NAICS-01 | **PROJECT_APPROVED — analytical level; PENDING_VERIFICATION — reference/mapping** | Q13/Q15 dùng NAICS Sector; không suy ra vintage hoặc gắn sector name chưa xác minh. |
-| BR-BUSINESS-01 / BR-BUSINESS-02 | **DECIDED cho raw Q10/proposal / OPEN cho canonical và grouping** | Giữ `BusinessTypeRaw`, `BusinessAgeRaw`, `Unanswered` và missing; chưa tạo `BusinessAgeGroup` hoặc borrower identity. |
-| Preprocessing | **IMPLEMENTED — Phase 1** (2026-10-01) | `python -m src.etl.preprocess` xuất `data/staging/sba7a_standardized.tsv` (388.338 × 38, SHA-256 `837723fb…a78bc5`) và báo cáo trong [`reports/preprocessing/`](../reports/preprocessing/); raw CSV không bị sửa, không loại dòng nào. Chi tiết, số liệu và hạn chế: [Giải thích Phase 1](etl/phase1_preprocessing_explained.md). |
-| Python snowflake prototype và 15 manual/MDX cũ | **DEPRECATED AS CURRENT; retained for history** | Code, DDL, MDX và kiểm chứng prototype vẫn có giá trị lịch sử; không tương ứng bộ Q1–Q15 hiện hành. |
-| SQL Server, SSIS, SSAS cube, Pivot, BI theo candidate mới | **NOT IMPLEMENTED** | Có script/đặc tả prototype cũ, chưa có bằng chứng triển khai candidate mới. |
+| Chương 1 | CHAPTER 1 READY TO FREEZE | Không có lỗi nghiêm trọng buộc sửa DOCX; hình schema cũ còn type annotations đã được đính chính ở DBML/ghi chú Chương 2 |
+| Logical model | REPORT_ALIGNED — 1 Fact_Loan + 8 Dim_* | Proposal trong report; không physical/deployed |
+| Q1–Q15 / measures | DOCUMENTED / WAREHOUSE_NOT_IMPLEMENTED | Nội dung khớp §1.3.6; chi tiết công thức kế thừa Measure Contract |
+| Preprocessing | CODE_INTEGRATED / TSV_REPRODUCED | Code/notebook/reports có trong branch; raw và hai output LFS kiểm hash/header/shape/totals; TSV tái lập đúng SHA-256. Full `run()`/pytest chưa chạy vì giới hạn dependency và clean CSV chứa `Borr*`. |
+| TermBand / canonical PIF | Code và direct rule assertions khớp report | Warehouse Dim/FK chưa materialize; không suy Phase 1 là SSIS đã chạy |
+| Input Chương 2 | GENERATED / VALIDATED — 388.338 × 52 | 6 unittest pass; full-data exporter pass; 38-column projection cùng checksum baseline; không xuất Borr* hoặc clean CSV mới |
+| NAICS | CANDIDATE_UNVERIFIED / PENDING_VERIFICATION | Cấp sector đã chọn; reference/version/crosswalk chưa verified |
+| Python/SQL/CSV cũ | PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT | Snowflake FactLoanSnapshot, giữ code và artifact lịch sử |
+| SSIS / SQL target / SSAS / BI | Chưa có artifact/bằng chứng triển khai target trong checkout | Task này chưa thực hiện Chương 2 hoặc package |
 
-## Quy ước trạng thái
+## Open Issues report và implementation
 
-`VERIFIED` = nguồn/dữ liệu đã kiểm chứng; `PROJECT_APPROVED` = quyết định phân tích của đồ án được người dùng duyệt, không mặc nhiên là quy tắc SBA; `PENDING_VERIFICATION` = còn cần kiểm nguồn/mapping; `DECIDED` = nội dung BQ hoặc quyết định được duyệt theo phạm vi nêu; `READY` = công thức đủ rõ cho bước được chỉ rõ; `PROPOSED` = đề xuất chưa duyệt; `OPEN` = còn thiếu quyết định/căn cứ; `DEPRECATED` = lịch sử; `NOT IMPLEMENTED` = chưa triển khai. Formula Status, Rule/Population Status và Implementation Status là ba trục khác nhau.
+| ID | Report / quyết định hiện tại | Checkout / khác biệt | Khả năng nguyên nhân và bước cần làm | Status |
+|---|---|---|---|---|
+| OI-01 | Fact_Loan / LoanKey + 8 Dim_* (bảng 1.4–1.12) | Python/DDL FactLoanSnapshot / LoanRowKey, snowflake DimState/County và DimSector/Industry; status nằm LoanProfile, business có franchise, nhiều date roles | Prototype trước khi report đổi model; đặc tả mapping/physical schema mới trong task sau | OPEN |
+| OI-02 | Python preprocessing hoàn tất, 388.338×38, TSV/clean CSV, notebook/script SHA-256 match (§1.2.2) | Code/notebook/reports đã có; LFS objects kiểm trực tiếp; TSV tái lập cùng SHA-256 và 18/18 đối soát pass. Full `run()`/pytest chưa tái kiểm do clean CSV chứa `Borr*` và thiếu pytest. | Xem [integration audit](etl/preprocessing_integration_audit.md); không gọi full test suite pass. | PARTIALLY_VERIFIED |
+| OI-03 | TSV Chương 1 giữ 38 cột; target dùng 32 source attrs | Input riêng Chương 2 nối đúng 14 trường, giữ record order và toàn bộ 38 cột đầu | Dùng file 52 cột cho SSIS; không cần enrichment JOIN | RESOLVED — INPUT |
+| OI-04 | §1.2.2.4 DECIMAL(18,3), hai values 3dp | DBML đã đổi ba money measures thành (18,3); full source fits chính xác | Hình schema cũ trong DOCX/SVG còn annotation (19,2); dùng DBML và chú thích datatype ở Chương 2. Không đổi model/business content | RESOLVED — TECHNICAL; image note retained |
+| OI-05 | Bảng 1.10 và 1.12 TermBandKey BIGINT | DBML PK/FK đã BIGINT | Hình cũ còn INT; triển khai theo bảng report và DBML đã thống nhất | RESOLVED — TECHNICAL; image note retained |
+| OI-06 | SourceFileID + SourceRecordOrdinal; SourceRowNumber vật lý riêng | Input 52 cột giữ source/ordinal, không xuất physical line | Kế hoạch load đầu để SourceRowNumber NULL; không gán ordinal+1. Có thể bổ sung raw parser start-line sau nếu cần | CHAPTER 2 IMPLEMENTATION |
+| OI-07 | Sector candidate CANDIDATE_UNVERIFIED (§1.2.2.4); reference/version còn cần xác minh (§1.3.5) | Preprocessing mới lấy prefix có dải gộp và gắn `CANDIDATE_UNVERIFIED`; chưa có verified reference/crosswalk | Candidate prefix không chứng minh vintage; xác minh trước kết quả chính thức Q13/Q15 | PENDING_VERIFICATION |
+| OI-08 | PK/FK/type logic trong report | Full composite keys đã có trong kế hoạch; lengths/NULL/seed cần cụ thể khi viết DDL | Full reload một snapshot và kiểm lookup errors là đủ đồ án; không cần SCD2/CDC/production audit | CHAPTER 2 IMPLEMENTATION |
+| OI-09 | Notebook che `Borr*` khi hiển thị | Clean CSV remote vẫn có Borr*; input 52 cột không có | SSIS dùng TSV allowlist local, không cần clean CSV. Quyền chia sẻ raw/clean tiếp tục tách riêng | NOT BLOCKING SSIS INPUT |
 
-## Open Decisions và bước tiếp theo
+## Điều kiện tiếp tục Chương 2
 
-1. Xác minh NAICS reference/version/crosswalk, đối soát sector code/name và unmapped trước khi công bố Q13/Q15 theo sector. Các rule khác đã `PROJECT_APPROVED`, nhưng chưa triển khai.
-2. Viết Source-to-Target Mapping theo [star 1F+8D](dimensional_model/candidate_schema.md), [Measure Contract](business_requirements/measure_contract_q1_q15.md), unknown members, khóa/lineage và rule version. Phần NAICS có thể để `PENDING_VERIFICATION`; chưa gọi là Final Schema.
-3. ~~Triển khai Preprocessing Plan~~ — đã xong Phase 1 (2026-10-01, đối soát raw → standardized khớp). Còn lại: Phase 2 DDL (`sql/dwh/00–02`), Phase 3 SSIS, Phase 4 đối soát standardized → warehouse theo [ETL Implementation Plan](etl/etl_implementation_plan.md) §4–§6; **chưa bắt đầu**.
+Có thể chuyển sang dựng database và package theo [kế hoạch Chương 2](etl/chapter2_ssis_plan.md). Chốt widths/Unicode, helper NULL và seed labels khi viết DDL/Data Flow, không cần kéo dài audit Chương 1. NAICS vẫn candidate; xác minh reference trước khi công bố kết quả sector chính thức Q13/Q15. Q1–Q15 và business rules không đổi.
 
-Không coi việc đồng bộ tài liệu lần này là đã làm ETL (SSIS), database hay cube; chỉ Phase 1 tiền xử lý Python đã chạy.
+Kết quả 2026-10-10: TSV 52 cột **217.379.346 bytes**, SHA-256 `8d082d3ef52cc81d023726b58b93d6408a6f2c17226a168da27d1dcb9d0ca56d`; projection 38 cột SHA-256 `837723fb7b6b8358ce4aaf4855ea396b197104660babbe6d6d9f6a6be3a78bc5`. Tổng measures và từng record khớp, script kiểm DECIMAL(18,3) chứa chính xác mọi money value. Manifest/output lớn chỉ lưu local và ignore.
+
+## Quy ước bằng chứng
+
+CODE_INTEGRATED = source/report artifact đã vào branch; TSV_REPRODUCED = đã tái tạo TSV cùng SHA-256 từ raw mà không ghi clean CSV; PARTIALLY_VERIFIED = còn giới hạn full run/test. PROJECT_APPROVED = quyết định dự án, không quy tắc SBA. PENDING_VERIFICATION = thiếu nguồn xác minh. OPEN = thiếu contract/quyết định. WAREHOUSE_NOT_IMPLEMENTED = chưa thấy target artifacts/bằng chứng thực thi. Các snapshot archived không thay trạng thái này.

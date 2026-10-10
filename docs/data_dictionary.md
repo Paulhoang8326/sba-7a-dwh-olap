@@ -1,5 +1,7 @@
 # Từ điển dữ liệu nguồn SBA 7(a)
 
+> Đồng bộ 2026-10-02: file này là từ điển định nghĩa nguồn tiếng Anh. [Diễn giải Việt và datatype đích](data_understanding/data_dictionary.md) bổ sung theo report; AsOfDate phải được giữ trong metadata snapshot/source, vị trí physical chưa chốt. Không dùng ghi chú prototype về profile.json như contract warehouse mới.
+
 Trích định nghĩa từ sheet `7(a) Data Dictionary` của workbook cục bộ. Không dùng sheet 504 cho CSV này. Định nghĩa nguồn giữ tiếng Anh để đối chiếu chính xác; quy tắc và measures của phạm vi hiện hành xem [Source of Truth](00_current_status.md). `02_warehouse_design.md` là **previous prototype**.
 
 | Field | Source definition |

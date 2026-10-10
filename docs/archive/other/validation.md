@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Kiểm chứng ngày 2026-09-23
 
-> **PREVIOUS PROTOTYPE EVIDENCE:** Những lần chạy dưới đây xác nhận Python snowflake prototype tại thời điểm ghi, không xác nhận [candidate schema](dimensional_model/candidate_schema.md), preprocessing plan, SSIS/SQL Server hoặc cube mới đã được triển khai. Xem [Current Status](00_current_status.md).
+> **PREVIOUS PROTOTYPE EVIDENCE:** Những lần chạy dưới đây xác nhận Python snowflake prototype tại thời điểm ghi, không xác nhận [candidate schema](../../dimensional_model/candidate_schema.md), preprocessing plan, SSIS/SQL Server hoặc cube mới đã được triển khai. Xem [Current Status](../../00_current_status.md).
 
 ## Đã chạy
 

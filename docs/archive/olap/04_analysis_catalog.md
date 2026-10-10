@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # 15 câu manual và 5 Excel Pivot
 
-> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** 15 câu manual, 15 MDX đối ứng và 5 Pivot dưới đây **không phải** [Business Questions Q1–Q15 hiện hành](business_requirements/business_questions_current.md), dù cùng có 15 mục. Giữ để truy vết hợp đồng cube cũ; chưa có bằng chứng truy vấn đã chạy. Xem [Current Status](00_current_status.md).
+> **PREVIOUS PROTOTYPE — DEPRECATED AS CURRENT:** 15 câu manual, 15 MDX đối ứng và 5 Pivot dưới đây **không phải** [Business Questions Q1–Q15 hiện hành](../../business_requirements/business_questions_current.md), dù cùng có 15 mục. Giữ để truy vết hợp đồng cube cũ; chưa có bằng chứng truy vấn đã chạy. Xem [Current Status](../../00_current_status.md).
 
 Tất cả câu hỏi mô tả bản snapshot 2026-06-30. Measure Count là dòng công bố. Không gọi rate trên resolved loans là rate toàn danh mục. Cùng câu hỏi có thể kiểm chứng bằng manual và MDX nhưng phải lưu bằng chứng thực hiện hai cách riêng biệt.
 

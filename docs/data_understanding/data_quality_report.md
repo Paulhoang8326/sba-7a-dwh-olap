@@ -1,6 +1,8 @@
 # Báo cáo chất lượng dữ liệu
 
-Các hàng là dấu hiệu hoặc điểm cần xác minh trên snapshot 30/06/2026. Không có thao tác làm sạch. Tỷ lệ lấy trên toàn bộ bản ghi; một dòng có thể nằm trong nhiều vấn đề.
+> Đồng bộ 2026-10-02: đây là **baseline dữ liệu nguồn 42 cột**, không standardized output 38 cột. Chương 1 §1.2.2 mô tả preprocessing đã thực hiện nhưng output/code tương ứng chưa có để kiểm trong checkout; xem [Preprocessing](preprocessing_plan.md) và [Current Status](../00_current_status.md).
+
+Các hàng là dấu hiệu hoặc điểm cần xác minh trên snapshot 30/06/2026. Các thống kê baseline ở đây không thực hiện cleaning; trạng thái preprocessing mới phân biệt theo report và checkout ở trên. Tỷ lệ lấy trên toàn bộ bản ghi; một dòng có thể nằm trong nhiều vấn đề.
 
 | ID | Attribute | Issue | Affected Records | Percentage | Potential Impact | Suggested Treatment |
 |---|---|---|---|---|---|---|
@@ -14,7 +16,7 @@ Các hàng là dấu hiệu hoặc điểm cần xác minh trên snapshot 30/06/
 | DQ08 | InitialInterestRate | Lãi suất ban đầu bằng 0 | 87 | 0.0224 | Phân tích lãi suất bị méo | Xác minh lãi suất thật hay mã thiếu |
 | DQ09 | ChargeOffDate | CHGOFF nhưng thiếu ngày | 5 | 0.0013 | Thiếu mốc thời gian kết quả | Kiểm tra độ trễ cập nhật nguồn |
 | DQ10 | PaidInFullDate | Có ngày PIF nhưng trạng thái không phải P I F | 1 | 0.0003 | Mâu thuẫn trạng thái/ngày | Đối chiếu độ trễ và quy tắc trạng thái |
-| DQ11 | LoanStatus | Nhãn P I F khác mã PIF trong workbook | 68201 | 17.5623 | Đối chiếu mã và tổng hợp trạng thái cần mapping có tài liệu | Xác nhận P I F tương ứng PIF theo SBA |
+| DQ11 | LoanStatus | Nhãn P I F khác mã PIF trong workbook | 68201 | 17.5623 | Đối chiếu mã và tổng hợp trạng thái cần mapping có tài liệu | Giữ raw P I F; canonical PIF theo rule dự án; report mô tả đã chuẩn hóa |
 | DQ12 | PaidInFullDate | Ngày trước ApprovalDate | 2 | 0.0005 | Trình tự thời gian bất thường | Đối chiếu hồ sơ và quy tắc thời gian |
 | DQ13 | ChargeOffDate | Ngày sau AsOfDate | 22 | 0.0057 | Sự kiện xảy ra sau snapshot | Xác minh cập nhật hoặc ngày nguồn |
 | DQ14 | Program | Có khoảng trắng đầu/cuối | 388338 | 100.0 | Tạo nhãn phân loại trùng nghĩa | Đối chiếu dạng gốc trước khi chuẩn hóa |

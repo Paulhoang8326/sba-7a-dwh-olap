@@ -1,4 +1,3 @@
-# Báo cáo Word cần hoàn thiện
+# Tài liệu báo cáo đồ án
 
-Đề cương và checklist: [bàn giao](../docs/07_delivery.md).
-Tài liệu thiết kế hiện nằm trong docs/. Chưa có báo cáo .docx hoàn chỉnh.
+Báo cáo Chương 1 hiện hành: [IS217.R11_24521176_24520479_BTA11.docx](../project_report/Chuong1/IS217.R11_24521176_24520479_BTA11.docx). [Template Word](../project_report/Template_Do_An_Mon_Hoc_VN.docx) được giữ để viết các chương tiếp theo; bản thử nghiệm và review log trung gian chỉ lưu local trong `tmp/project_report/`. Chưa có bằng chứng triển khai SSIS cho Chương 2. Đọc [context](../PROJECT_CONTEXT.md) và [trạng thái/Open Issues](../docs/00_current_status.md) trước khi viết tiếp. Checklist [bàn giao cũ](../docs/archive/other/07_delivery.md) chỉ là historical plan.

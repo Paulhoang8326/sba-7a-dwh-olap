@@ -1,8 +1,20 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Derived & Technical Attribute Requirements
 
-> **PREVIOUS BQ01–BQ24 REQUIREMENTS — DEPRECATED AS CURRENT SCOPE:** Matrix 19 BQ và mã KPI bên dưới là lịch sử; giữ nguyên ID để trace. Thuộc tính nào cần cho Q1–Q15 xem [Measure–Dimension Matrix hiện hành](../dimensional_model/measure_dimension_matrix.md), [candidate schema](../dimensional_model/candidate_schema.md) và [rule register](business_rule_register.md). Không coi vị trí lưu đề xuất ở đây là schema đã duyệt.
+> **PREVIOUS BQ01–BQ24 REQUIREMENTS — DEPRECATED AS CURRENT SCOPE:** Matrix 19 BQ và mã KPI bên dưới là lịch sử; giữ nguyên ID để trace. Thuộc tính nào cần cho Q1–Q15 xem [Measure–Dimension Matrix hiện hành](../../dimensional_model/measure_dimension_matrix.md), [candidate schema](../../dimensional_model/candidate_schema.md) và [rule register](../../business_requirements/business_rule_register.md). Không coi vị trí lưu đề xuất ở đây là schema đã duyệt.
 
-**Mục đích:** đầu vào cho Attribute Mapping, chưa chốt bảng Fact/Dimension hoặc star schema. BQ và KPI tham chiếu [19 BQ](business_questions_selection.md), [KPI Catalog](kpi_catalog.md), [Business Rules](business_rules.md); trường nguồn theo [Data Dictionary](../data_understanding/data_dictionary.md) và sheet `7(a) Data Dictionary` của workbook SBA. `CORE` nghĩa là phục vụ một BQ chính hoặc lineage/đối soát tối thiểu; `OPTIONAL` là hữu ích nhưng không bắt buộc; `DEFERRED` cần nguồn/quyết định bổ sung. Storage là **loại nơi lưu khả dĩ**, không phải tên bảng đã chốt. `PROPOSED` chỉ là chính sách đồ án, `OPEN` chưa đủ căn cứ.
+**Mục đích:** đầu vào cho Attribute Mapping, chưa chốt bảng Fact/Dimension hoặc star schema. BQ và KPI tham chiếu [19 BQ](business_questions_selection.md), [KPI Catalog](kpi_catalog.md), [Business Rules](business_rules.md); trường nguồn theo [Data Dictionary](../../data_understanding/data_dictionary.md) và sheet `7(a) Data Dictionary` của workbook SBA. `CORE` nghĩa là phục vụ một BQ chính hoặc lineage/đối soát tối thiểu; `OPTIONAL` là hữu ích nhưng không bắt buộc; `DEFERRED` cần nguồn/quyết định bổ sung. Storage là **loại nơi lưu khả dĩ**, không phải tên bảng đã chốt. `PROPOSED` chỉ là chính sách đồ án, `OPEN` chưa đủ căn cứ.
 
 ## Thuộc tính dẫn xuất và derived measures
 
@@ -41,7 +53,7 @@
 | `RecordCount` | Hằng 1 mỗi dòng làm thành phần K01; CORE ở semantic contract | Kiểm tổng dòng và duplicate giữ nguyên; đối soát fact | Fact measure 1 **hoặc** `COUNT(*)` trong query; lưu vật lý OPTIONAL | PROPOSED |
 | Dimension surrogate keys | Khóa nội bộ ổn định cho các chiều được chọn; CORE khi có dimensions/cao | Kiểm referential integrity, unknown members; không giải quyết exact duplicate/LoanID | Chỉ lưu FK trong fact khi mô hình được chốt; business codes (`LocationID`, NAICS) vẫn giữ text trong dimension/staging | PROPOSED |
 
-**Khóa dòng tối thiểu:** `(SourceFileID/content checksum, SourceRecordOrdinal)` phải duy nhất trong lần nhập; `SourceRowNumber` giữ đúng vị trí file để người đọc truy ngược. Nếu có CSV chứa newline trong ô quoted, ordinal bản ghi và số dòng vật lý khác nhau: parser phải ghi cả hai hoặc xác nhận nguồn không có multiline trước khi dùng một cột. Không dùng `SourceRowHash` hoặc `LoanSnapshotKey` để nối các snapshot như cùng một khoản vay. Multi-snapshot cần hợp đồng grain/lineage mới, ngoài phạm vi này. [Prototype hiện tại](../02_warehouse_design.md) dùng `LoanRowKey` và `SourceRowNumber` cho một file; tên `LoanSnapshotKey` ở đây là yêu cầu khái niệm, chưa đổi code/DDL.
+**Khóa dòng tối thiểu:** `(SourceFileID/content checksum, SourceRecordOrdinal)` phải duy nhất trong lần nhập; `SourceRowNumber` giữ đúng vị trí file để người đọc truy ngược. Nếu có CSV chứa newline trong ô quoted, ordinal bản ghi và số dòng vật lý khác nhau: parser phải ghi cả hai hoặc xác nhận nguồn không có multiline trước khi dùng một cột. Không dùng `SourceRowHash` hoặc `LoanSnapshotKey` để nối các snapshot như cùng một khoản vay. Multi-snapshot cần hợp đồng grain/lineage mới, ngoài phạm vi này. [Prototype hiện tại](../dimensional_model/02_warehouse_design.md) dùng `LoanRowKey` và `SourceRowNumber` cho một file; tên `LoanSnapshotKey` ở đây là yêu cầu khái niệm, chưa đổi code/DDL.
 
 ## Attribute Requirements Matrix — 19 BQ
 

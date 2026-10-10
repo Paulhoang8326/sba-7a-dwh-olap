@@ -1,3 +1,5 @@
+> **HISTORICAL REFERENCE — NOT CURRENT CONTRACT.** Giữ nguyên nội dung đóng góp từ `main` để tham khảo lịch sử. Các tên bảng, số Dimensions và trạng thái implementation bên dưới không thay thế [trạng thái hiện hành](../00_current_status.md), [schema hiện hành](../dimensional_model/candidate_schema.md) hoặc [kế hoạch SSIS Chương 2](../etl/chapter2_ssis_plan.md). Chương 1 hiện là `CHAPTER 1 READY TO FREEZE`; preprocessing đã tích hợp và TSV đã tái lập, warehouse/SSIS chưa triển khai.
+
 # Bus Matrix
 
 PROPOSED, 2026-09-28. Một process quan sát **danh mục hồ sơ công bố tại snapshot** dùng một FactLoanSnapshot. Các hàng G01–G05 là analysis groups trên cùng grain, không năm fact/business processes độc lập. Căn cứ [objectives](../business_requirements/business_objectives.md), [OLAP](../business_requirements/olap_analysis_requirements.md), [schema](star_schema.md).

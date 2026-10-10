@@ -1,6 +1,18 @@
+> [!WARNING]
+> **HISTORICAL / DEPRECATED DOCUMENT**
+>
+> Tài liệu này được giữ lại nhằm bảo tồn lịch sử phân tích và thiết kế của project.
+> Nội dung có thể không còn phản ánh Q1–Q15, business rules hoặc dimensional model hiện hành.
+>
+> Source of truth hiện tại:
+> - [`docs/00_current_status.md`](../../00_current_status.md)
+> - Các tài liệu current/canonical được tham chiếu từ đó.
+>
+> Không sử dụng tài liệu này làm căn cứ chính cho implementation hoặc báo cáo hiện hành nếu chưa đối chiếu với current documents.
+
 # Ánh xạ KPI ↔ 19 Business Questions
 
-> **ARCHIVED / PREVIOUS CANDIDATE MAPPING — DEPRECATED AS CURRENT:** Bảng `BQxx ↔ Kxx` dưới đây chỉ phục vụ bộ 19/24 cũ. Bộ [Q1–Q15 hiện hành](business_questions_current.md) dùng [Measure–Dimension Matrix](../dimensional_model/measure_dimension_matrix.md); không remap ID cũ hoặc coi coverage 19/19 là coverage của Q1–Q15.
+> **ARCHIVED / PREVIOUS CANDIDATE MAPPING — DEPRECATED AS CURRENT:** Bảng `BQxx ↔ Kxx` dưới đây chỉ phục vụ bộ 19/24 cũ. Bộ [Q1–Q15 hiện hành](../../business_requirements/business_questions_current.md) dùng [Measure–Dimension Matrix](../../dimensional_model/measure_dimension_matrix.md); không remap ID cũ hoặc coi coverage 19/19 là coverage của Q1–Q15.
 
 Phạm vi lấy từ [Business Questions Selection](business_questions_selection.md), nội dung câu hỏi từ [Business Questions Catalog](business_questions_catalog.md), định nghĩa KPI từ [KPI Catalog](kpi_catalog.md). `K01` là count dòng; `K02` là tổng vốn phê duyệt; `K05` là tỷ trọng **số tiền**, `K12` là tỷ trọng **số dòng**. Các ID dưới đây là **ứng viên**, không phải hợp đồng measure đã chốt.
 
