@@ -150,7 +150,7 @@ Bảng dưới trích từ bảng 1.4–1.12, giữ datatype logic mà report gh
 
 ## Derived attributes và measures
 
-`FiscalYear = year(ApprovalDate) + 1` nếu tháng ≥10, ngược lại year; `FiscalQuarter=((month+2)%12)//3+1`; `FiscalMonth=((month+2)%12)+1`. Q6: FY2020 không có YoY; FY2026 (2025-10-01..2026-06-30) so FY2025 cùng kỳ (2024-10-01..2025-06-30).
+`FiscalYear = year(ApprovalDate) + 1` nếu tháng ≥10, ngược lại year; `FiscalQuarter=((month+2)%12)//3+1`; `FiscalMonth=((month+2)%12)+1`. Q6: kết quả YoY toàn năm tài chính FY2021–FY2025. FY2020 chỉ là năm cơ sở để tính YoY FY2021, không hiển thị trong các hàng kết quả tăng trưởng. Không đưa FY2026 vào kết quả Q6.
 
 `NaicsSectorCode/Name` dùng cùng reference; `NaicsVersion` chưa được suy đoán, mapping hiện chỉ `CANDIDATE_UNVERIFIED`. `CanonicalStatus`: giữ raw và chuẩn hóa `P I F→PIF`. `TermBandCode`: ZERO=0, SHORT=1–60, MEDIUM=61–119, TERM_120=120, LONG=121–240, VERY_LONG>240; MISSING/INVALID giữ riêng. Nhãn và BandStatus theo rule tương ứng. Không chuyển BusinessAge thành tuổi số.
 

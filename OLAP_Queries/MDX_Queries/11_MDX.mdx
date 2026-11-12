@@ -1,0 +1,14 @@
+SELECT
+    [Measures].[Record Count] ON COLUMNS,
+
+    NON EMPTY (
+        [Dim Loan Profile].[Processing Method].[Processing Method].Members
+        *
+        [Dim Loan Status].[Raw Status].[Raw Status].Members
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV]
+
+WHERE (
+    [Dim Date].[Fiscal Year].&[2025]
+);

@@ -1,0 +1,18 @@
+SELECT
+{
+    ([Measures].[Gross Approval],
+     [Dim Date].[Fiscal Year].&[2024]),
+
+    ([Measures].[Gross Approval],
+     [Dim Date].[Fiscal Year].&[2025])
+} ON COLUMNS,
+
+NON EMPTY
+    [Dim Industry].[Naics Sector Code].[Naics Sector Code].Members
+ON ROWS
+
+FROM [SBA7A DWH_DSV]
+
+WHERE (
+    [Dim Project Geography].[Project State].&[CA]
+);

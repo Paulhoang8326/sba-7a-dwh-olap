@@ -47,6 +47,7 @@ data/processed/*
 # IDEs
 .vscode/
 .idea/
+.vs/
 *.swp
 *.swo
 
@@ -61,6 +62,10 @@ tmp/
 *.bak
 Source/**/bin/
 Source/**/obj/
+/SBA7A_DWH/bin/
+/SBA7A_DWH/obj/
+/SBA7A_SSAS/bin/
+/SBA7A_SSAS/obj/
 *.user
 *.suo
 Submission/
@@ -75,3 +80,8 @@ Submission/
 /project_report/Codex_report/
 /project_report/Bao_Cao_Chuong_1_SBA_7a.docx
 reports/word
+
+# Local report history and render/authoring workspaces
+/project_report/**/LichSu/
+/project_report/**/_work/
+/project_report/**/work/

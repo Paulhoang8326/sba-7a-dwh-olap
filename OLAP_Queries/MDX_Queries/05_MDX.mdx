@@ -1,0 +1,15 @@
+SELECT
+    [Measures].[Gross Approval] ON COLUMNS,
+
+    TOPCOUNT(
+        NONEMPTY(
+            [Dim Lender].[Location ID].[Location ID].Members
+            *
+            [Dim Lender].[Bank Name].[Bank Name].Members,
+            [Measures].[Gross Approval]
+        ),
+        10,
+        [Measures].[Gross Approval]
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV];

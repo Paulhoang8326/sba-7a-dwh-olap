@@ -1,0 +1,16 @@
+SELECT
+    {
+        [Measures].[Record Count],
+        [Measures].[Gross Approval],
+        [Measures].[Average Approval per Record]
+    } ON COLUMNS,
+
+    NON EMPTY
+        [Dim Term Band].[Term Band Name].[Term Band Name].Members
+    ON ROWS
+
+FROM [SBA7A DWH_DSV]
+
+WHERE (
+    [Dim Date].[Fiscal Year].&[2025]
+);

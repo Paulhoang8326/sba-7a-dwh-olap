@@ -48,7 +48,7 @@ Flat File: UTF-8 code page 65001, tab delimiter, CRLF row delimiter, header, **k
 | Dimension | Nguồn/khóa lookup đề xuất cho snapshot này | Lưu ý |
 |---|---|---|
 | Dim_Date | ApprovalDate → FullDate; DateKey đề xuất YYYYMMDD | Distinct ngày, derive year/month/quarter, FY bắt đầu tháng 10; kiểm ApprovalFY với FiscalYearDerived |
-| Dim_ProjectGeography | ProjectState + ProjectCounty + CongressionalDistrict + SBADistrictOffice | Cần cả bốn thuộc tính; state/county chỉ là cấp aggregate Q9 |
+| Dim_ProjectGeography | ProjectState + ProjectCounty + CongressionalDistrict + SBADistrictOffice | Cần cả bốn thuộc tính; Q9 tổng hợp vốn theo ProjectCounty tại ProjectState=CA trên toàn giai đoạn FY2020–FY2026 |
 | Dim_Industry | NaicsCode + NaicsDescription | Không code-only; giữ CANDIDATE_UNVERIFIED, tên/version NULL khi chưa có verified reference |
 | Dim_Lender | LocationID | BankName và sáu trường bổ sung là attributes; LocationID hiện xác định duy nhất lender tuple |
 | Dim_LoanProfile | ProcessingMethod + FixedorVariableInterestInd + RevolverStatus + CollateralInd | Không method-only; không impute fixed/variable missing |
@@ -76,7 +76,7 @@ Sort loại trùng chỉ dùng ở nhánh **dimension members**. Nhánh Fact kh�
 
 Đối chiếu thêm FY/raw-status counts với `reports/preprocessing/reconciliation.csv`. Expected observed dimension tuples đã audit: Geography 4848, Industry 1171, Lender 2338, LoanProfile 93, Business 22, LoanStatus 5; Date/TermBand counts phụ thuộc seed/calendar design. Nếu thêm special members, báo tách số seed và observed members.
 
-Q1–Q12/Q14 có source fields cần thiết; Q13/Q15 có candidate sector để phát triển nhưng kết quả sector chính thức chờ reference/version verification. Các gates Q12/Q15 là query rules, không lọc input ETL.
+Q1–Q12/Q14 có source fields cần thiết; Q13/Q15 có candidate sector để phát triển nhưng kết quả sector chính thức chờ reference/version verification. Các gates Q15 là query rules, không lọc input ETL; Q12 lọc FY2025 và tổng hợp theo Term Band tại lớp truy vấn.
 
 ## Cách tổ chức báo cáo theo mẫu
 

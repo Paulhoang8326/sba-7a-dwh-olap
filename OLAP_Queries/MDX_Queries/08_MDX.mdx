@@ -1,0 +1,13 @@
+SELECT
+    {
+        [Measures].[Gross Approval],
+        [Measures].[State Approval Share]
+    } ON COLUMNS,
+
+    NON EMPTY (
+        [Dim Date].[Fiscal Year].[Fiscal Year].Members
+        *
+        [Dim Project Geography].[Project State].[Project State].Members
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV];
