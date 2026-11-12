@@ -1,0 +1,12 @@
+SELECT
+    {
+        [Measures].[Record Count],
+        [Measures].[Gross Approval],
+        [Measures].[Average Approval per Record]
+    } ON COLUMNS,
+
+    NON EMPTY
+        [Dim Loan Profile].[Processing Method].[Processing Method].MEMBERS
+    ON ROWS
+
+FROM [SBA7A DWH_DSV];

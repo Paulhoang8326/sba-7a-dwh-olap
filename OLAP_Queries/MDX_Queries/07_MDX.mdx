@@ -1,0 +1,12 @@
+SELECT
+    {
+        [Measures].[Gross Approval],
+        [Measures].[SBA Guaranteed Approval],
+        [Measures].[SBA Guarantee Ratio]
+    } ON COLUMNS,
+
+    NON EMPTY
+        [Dim Loan Profile].[Processing Method].[Processing Method].Members
+    ON ROWS
+
+FROM [SBA7A DWH_DSV];

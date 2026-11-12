@@ -1,0 +1,181 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="b29555b6-a332-491f-b9da-5a6899040251" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Loan Profile</ID>
+  <Name>Dim Loan Profile</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="29cdc7b4-60c5-443f-9337-9ed963ed5b12">
+    <DataSourceViewID>SBA7A DWH_DSV</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="3a0bfb5d-edbb-417f-9188-498228c66edd">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="2bcb448b-fb1f-47ee-88d1-50d79aeb2cdf">
+      <ID>Loan Profile Key</ID>
+      <Name>Loan Profile Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="713727e7-c188-44b1-ad13-b746b2e7e1dd">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="326d7e3b-c4b2-42e0-bfa2-6d75c4c442fd">
+            <TableID>dbo_Dim_LoanProfile</TableID>
+            <ColumnID>LoanProfileKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="92aff767-b1f9-45a7-992d-8fadea8f3007">
+          <AttributeID>Processing Method</AttributeID>
+          <Name>Processing Method</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="0d8ce069-16e5-4e6d-8fbe-2f12332c4774">
+          <AttributeID>Fixed Or Variable Interest Ind</AttributeID>
+          <Name>Fixed Or Variable Interest Ind</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e4cf95e4-3cba-45b9-ba28-36b1b3e7216a">
+          <AttributeID>Revolver Status</AttributeID>
+          <Name>Revolver Status</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="bf7e9032-7e95-4679-8e37-f8ba039bf417">
+          <AttributeID>Collateral Ind</AttributeID>
+          <Name>Collateral Ind</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d157d812-448b-4e40-ba9f-75c6102a0704">
+          <AttributeID>Loan Profile Value Status</AttributeID>
+          <Name>Loan Profile Value Status</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="deed2872-8c2c-49e1-b8c5-8bc7ac34be4b">
+      <ID>Processing Method</ID>
+      <Name>Processing Method</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="522f7a31-da57-4f5a-9b26-f243d7131b08">
+          <DataType>WChar</DataType>
+          <DataSize>150</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6ac6c8f1-7a44-4c38-9a49-a95c73a32af4">
+            <TableID>dbo_Dim_LoanProfile</TableID>
+            <ColumnID>ProcessingMethod</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bc868905-b8e5-4962-821f-f544c131ab99">
+      <ID>Fixed Or Variable Interest Ind</ID>
+      <Name>Fixed Or Variable Interest Ind</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c06dc6eb-f3cc-40db-b6da-03c36df0a2ca">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="962f40ef-a30c-4ee1-b30d-f161dbc25704">
+            <TableID>dbo_Dim_LoanProfile</TableID>
+            <ColumnID>FixedOrVariableInterestInd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3d9c94a6-4d82-4857-99e3-222ea7fe3c6d">
+      <ID>Revolver Status</ID>
+      <Name>Revolver Status</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b437755f-754d-4c2b-98aa-905ee8729db3">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4297a1ea-9cbd-48eb-b560-013e058bb087">
+            <TableID>dbo_Dim_LoanProfile</TableID>
+            <ColumnID>RevolverStatus</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7889bd2c-4816-41a8-a2d5-fa9bee5bda3b">
+      <ID>Collateral Ind</ID>
+      <Name>Collateral Ind</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d952890c-78de-439c-9b4e-1a95c00f834b">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b36dc93c-b612-4c9a-ba85-adf8cd8e454c">
+            <TableID>dbo_Dim_LoanProfile</TableID>
+            <ColumnID>CollateralInd</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="82b4f04a-9781-4fdc-8f11-bb57cec22fdd">
+      <ID>Loan Profile Value Status</ID>
+      <Name>Loan Profile Value Status</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9f4a3287-4a0f-410f-9817-762771511e05">
+          <DataType>WChar</DataType>
+          <DataSize>30</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="de6d9b3a-4744-4e47-aaa4-abb66c2ce9ac">
+            <TableID>dbo_Dim_LoanProfile</TableID>
+            <ColumnID>LoanProfileValueStatus</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

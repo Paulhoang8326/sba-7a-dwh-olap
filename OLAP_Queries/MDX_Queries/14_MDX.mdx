@@ -1,0 +1,25 @@
+SELECT
+{
+    ([Measures].[Gross Approval],
+     [Dim Date].[Fiscal Year].&[2024]),
+
+    ([Measures].[Gross Approval],
+     [Dim Date].[Fiscal Year].&[2025])
+} ON COLUMNS,
+
+NON EMPTY (
+    TOPCOUNT(
+        NONEMPTY(
+            [Dim Lender].[Location ID].[Location ID].Members,
+            ([Measures].[Gross Approval],
+             [Dim Date].[Fiscal Year].&[2025])
+        ),
+        5,
+        ([Measures].[Gross Approval],
+         [Dim Date].[Fiscal Year].&[2025])
+    )
+    *
+    [Dim Lender].[Bank Name].[Bank Name].Members
+) ON ROWS
+
+FROM [SBA7A DWH_DSV];

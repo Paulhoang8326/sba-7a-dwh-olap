@@ -1,0 +1,279 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="c02769fc-b823-44c0-be1d-60557b1810da" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Industry</ID>
+  <Name>Dim Industry</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1885" scrolltop="-6020" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7726" y="16034" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Industry" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3916" height="3995" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e00004c0f00009b0f0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Dim_Industry" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-1885</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-6020</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="163">
+            <Shape Id="Industry Key" Expanded="false">
+              <Attributes>
+                <Attribute Id="Industry Key" />
+                <Attribute Id="Naics Description" />
+                <Attribute Id="Naics Sector Name" />
+                <Attribute Id="Naics Version" />
+                <Attribute Id="Sector Mapping Status" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Naics Code" Expanded="false">
+              <Attributes>
+                <Attribute Id="Naics Code" />
+              </Attributes>
+              <Position x="228" y="20" />
+            </Shape>
+            <Shape Id="Naics Sector Code" Expanded="false">
+              <Attributes>
+                <Attribute Id="Naics Sector Code" />
+              </Attributes>
+              <Position x="437" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="63d24684-83e1-418b-b196-bdec5cfa4af2">
+    <DataSourceViewID>SBA7A DWH_DSV</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="f9c9b893-9a71-4013-b6c7-11675eeecf1e">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="9a59d5db-4721-41d7-8628-9f3cd8f3a8b0">
+      <ID>Industry Key</ID>
+      <Name>Industry Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a1055e6e-d47b-44f2-96b9-191cbf2b25bf">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bc0bf7f6-06fe-4b93-b55e-46f1cbf4d9d2">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>IndustryKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="cb891cc6-1efb-478f-840b-2dacc4502f6b">
+          <AttributeID>Naics Code</AttributeID>
+          <Name>Naics Code</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="6b22e180-9bbc-4d92-ae4b-0363941d962e">
+          <AttributeID>Naics Description</AttributeID>
+          <Name>Naics Description</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7b020609-aac9-4b12-8006-a09c6e6d6d21">
+          <AttributeID>Naics Sector Name</AttributeID>
+          <Name>Naics Sector Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="83c3f8f3-b36a-4cc8-a3be-aba70f005373">
+          <AttributeID>Naics Version</AttributeID>
+          <Name>Naics Version</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="46dfda10-fc96-491e-bd03-b828ef2bc7f0">
+          <AttributeID>Sector Mapping Status</AttributeID>
+          <Name>Sector Mapping Status</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7faa9269-ffbc-484a-9508-cd7d0d1e4459">
+      <ID>Naics Code</ID>
+      <Name>Naics Code</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ab47b83f-4acf-4513-a4fb-17e16f42e032">
+          <DataType>WChar</DataType>
+          <DataSize>20</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8aaadf64-702f-41c0-901a-51156228e88a">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>NaicsCode</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="3c01a924-d5a5-4256-8574-2f2262ab9e7e">
+          <AttributeID>Naics Sector Code</AttributeID>
+          <Name>Naics Sector Code</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e4aa1000-cc5a-4624-b06f-27e6e4a6267e">
+      <ID>Naics Description</ID>
+      <Name>Naics Description</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="79104d38-4c35-48ad-b932-4b60f46718bd">
+          <DataType>WChar</DataType>
+          <DataSize>300</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="89b3832d-463e-4741-99b8-5c93f4d9db63">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>NaicsDescription</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="21a4e85d-1032-469d-bb70-e113aae3f0a4">
+      <ID>Naics Sector Code</ID>
+      <Name>Naics Sector Code</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ab005dde-d90e-4502-9f65-3a3d13259df3">
+          <DataType>WChar</DataType>
+          <DataSize>20</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9fc85d79-a45b-4e3e-9462-92ccca8e56fd">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>NaicsSectorCode</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="01237c81-c976-4d1a-aa13-92be272ca91e">
+      <ID>Naics Sector Name</ID>
+      <Name>Naics Sector Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="fd63cb3c-309b-49a4-84f2-228acc6f7f14">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="aaa82539-76ae-4f00-a846-6f3767a78a4a">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>NaicsSectorName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4b400e38-f3dd-4683-be6c-93c5abe99f76">
+      <ID>Naics Version</ID>
+      <Name>Naics Version</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d60ba4db-3847-457b-ae70-00b80687a3e2">
+          <DataType>WChar</DataType>
+          <DataSize>30</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e2b56aee-52f1-4343-b6c1-f233c46305a8">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>NaicsVersion</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3496362f-4fcd-496b-a0cd-9f8a8de535e6">
+      <ID>Sector Mapping Status</ID>
+      <Name>Sector Mapping Status</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="28b5d2fd-758e-49fd-bd52-7e26107d6575">
+          <DataType>WChar</DataType>
+          <DataSize>30</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="90fb8819-4802-4f8b-9196-0bab195e5f75">
+            <TableID>dbo_Dim_Industry</TableID>
+            <ColumnID>SectorMappingStatus</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="5a5f72ee-84bd-4a19-907a-5ced8e3133ee">
+      <ID>Hierarchy</ID>
+      <Name>NAICS Industry</Name>
+      <Levels>
+        <Level dwd:design-time-name="4c5ae4e0-ebe4-4c8a-8e23-f2878a5ed55c">
+          <ID>Naics Sector Code</ID>
+          <Name>Naics Sector Code</Name>
+          <SourceAttributeID>Naics Sector Code</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="ae609250-0c09-4c06-a5e8-348fa5602289">
+          <ID>Naics Code</ID>
+          <Name>Naics Code</Name>
+          <SourceAttributeID>Naics Code</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

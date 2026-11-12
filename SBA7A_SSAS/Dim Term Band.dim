@@ -1,0 +1,279 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="4502c279-ed50-418e-8a1c-222d767ec8c2" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Term Band</ID>
+  <Name>Dim Term Band</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2216" scrolltop="-6020" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7849" y="14781" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900180380100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_TermBand" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3254" height="3995" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000b60c00009b0f0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dbo_Dim_TermBand" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-2216</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-6020</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="140">
+            <Shape Id="Term Band Key" Expanded="true">
+              <Attributes>
+                <Attribute Id="Term Band Key" />
+                <Attribute Id="Band Status" />
+                <Attribute Id="Max Months" />
+                <Attribute Id="Min Months" />
+                <Attribute Id="Term Band Name" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Term Band Code" Expanded="true">
+              <Attributes>
+                <Attribute Id="Term Band Code" />
+                <Attribute Id="Sort Order" />
+              </Attributes>
+              <Position x="200" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="760591aa-3403-4c16-9257-ab5645586e1b">
+    <DataSourceViewID>SBA7A DWH_DSV</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="3c327172-5c32-4d54-98cd-bfb2b06e03a6">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="6e588543-cb4d-4366-8960-8038925e333c">
+      <ID>Term Band Key</ID>
+      <Name>Term Band Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ed17497a-9f97-41cf-9535-d0372bec3e33">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f6c81042-bed2-47f7-b6f0-7c92689461ad">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>TermBandKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="7bcb26c5-edfe-45fa-b6d5-8dda73272218">
+        <DataType>WChar</DataType>
+        <DataSize>100</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="3516b111-6c07-481f-af43-27e4d519c59c">
+          <TableID>dbo_Dim_TermBand</TableID>
+          <ColumnID>TermBandName</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="81d44735-74ad-4fb3-a797-f765c7b3ba7f">
+          <AttributeID>Term Band Code</AttributeID>
+          <Name>Term Band Code</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="176b3818-ed7d-4630-ac70-2920551f8257">
+          <AttributeID>Term Band Name</AttributeID>
+          <Name>Term Band Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e1604355-be91-4bcf-b270-0cf62d871a05">
+          <AttributeID>Min Months</AttributeID>
+          <Name>Min Months</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="238023f7-704e-43f4-80ca-01dad2ef51b8">
+          <AttributeID>Max Months</AttributeID>
+          <Name>Max Months</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="c1df414e-e0cd-4d00-aa19-3d434e8c1488">
+          <AttributeID>Band Status</AttributeID>
+          <Name>Band Status</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c378eddd-bf0d-4cde-a71a-73b779876ca4">
+      <ID>Term Band Code</ID>
+      <Name>Term Band Code</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="195bc4b3-b412-487b-9041-343e6285d6ec">
+          <DataType>WChar</DataType>
+          <DataSize>30</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3c07720a-c62f-4bbd-9786-41942290604d">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>TermBandCode</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="98e67d5d-c413-45ee-9169-3db643be2c44">
+        <DataType>WChar</DataType>
+        <DataSize>100</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="9294d19a-cadb-4f4b-a562-78daf2eaa8d8">
+          <TableID>dbo_Dim_TermBand</TableID>
+          <ColumnID>TermBandName</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="d981b772-bf6e-4a2a-a278-bb35b40765da">
+          <AttributeID>Sort Order</AttributeID>
+          <Name>Sort Order</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>AttributeKey</OrderBy>
+      <OrderByAttributeID>Sort Order</OrderByAttributeID>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1b6d484e-8554-4c39-b855-63aa87f41669">
+      <ID>Term Band Name</ID>
+      <Name>Term Band Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9853ad1a-b808-44c5-9b94-81d1b5abbf8c">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3abe7c36-14da-4fe1-aae7-048b4e57bf43">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>TermBandName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="57f91ea8-a8f5-4aa0-9765-8da80aafe957">
+      <ID>Min Months</ID>
+      <Name>Min Months</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="828a5ae6-05f9-46c1-8fbf-5894988fdc29">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8e709e89-98d3-45d3-8ecd-df76b3879da9">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>MinMonths</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="50e54207-a292-42cc-b53b-a123953e4769">
+      <ID>Max Months</ID>
+      <Name>Max Months</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7b635abf-6fd1-4641-96db-1c4b3b9629ce">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ffdc308f-9f42-47ca-b281-06895431b2a3">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>TermBandKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="c6a97683-8d4a-4fe7-92aa-dde22f7d08fa">
+        <DataType>WChar</DataType>
+        <DataSize>100</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="8884ba43-5217-47d9-8163-5a59390673eb">
+          <TableID>dbo_Dim_TermBand</TableID>
+          <ColumnID>TermBandName</ColumnID>
+        </Source>
+      </NameColumn>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="194d4a96-c4d5-4669-b351-dfad7ab7285c">
+      <ID>Sort Order</ID>
+      <Name>Sort Order</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d3e934d4-c56f-4ee6-9361-7012a12ed6ad">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f1d01540-819e-4745-a2fb-95d27a0d9319">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>SortOrder</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1cddfce0-c569-4edc-9059-4923f7718916">
+      <ID>Band Status</ID>
+      <Name>Band Status</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8a136eb7-d101-46ba-9536-acdb8b8ddd3c">
+          <DataType>WChar</DataType>
+          <DataSize>30</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="aa8cca92-09f7-443c-b28d-dec4f0129a15">
+            <TableID>dbo_Dim_TermBand</TableID>
+            <ColumnID>BandStatus</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

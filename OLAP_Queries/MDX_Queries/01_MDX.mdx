@@ -1,0 +1,9 @@
+SELECT
+    {[Measures].[Gross Approval]} ON COLUMNS,
+
+    NON EMPTY
+        DRILLDOWNLEVEL(
+            [Dim Date].[Fiscal Date].[Fiscal Year].MEMBERS
+        ) ON ROWS
+
+FROM [SBA7A DWH_DSV];

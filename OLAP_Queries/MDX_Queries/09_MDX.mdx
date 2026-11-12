@@ -1,0 +1,17 @@
+SELECT
+    [Measures].[Gross Approval] ON COLUMNS,
+
+    TOPCOUNT(
+        NONEMPTY(
+            [Dim Project Geography].[Project County].[Project County].Members,
+            [Measures].[Gross Approval]
+        ),
+        3,
+        [Measures].[Gross Approval]
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV]
+
+WHERE (
+    [Dim Project Geography].[Project State].&[CA]
+);

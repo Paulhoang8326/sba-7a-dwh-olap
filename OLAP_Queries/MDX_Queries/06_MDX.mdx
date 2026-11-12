@@ -1,0 +1,13 @@
+SELECT
+    {
+        [Measures].[Gross Approval],
+        [Measures].[Prior FY Gross Approval],
+        [Measures].[YoY Gross Approval Growth]
+    } ON COLUMNS,
+
+    (
+        [Dim Date].[Fiscal Date].[Fiscal Year].&[2021]:
+        [Dim Date].[Fiscal Date].[Fiscal Year].&[2025]
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV];

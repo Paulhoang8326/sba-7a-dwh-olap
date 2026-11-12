@@ -1,0 +1,16 @@
+SELECT
+    {
+        [Measures].[Record Count],
+        [Measures].[Gross Approval],
+        [Measures].[Average Approval per Record]
+    } ON COLUMNS,
+
+    NON EMPTY (
+        [Dim Date].[Fiscal Year].[Fiscal Year].Members
+        *
+        [Dim Business].[Business Type].[Business Type].Members
+        *
+        [Dim Business].[Business Age].[Business Age].Members
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV];

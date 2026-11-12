@@ -30,4 +30,4 @@ Python preprocessing Chương 1 giữ nguyên. `python -m src.etl.prepare_ssis_i
 
 ETL còn lại: tạo database/tables và SSIS; load tám Dimensions theo full keys, Lookup FK, RecordCount=1/ETLBatchID, giữ source/ordinal; đối soát count/totals/FY/status/FK. Full reload trên database đồ án riêng là đủ một snapshot; chưa cần CDC/SCD hoặc bảng audit phức tạp.
 
-Các gate Q12/Q15 là query population, không xóa records trong preprocessing. NAICS reference/version vẫn pending; labels/NULL/Unicode/lookup cụ thể ở bước implementation Chương 2. SSIS dùng input 52 cột nên không cần clean CSV chứa Borr*.
+Các gate Q15 là query population, không xóa records trong preprocessing; Q12 lọc FY2025 và tổng hợp theo Term Band tại lớp truy vấn. NAICS reference/version vẫn pending; labels/NULL/Unicode/lookup cụ thể ở bước implementation Chương 2. SSIS dùng input 52 cột nên không cần clean CSV chứa Borr*.

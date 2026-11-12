@@ -1,0 +1,10 @@
+SELECT
+    [Measures].[Jobs Supported] ON COLUMNS,
+
+    NON EMPTY (
+        [Dim Date].[Fiscal Year].[Fiscal Year].Members
+        *
+        [Dim Loan Profile].[Processing Method].[Processing Method].Members
+    ) ON ROWS
+
+FROM [SBA7A DWH_DSV];
