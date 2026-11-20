@@ -1,0 +1,148 @@
+/*
+  Calculated members bổ sung cho báo biểu Power BI (Chương 4) – Q6, Q8, Q15.
+  Dán NGUYÊN khối này vào CUỐI script ở tab Calculations (Script View) của cube
+  [SBA7A DWH_DSV], sau các CREATE MEMBER đã có. Không xóa lệnh CALCULATE; ở đầu script.
+  Power BI nối live vào cube Multidimensional không cho viết DAX, nên mọi chỉ số phải nằm trong cube.
+*/
+
+/* ---------- Q6: cờ phạm vi FY2021–FY2025 ----------
+   Dùng làm filter trên visual (measure = 1) thay cho filter năm, để FY2020 vẫn còn
+   trong ngữ cảnh và Prior FY Gross Approval của FY2021 không bị trống. */
+CREATE MEMBER CURRENTCUBE.[Measures].[Q6 In Scope]
+ AS IIF(
+    [Dim Date].[Fiscal Date].CurrentMember.Level.Name <> "Fiscal Year",
+    NULL,
+    IIF(
+        CInt(Right([Dim Date].[Fiscal Date].CurrentMember.Name, 4)) >= 2021
+        AND CInt(Right([Dim Date].[Fiscal Date].CurrentMember.Name, 4)) <= 2025,
+        1,
+        NULL
+    )
+),
+FORMAT_STRING = "0",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/* ---------- Q8: tỷ trọng county trong bang của nó ---------- */
+CREATE MEMBER CURRENTCUBE.[Measures].[County Share in State]
+ AS IIF(
+    [Dim Project Geography].[Project County].CurrentMember.Level.Ordinal = 0,
+    NULL,
+    IIF(
+        IsEmpty(
+            (
+                [Measures].[Gross Approval],
+                [Dim Project Geography].[Project County].DefaultMember,
+                Exists(
+                    [Dim Project Geography].[Project State].[Project State].Members,
+                    [Dim Project Geography].[Project County].CurrentMember
+                ).Item(0)
+            )
+        ),
+        NULL,
+        [Measures].[Gross Approval]
+        /
+        (
+            [Measures].[Gross Approval],
+            [Dim Project Geography].[Project County].DefaultMember,
+            Exists(
+                [Dim Project Geography].[Project State].[Project State].Members,
+                [Dim Project Geography].[Project County].CurrentMember
+            ).Item(0)
+        )
+    )
+),
+FORMAT_STRING = "#,##0.00%;-#,##0.00%",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/* ---------- Q15: CHGOFF theo ngành so với baseline cohort FY ---------- */
+CREATE MEMBER CURRENTCUBE.[Measures].[CHGOFF Record Count]
+ AS (
+    [Measures].[Record Count],
+    [Dim Loan Status].[Raw Status].&[CHGOFF]
+),
+FORMAT_STRING = "#,##0;-#,##0",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+CREATE MEMBER CURRENTCUBE.[Measures].[CHGOFF Gross Charge Off]
+ AS (
+    [Measures].[Gross Charge Off Amount],
+    [Dim Loan Status].[Raw Status].&[CHGOFF]
+),
+FORMAT_STRING = "#,##0.00;-#,##0.00",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/* Tỷ lệ CHGOFF quan sát = số bản ghi CHGOFF / tổng bản ghi (mọi trạng thái) */
+CREATE MEMBER CURRENTCUBE.[Measures].[CHGOFF Share]
+ AS IIF(
+    IsEmpty([Measures].[Record Count])
+    OR [Measures].[Record Count] = 0,
+    NULL,
+    [Measures].[CHGOFF Record Count]
+    / [Measures].[Record Count]
+),
+FORMAT_STRING = "#,##0.00%;-#,##0.00%",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/* Baseline = tỷ lệ CHGOFF của cả cohort (bỏ mọi lọc ngành, giữ FY) */
+CREATE MEMBER CURRENTCUBE.[Measures].[CHGOFF Baseline]
+ AS (
+    [Measures].[CHGOFF Share],
+    Root([Dim Industry])
+),
+FORMAT_STRING = "#,##0.00%;-#,##0.00%",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/* Eligible = 1 khi ngành có >= 30 bản ghi, >= 5 CHGOFF và tỷ lệ > baseline (gates 30/5) */
+CREATE MEMBER CURRENTCUBE.[Measures].[Q15 Eligible]
+ AS IIF(
+    IsEmpty([Measures].[Record Count]),
+    NULL,
+    IIF(
+        [Measures].[Record Count] >= 30
+        AND [Measures].[CHGOFF Record Count] >= 5
+        AND [Measures].[CHGOFF Share] > [Measures].[CHGOFF Baseline],
+        1,
+        0
+    )
+),
+FORMAT_STRING = "0",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/* % tiền xóa nợ của bang trong ngành đang xét */
+CREATE MEMBER CURRENTCUBE.[Measures].[CHGOFF Amount Share in Sector]
+ AS IIF(
+    IsEmpty(
+        (
+            [Measures].[CHGOFF Gross Charge Off],
+            [Dim Project Geography].[Project Geography].DefaultMember
+        )
+    )
+    OR
+    (
+        [Measures].[CHGOFF Gross Charge Off],
+        [Dim Project Geography].[Project Geography].DefaultMember
+    ) = 0,
+    NULL,
+    [Measures].[CHGOFF Gross Charge Off]
+    /
+    (
+        [Measures].[CHGOFF Gross Charge Off],
+        [Dim Project Geography].[Project Geography].DefaultMember
+    )
+),
+FORMAT_STRING = "#,##0.00%;-#,##0.00%",
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Loan'  ;
+
+/*
+  Kiểm tra nhanh sau khi deploy (chạy trong SSMS, New MDX Query, database SBA7A_SSAS):
+
+  SELECT
+    { [Measures].[Record Count], [Measures].[CHGOFF Record Count], [Measures].[CHGOFF Share],
+      [Measures].[CHGOFF Baseline], [Measures].[Q15 Eligible], [Measures].[CHGOFF Gross Charge Off] } ON COLUMNS,
+    NON EMPTY [Dim Industry].[Naics Sector Name].[Naics Sector Name].Members ON ROWS
+  FROM [SBA7A DWH_DSV]
+  WHERE ( [Dim Date].[Fiscal Year].&[2025] );
+
+  Kỳ vọng FY2025: baseline 0.11% mọi dòng (85 / 78,078);
+  Eligible = 1: Retail Trade 1,913,417.62 · Construction 1,374,155.58 · Manufacturing 659,110.94.
+*/
